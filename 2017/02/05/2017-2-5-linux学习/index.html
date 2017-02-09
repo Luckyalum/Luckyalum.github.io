@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://baoxizhao.com">
   <title>Linux基础学习 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux基础学习（不定时更新）">
+  <meta name="description" content="Linux基础学习（第一部分 Linux的规则与安装）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础学习">
 <meta property="og:url" content="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="Linux基础学习（不定时更新）">
+<meta property="og:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
-<meta property="og:updated_time" content="2017-02-05T11:49:04.581Z">
+<meta property="og:updated_time" content="2017-02-09T06:24:25.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础学习">
-<meta name="twitter:description" content="Linux基础学习（不定时更新）">
+<meta name="twitter:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
 <meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
@@ -161,8 +161,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Linux基础学习（不定时更新）"><a href="#Linux基础学习（不定时更新）" class="headerlink" title="Linux基础学习（不定时更新）"></a>Linux基础学习（不定时更新）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br><a id="more"></a><br><strong><em>主要参考来源</em></strong><br>-鸟哥的Linux私房菜基础学习篇（第三版）</p>
-<h3 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1.搭建环境"></a>1.搭建环境</h3><p>由于一些原因（就是穷，买不起服务器），通过虚拟机来学习Linux<br>相关参数：<br>-主机系统： Windows 7 64位<br>-虚拟机软件 <a href="http://rj.baidu.com/soft/detail/13808.html?ald" target="_blank" rel="external">VMare Workstation 12.5.2</a><br>-虚拟机系统 <a href="https://www.centos.org/" target="_blank" rel="external">CentOS 7</a><br>安装过程比较简单，省略不写</p>
+        <h2 id="Linux基础学习（第一部分-Linux的规则与安装）"><a href="#Linux基础学习（第一部分-Linux的规则与安装）" class="headerlink" title="Linux基础学习（第一部分 Linux的规则与安装）"></a>Linux基础学习（第一部分 Linux的规则与安装）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br><a id="more"></a><br><strong><em>主要参考来源</em></strong><br>-鸟哥的Linux私房菜基础学习篇（第三版）</p>
+<h3 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1.搭建环境"></a>1.搭建环境</h3><p>由于一些原因（就是穷，买不起服务器），通过虚拟机来学习Linux，但是这种环境很多硬件都是仿真的，因此有条件的话建议还是直接装Linux或利用多重引导装双系统。</p>
+<p><strong>相关配置：</strong>    </p>
+<ul>
+<li>主机系统： Windows 7 64位  </li>
+<li>虚拟机软件 <a href="http://rj.baidu.com/soft/detail/13808.html?ald" target="_blank" rel="external">VMare Workstation 12.5.2</a>  </li>
+<li>虚拟机系统 <a href="https://www.centos.org/" target="_blank" rel="external">CentOS 7</a><br><strong>安装：</strong><br> 首先安装VMare，然后下载CentOS 7镜像文件，VMare安装CentOS也没什么要特别注意的地方。  <h3 id="2-登录系统"><a href="#2-登录系统" class="headerlink" title="2.登录系统"></a>2.登录系统</h3></li>
+<li>CentOS 7有图形界面X Window（GNOME,GNOME classical等）和命令行界面。  </li>
+<li>两种模式的切换：<br><code>Ctrl</code>+<code>Alt</code>+<code>F2</code>~<code>F7</code>  命令行界面（tty2~tty7）<br><code>Ctrl</code>+<code>Alt</code>+<code>F1</code>  图形界面（tty1）<br>注意：不同的distribution不同，如CentOS 5.x tty7为图形界面  </li>
+<li>如果使用命令行模式启动的Linux，可以使用<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$start</span> x</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>不过该命令并非万能  </p>
+<ul>
+<li>终端界面登录Linux  <pre><code class="bash">localhost login: baoxzh  
+password: 
+Last login: Wed Feb 8 19:30:30 on:0  
+[baoxzh@localhost~]$
+</code></pre>
+注意输入的密码不会显示出来  <h3 id="3-基础命令"><a href="#3-基础命令" class="headerlink" title="3.基础命令"></a>3.基础命令</h3></li>
+<li>命令行模式下执行命令<br>基本格式： command [-options] parameter1 parameter2…<br>即         命令或可执行文件+选项+参数1+参数2+…<br>注意：大小写区分</li>
+<li>简单命令：  <ul>
+<li>显示日期命令 date  </li>
+<li>显示日历命令 cal 不妨试试 <code>$ cal 9 1752</code>(和历法有关)  </li>
+<li>计算器 bc  </li>
+</ul>
+</li>
+<li>基本命令：  <ul>
+<li>改变目录 cd (change directory)  </li>
+<li>选择用户 su (switch user)  </li>
+<li>删除文件 rm (remove)  </li>
+<li>显示文件属性 ls  </li>
+<li>退出 exit  </li>
+</ul>
+</li>
+<li>重要热键：  <ul>
+<li><code>Tab</code>：命令补全或文件补齐    </li>
+<li><code>Ctrl</code>+<code>C</code>：终止当前命令  </li>
+<li><code>Ctrl</code>+<code>D</code>：离开，相当于exit  </li>
+</ul>
+</li>
+<li>求助命令（Manual） man page 和 info page   </li>
+<li>关机、重启  <ul>
+<li>shutdown  </li>
+<li>reboot  </li>
+<li>halt  </li>
+<li>poweroff  </li>
+</ul>
+</li>
+<li>切换执行等级  <ul>
+<li>run level 0：关机   </li>
+<li>run level 3：纯命令行模式  </li>
+<li>run level 5：含有图形界面模式  </li>
+<li>run level 6：重启  </li>
+</ul>
+</li>
+</ul>
 
       
 
