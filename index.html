@@ -140,6 +140,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-常见排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/13/常见排序算法/">常见排序算法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/13/常见排序算法/" class="archive-article-date">
+  	<time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="常见排序算法"><a href="#常见排序算法" class="headerlink" title="#常见排序算法  "></a>#常见排序算法  </h2><p>###1.冒泡排序<br>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>###2.插入排序<br>算法：每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置,直到全部插入完毕<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&amp;fm=21&amp;gp=0.jpg" alt="插入排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> m = a[i];</div><div class="line">			<span class="keyword">int</span> j;</div><div class="line">			<span class="keyword">for</span>(j=i; j&gt;<span class="number">0</span>&amp;&amp;m&lt;a[j-<span class="number">1</span>]; j--)</div><div class="line">				a[j] = a[j-<span class="number">1</span>];</div><div class="line">			a[j] = m;</div><div class="line">		&#125;				           </div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>###3.选择排序<br>算法：每一趟排序从序列中未排好序的那些元素中选择一个值最小的元素，然后将其与这些未排好序的元素的第一个元素交换位置<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&amp;fm=21&amp;gp=0.jpg" alt="选择排序"><br>代码实现：</p>
+<pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span>
+    </span>{
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)
+        {
+            <span class="keyword">int</span> min = a[i];
+            <span class="keyword">int</span> index = i;
+            <span class="keyword">int</span> tmp;
+            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)
+                <span class="keyword">if</span>(a[j]&lt;min)
+                {
+                    min = a[j];
+                    index = j;
+                }
+            tmp = a[i];
+            a[i] = min;
+            a[index] = tmp;
+        }                                   
+    }
+</code></pre>
+<hr>
+<p>###4.快速排序<br>算法：先从数列中取出一个数作为基准数，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边，再对左右区间重复上述过程，直到各区间只有一个数<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&amp;fm=21&amp;gp=0.jpg" alt="快速排序"><br>代码实现：</p>
+<pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span>
+    </span>{
+        <span class="keyword">if</span>(left&lt;right)
+        {
+            <span class="keyword">int</span> i = left;
+            <span class="keyword">int</span> j = right;
+            <span class="keyword">int</span> m = a[i];
+            <span class="keyword">while</span>(i&lt;j)
+            {
+                <span class="keyword">while</span>(i&lt;j&amp;&amp;a[j]&gt;=m)
+                    j--;
+                <span class="keyword">if</span>(i&lt;j)
+                    a[i++] = a[j];
+                <span class="keyword">while</span>(i&lt;j&amp;&amp;a[i]&lt;=m)
+                    i++;
+                <span class="keyword">if</span>(i&lt;j)
+                    a[j--] = a[i];
+            }
+            a[i] = m;
+            QuickSort(a, left, i-<span class="number">1</span>);
+            QuickSort(a, i+<span class="number">1</span>, right);
+        }
+    }
+</code></pre>
+<hr>
+<p>##最后<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&amp;fm=23&amp;gp=0.jpg" alt="最后"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/13/常见排序算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2017-2-5-linux学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -380,6 +508,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
             
             <div class="clearfix"></div>
