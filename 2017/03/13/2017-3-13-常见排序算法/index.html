@@ -8,24 +8,21 @@
   <link rel="dns-prefetch" href="http://baoxizhao.com">
   <title>常见排序算法 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常见排序算法
-1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+  <meta name="description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见排序算法">
 <meta property="og:url" content="http://baoxizhao.com/2017/03/13/2017-3-13-常见排序算法/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="常见排序算法
-1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+<meta property="og:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&fm=23&gp=0.jpg">
-<meta property="og:updated_time" content="2017-03-13T00:03:18.436Z">
+<meta property="og:updated_time" content="2017-03-18T05:30:19.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见排序算法">
-<meta name="twitter:description" content="常见排序算法
-1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+<meta name="twitter:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta name="twitter:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
@@ -168,8 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="常见排序算法"><a href="#常见排序算法" class="headerlink" title="常见排序算法"></a>常见排序算法</h1><hr>
-<h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br><a id="more"></a><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+        <h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br><a id="more"></a><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <hr>
 <h3 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2.插入排序"></a>2.插入排序</h3><p>算法：每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置,直到全部插入完毕<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&amp;fm=21&amp;gp=0.jpg" alt="插入排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> m = a[i];</div><div class="line">			<span class="keyword">int</span> j;</div><div class="line">			<span class="keyword">for</span>(j=i; j&gt;<span class="number">0</span>&amp;&amp;m&lt;a[j-<span class="number">1</span>]; j--)</div><div class="line">				a[j] = a[j-<span class="number">1</span>];</div><div class="line">			a[j] = m;</div><div class="line">		&#125;				           </div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <hr>
@@ -319,9 +315,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/03/18/python openCV图像处理之提取轮廓/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          python openCV图像处理之提取轮廓
+        
+      </div>
+    </a>
   
-    <a href="/2017/03/13/python openCV图像处理之提取轮廓/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python openCV图像处理之提取轮廓</div>
+  
+    <a href="/2017/02/05/2017-2-5-linux学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux基础学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -429,14 +434,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">opencv</a>
               </li>
              
@@ -446,6 +443,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
             
             <div class="clearfix"></div>

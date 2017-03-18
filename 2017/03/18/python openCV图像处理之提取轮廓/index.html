@@ -6,32 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>Bao Xizhao&#39;s Blog</title>
+  <title>python openCV图像处理之提取轮廓 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python openCV图像处理之提取轮廓
-1.导入需要的包1import cv2
-这里只做最简单的处理，所以只需导入cv2    
-2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
-3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
+  <meta name="description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bao Xizhao's Blog">
+<meta property="og:title" content="python openCV图像处理之提取轮廓">
 <meta property="og:url" content="http://baoxizhao.com/2017/03/18/python openCV图像处理之提取轮廓/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="python openCV图像处理之提取轮廓
-1.导入需要的包1import cv2
-这里只做最简单的处理，所以只需导入cv2    
-2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
-3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
+<meta property="og:description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
 <meta property="og:image" content="http://baoxizhao.com/img/kindle.jpg">
 <meta property="og:image" content="http://baoxizhao.com/img/kindlenew.jpg">
-<meta property="og:updated_time" content="2017-03-18T05:21:33.255Z">
+<meta property="og:updated_time" content="2017-03-18T05:31:22.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bao Xizhao's Blog">
-<meta name="twitter:description" content="python openCV图像处理之提取轮廓
-1.导入需要的包1import cv2
-这里只做最简单的处理，所以只需导入cv2    
-2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
-3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
+<meta name="twitter:title" content="python openCV图像处理之提取轮廓">
+<meta name="twitter:description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
 <meta name="twitter:image" content="http://baoxizhao.com/img/kindle.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
@@ -157,17 +148,30 @@
             <article id="post-python openCV图像处理之提取轮廓" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python openCV图像处理之提取轮廓
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/python openCV图像处理之提取轮廓/" class="archive-article-date">
+  	<time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="python-openCV图像处理之提取轮廓"><a href="#python-openCV图像处理之提取轮廓" class="headerlink" title="python openCV图像处理之提取轮廓"></a>python openCV图像处理之提取轮廓</h2><hr>
-<h3 id="1-导入需要的包"><a href="#1-导入需要的包" class="headerlink" title="1.导入需要的包"></a>1.导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
-<p>这里只做最简单的处理，所以只需导入cv2    </p>
+        <h3 id="1-导入需要的包"><a href="#1-导入需要的包" class="headerlink" title="1.导入需要的包"></a>1.导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<p>这里只做最简单的处理，所以只需导入cv2<br><a id="more"></a>  </p>
 <h3 id="2-载入图片"><a href="#2-载入图片" class="headerlink" title="2.载入图片"></a>2.载入图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">img = cv2.imread(<span class="string">'kindle.jpg'</span>)</div></pre></td></tr></table></figure>
 <h3 id="3-图片处理"><a href="#3-图片处理" class="headerlink" title="3.图片处理"></a>3.图片处理</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span></div><div class="line">ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像</span></div></pre></td></tr></table></figure></p>
 <h3 id="4-轮廓提取"><a href="#4-轮廓提取" class="headerlink" title="4.轮廓提取"></a>4.轮廓提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span></div></pre></td></tr></table></figure>
 <p>contours即为轮廓的像素集合（可能有多个轮廓，需要找到自己要提取的轮廓）<br>具体参数可查<a href="http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#cv2.findContours" target="_blank" rel="external">doc.opencv.org</a>   </p>
-<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理  </p>
-<pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)<span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
+<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  <span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
 cv2.imshow(<span class="string">"img"</span>, img)  
 cv2.waitKey(<span class="number">0</span>)
 </code></pre>
@@ -177,12 +181,12 @@ cv2.waitKey(<span class="number">0</span>)
 img = cv2.imread(<span class="string">'kindle.jpg'</span>)  
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span>
 ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像  </span>
-_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span>
+_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)<span class="comment">#提取轮廓</span>
 cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  
 cv2.imshow(<span class="string">"img"</span>, img)  
 cv2.waitKey(<span class="number">0</span>)
 </code></pre>
-<p><img src="img/kindle.jpg" alt="source"><img src="img/kindlenew.jpg" alt="findcotours"></p>
+<p><img src="img/kindle.jpg" alt="source"> <img src="img/kindlenew.jpg" alt="findcotours"></p>
 
       
 
@@ -191,7 +195,37 @@ cv2.waitKey(<span class="number">0</span>)
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -353,14 +387,6 @@ cv2.waitKey(<span class="number">0</span>)
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jekyll</a>
               </li>
              
@@ -370,6 +396,26 @@ cv2.waitKey(<span class="number">0</span>)
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
             
             <div class="clearfix"></div>
