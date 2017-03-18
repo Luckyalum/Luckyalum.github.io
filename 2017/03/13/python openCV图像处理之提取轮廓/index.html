@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>Linux基础学习 | Bao Xizhao&#39;s Blog</title>
+  <title>python openCV图像处理之提取轮廓 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux基础学习（第一部分 Linux的规则与安装）">
+  <meta name="description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux基础学习">
-<meta property="og:url" content="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/index.html">
+<meta property="og:title" content="python openCV图像处理之提取轮廓">
+<meta property="og:url" content="http://baoxizhao.com/2017/03/13/python openCV图像处理之提取轮廓/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
-<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
-<meta property="og:updated_time" content="2017-02-09T06:58:05.214Z">
+<meta property="og:description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
+<meta property="og:image" content="http://baoxizhao.com/img/kindle.jpg">
+<meta property="og:image" content="http://baoxizhao.com/img/kindlenew.jpg">
+<meta property="og:updated_time" content="2017-03-18T05:24:37.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux基础学习">
-<meta name="twitter:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
-<meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
+<meta name="twitter:title" content="python openCV图像处理之提取轮廓">
+<meta name="twitter:description" content="1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2">
+<meta name="twitter:image" content="http://baoxizhao.com/img/kindle.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
   
@@ -141,83 +145,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017-2-5-linux学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python openCV图像处理之提取轮廓" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux基础学习
+      python openCV图像处理之提取轮廓
     </h1>
   
 
         
-        <a href="/2017/02/05/2017-2-5-linux学习/" class="archive-article-date">
-  	<time datetime="2017-02-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
+        <a href="/2017/03/13/python openCV图像处理之提取轮廓/" class="archive-article-date">
+  	<time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Linux基础学习（第一部分-Linux的规则与安装）"><a href="#Linux基础学习（第一部分-Linux的规则与安装）" class="headerlink" title="Linux基础学习（第一部分 Linux的规则与安装）"></a>Linux基础学习（第一部分 Linux的规则与安装）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br><a id="more"></a><br><strong><em>主要参考来源</em></strong><br>-鸟哥的Linux私房菜基础学习篇（第三版）</p>
-<h3 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1.搭建环境"></a>1.搭建环境</h3><p>由于一些原因（就是穷，买不起服务器），通过虚拟机来学习Linux，但是这种环境很多硬件都是仿真的，因此有条件的话建议还是直接装Linux或利用多重引导装双系统。</p>
-<p><strong>相关配置：</strong>    </p>
-<ul>
-<li>主机系统： Windows 7 64位  </li>
-<li>虚拟机软件 <a href="http://rj.baidu.com/soft/detail/13808.html?ald" target="_blank" rel="external">VMare Workstation 12.5.2</a>  </li>
-<li>虚拟机系统 <a href="https://www.centos.org/" target="_blank" rel="external">CentOS 7</a><br><strong>安装：</strong><br> 首先安装VMare，然后下载CentOS 7镜像文件，VMare安装CentOS也没什么要特别注意的地方。  <h3 id="2-登录系统"><a href="#2-登录系统" class="headerlink" title="2.登录系统"></a>2.登录系统</h3></li>
-<li>CentOS 7有图形界面X Window（GNOME,GNOME classical等）和命令行界面。  </li>
-<li>两种模式的切换：<br><code>Ctrl</code>+<code>Alt</code>+<code>F2</code>~<code>F7</code>  命令行界面（tty2~tty7）<br><code>Ctrl</code>+<code>Alt</code>+<code>F1</code>  图形界面（tty1）<br>注意：不同的distribution不同，如CentOS 5.x tty7为图形界面  </li>
-<li>如果使用命令行模式启动的Linux，可以使用<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$start</span> x</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>不过该命令并非万能  </p>
-<ul>
-<li>终端界面登录Linux<pre><code class="bash">localhost login: baoxzh  
-password: 
-Last login: Wed Feb 8 19:30:30 on:0  
-[baoxzh@localhost~]$
+        <h3 id="1-导入需要的包"><a href="#1-导入需要的包" class="headerlink" title="1.导入需要的包"></a>1.导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<p>这里只做最简单的处理，所以只需导入cv2<br><a id="more"></a>  </p>
+<h3 id="2-载入图片"><a href="#2-载入图片" class="headerlink" title="2.载入图片"></a>2.载入图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">img = cv2.imread(<span class="string">'kindle.jpg'</span>)</div></pre></td></tr></table></figure>
+<h3 id="3-图片处理"><a href="#3-图片处理" class="headerlink" title="3.图片处理"></a>3.图片处理</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span></div><div class="line">ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-轮廓提取"><a href="#4-轮廓提取" class="headerlink" title="4.轮廓提取"></a>4.轮廓提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span></div></pre></td></tr></table></figure>
+<p>contours即为轮廓的像素集合（可能有多个轮廓，需要找到自己要提取的轮廓）<br>具体参数可查<a href="http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#cv2.findContours" target="_blank" rel="external">doc.opencv.org</a>   </p>
+<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理  </p>
+<pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)<span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
+cv2.imshow(<span class="string">"img"</span>, img)  
+cv2.waitKey(<span class="number">0</span>)
 </code></pre>
-注意输入的密码不会显示出来  <h3 id="3-基础命令"><a href="#3-基础命令" class="headerlink" title="3.基础命令"></a>3.基础命令</h3></li>
-<li>命令行模式下执行命令<br>基本格式： command [-options] parameter1 parameter2…<br>即         命令或可执行文件+选项+参数1+参数2+…<br>注意：大小写区分</li>
-<li>简单命令：  <ul>
-<li>显示日期命令 date  </li>
-<li>显示日历命令 cal 不妨试试 <code>$ cal 9 1752</code>(和历法有关)  </li>
-<li>计算器 bc  </li>
-</ul>
-</li>
-<li>基本命令：  <ul>
-<li>改变目录 cd (change directory)  </li>
-<li>选择用户 su (switch user)  </li>
-<li>删除文件 rm (remove)  </li>
-<li>显示文件属性 ls  </li>
-<li>退出 exit  </li>
-</ul>
-</li>
-<li>重要热键：  <ul>
-<li><code>Tab</code>：命令补全或文件补齐    </li>
-<li><code>Ctrl</code>+<code>C</code>：终止当前命令  </li>
-<li><code>Ctrl</code>+<code>D</code>：离开，相当于exit  </li>
-</ul>
-</li>
-<li>求助命令（Manual） man page 和 info page   </li>
-<li>关机、重启  <ul>
-<li>shutdown  </li>
-<li>reboot  </li>
-<li>halt  </li>
-<li>poweroff  </li>
-</ul>
-</li>
-<li>切换执行等级  <ul>
-<li>run level 0：关机   </li>
-<li>run level 3：纯命令行模式  </li>
-<li>run level 5：含有图形界面模式  </li>
-<li>run level 6：重启  </li>
-</ul>
-</li>
-</ul>
+<h3 id="6-所有代码及结果"><a href="#6-所有代码及结果" class="headerlink" title="6.所有代码及结果"></a>6.所有代码及结果</h3><pre><code class="python"><span class="comment">#-*- coding=utf8 -*-</span>
+<span class="keyword">import</span> cv2  
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+img = cv2.imread(<span class="string">'kindle.jpg'</span>)  
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span>
+ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像  </span>
+_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span>
+cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  
+cv2.imshow(<span class="string">"img"</span>, img)  
+cv2.waitKey(<span class="number">0</span>)
+</code></pre>
+<p><img src="img/kindle.jpg" alt="source"><img src="img/kindlenew.jpg" alt="findcotours"></p>
 
       
 
@@ -231,7 +201,15 @@ Last login: Wed Feb 8 19:30:30 on:0
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
         		</li>
       		
 		</ul>
@@ -298,7 +276,7 @@ Last login: Wed Feb 8 19:30:30 on:0
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/03/13/python openCV图像处理之提取轮廓/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -312,18 +290,18 @@ Last login: Wed Feb 8 19:30:30 on:0
   
 <nav id="article-nav">
   
-    <a href="/2017/03/13/python openCV图像处理之提取轮廓/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/13/2017-3-13-常见排序算法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          python openCV图像处理之提取轮廓
+          常见排序算法
         
       </div>
     </a>
   
   
-    <a href="/2017/01/31/2017-01-31-hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World!</div>
+    <a href="/2017/02/05/2017-2-5-linux学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux基础学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
