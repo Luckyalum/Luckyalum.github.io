@@ -18,7 +18,7 @@
 这里只做最简单的处理，所以只需导入cv2">
 <meta property="og:image" content="http://baoxizhao.com/img/kindle.jpg">
 <meta property="og:image" content="http://baoxizhao.com/img/kindlenew.jpg">
-<meta property="og:updated_time" content="2017-03-18T05:24:37.954Z">
+<meta property="og:updated_time" content="2017-03-18T05:27:29.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python openCV图像处理之提取轮廓">
 <meta name="twitter:description" content="1.导入需要的包1import cv2
@@ -171,8 +171,7 @@
 <h3 id="3-图片处理"><a href="#3-图片处理" class="headerlink" title="3.图片处理"></a>3.图片处理</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span></div><div class="line">ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像</span></div></pre></td></tr></table></figure></p>
 <h3 id="4-轮廓提取"><a href="#4-轮廓提取" class="headerlink" title="4.轮廓提取"></a>4.轮廓提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span></div></pre></td></tr></table></figure>
 <p>contours即为轮廓的像素集合（可能有多个轮廓，需要找到自己要提取的轮廓）<br>具体参数可查<a href="http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#cv2.findContours" target="_blank" rel="external">doc.opencv.org</a>   </p>
-<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理  </p>
-<pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)<span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
+<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  <span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
 cv2.imshow(<span class="string">"img"</span>, img)  
 cv2.waitKey(<span class="number">0</span>)
 </code></pre>
@@ -182,7 +181,7 @@ cv2.waitKey(<span class="number">0</span>)
 img = cv2.imread(<span class="string">'kindle.jpg'</span>)  
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span>
 ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像  </span>
-_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span>
+_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)<span class="comment">#提取轮廓</span>
 cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  
 cv2.imshow(<span class="string">"img"</span>, img)  
 cv2.waitKey(<span class="number">0</span>)
@@ -405,15 +404,15 @@ cv2.waitKey(<span class="number">0</span>)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
