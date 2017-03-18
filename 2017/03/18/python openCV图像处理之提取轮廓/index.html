@@ -6,18 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>Hello World! | Bao Xizhao&#39;s Blog</title>
+  <title>Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客终于完成了！关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：1.gem源">
+  <meta name="description" content="python openCV图像处理之提取轮廓
+1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2    
+2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
+3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World!">
-<meta property="og:url" content="http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/index.html">
+<meta property="og:title" content="Bao Xizhao's Blog">
+<meta property="og:url" content="http://baoxizhao.com/2017/03/18/python openCV图像处理之提取轮廓/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="个人博客终于完成了！关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：1.gem源">
-<meta property="og:updated_time" content="2017-02-09T06:27:28.124Z">
+<meta property="og:description" content="python openCV图像处理之提取轮廓
+1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2    
+2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
+3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
+<meta property="og:image" content="http://baoxizhao.com/img/kindle.jpg">
+<meta property="og:image" content="http://baoxizhao.com/img/kindlenew.jpg">
+<meta property="og:updated_time" content="2017-03-18T05:21:33.255Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World!">
-<meta name="twitter:description" content="个人博客终于完成了！关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：1.gem源">
+<meta name="twitter:title" content="Bao Xizhao's Blog">
+<meta name="twitter:description" content="python openCV图像处理之提取轮廓
+1.导入需要的包1import cv2
+这里只做最简单的处理，所以只需导入cv2    
+2.载入图片1img = cv2.imread(&apos;kindle.jpg&apos;)
+3.图片处理因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理12gray = cv2.cvtColor(img,cv2.COLOR_BGR2GR">
+<meta name="twitter:image" content="http://baoxizhao.com/img/kindle.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
   
@@ -139,33 +154,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017-01-31-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python openCV图像处理之提取轮廓" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hello World!
-    </h1>
-  
-
-        
-        <a href="/2017/01/31/2017-01-31-hello-world/" class="archive-article-date">
-  	<time datetime="2017-01-31T09:06:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>个人博客终于完成了！<br>关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：<br><strong>1.gem源</strong><br><a id="more"></a><br>由于gem源 ruby.taobao.org已不再维护，故要改为gems.ruby-china.org<br>即 <a href="http://gems.ruby-china.org" target="_blank" rel="external">http://gems.ruby-china.org</a><br><strong>2.bundler错误</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll error bundler</div></pre></td></tr></table></figure></p>
-<p>需安装 bundler，即<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install jekyll bundler</div></pre></td></tr></table></figure></p>
-<p><strong>3.各种包错误问题</strong><br>安装别人主题时可能需要下载所需的包,例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could not find minitest-5.8.3 <span class="keyword">in</span> any of the sources</div></pre></td></tr></table></figure></p>
-<p>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install minitest -v 5.8.3</div></pre></td></tr></table></figure></p>
-<p>有时还会遇到后面版本不向前兼容（不熟悉ruby，不知道为啥），我采取的措施是卸载不需要的那个版本,例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem uninstall minitest -v 5.9.3</div></pre></td></tr></table></figure></p>
-<p>安装包可以通过gem命令，也可在<a href="https://rubygems.org" target="_blank" rel="external">rubygems.org</a>上下载安装，举例<br>下载了minitest.gem文件，cd到下载目录后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install --local minitest.gem</div></pre></td></tr></table></figure></p>
-<p><strong>4.最后</strong><br>jekyll在windows下配置比较繁琐，因此后来使用了<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>，点击<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">教程</a>。<br>完成之后，更新博客只需在git bash 博客目录下输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g  </div><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
+        <h2 id="python-openCV图像处理之提取轮廓"><a href="#python-openCV图像处理之提取轮廓" class="headerlink" title="python openCV图像处理之提取轮廓"></a>python openCV图像处理之提取轮廓</h2><hr>
+<h3 id="1-导入需要的包"><a href="#1-导入需要的包" class="headerlink" title="1.导入需要的包"></a>1.导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<p>这里只做最简单的处理，所以只需导入cv2    </p>
+<h3 id="2-载入图片"><a href="#2-载入图片" class="headerlink" title="2.载入图片"></a>2.载入图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">img = cv2.imread(<span class="string">'kindle.jpg'</span>)</div></pre></td></tr></table></figure>
+<h3 id="3-图片处理"><a href="#3-图片处理" class="headerlink" title="3.图片处理"></a>3.图片处理</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span></div><div class="line">ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-轮廓提取"><a href="#4-轮廓提取" class="headerlink" title="4.轮廓提取"></a>4.轮廓提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span></div></pre></td></tr></table></figure>
+<p>contours即为轮廓的像素集合（可能有多个轮廓，需要找到自己要提取的轮廓）<br>具体参数可查<a href="http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#cv2.findContours" target="_blank" rel="external">doc.opencv.org</a>   </p>
+<h3 id="5-显示图像"><a href="#5-显示图像" class="headerlink" title="5.显示图像"></a>5.显示图像</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理  </p>
+<pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)<span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
+cv2.imshow(<span class="string">"img"</span>, img)  
+cv2.waitKey(<span class="number">0</span>)
+</code></pre>
+<h3 id="6-所有代码及结果"><a href="#6-所有代码及结果" class="headerlink" title="6.所有代码及结果"></a>6.所有代码及结果</h3><pre><code class="python"><span class="comment">#-*- coding=utf8 -*-</span>
+<span class="keyword">import</span> cv2  
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+img = cv2.imread(<span class="string">'kindle.jpg'</span>)  
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span>
+ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像  </span>
+_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span>
+cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  
+cv2.imshow(<span class="string">"img"</span>, img)  
+cv2.waitKey(<span class="number">0</span>)
+</code></pre>
+<p><img src="img/kindle.jpg" alt="source"><img src="img/kindlenew.jpg" alt="findcotours"></p>
 
       
 
@@ -174,33 +191,7 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jekyll</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -250,7 +241,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/03/18/python openCV图像处理之提取轮廓/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -264,15 +255,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/02/05/2017-2-5-linux学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux基础学习
-        
-      </div>
-    </a>
   
+    <a href="/2017/03/13/2017-3-13-常见排序算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常见排序算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
