@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>Tag: python | Bao Xizhao&#39;s Blog</title>
+  <title>python使用国内镜像 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不告诉你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bao Xizhao's Blog">
-<meta property="og:url" content="http://baoxizhao.com/tags/python/index.html">
+  <meta name="description" content="python安装包推荐使用Anaconda,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python使用国内镜像">
+<meta property="og:url" content="http://baoxizhao.com/2017/04/06/python使用国内镜像/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="不告诉你">
+<meta property="og:description" content="python安装包推荐使用Anaconda,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如">
+<meta property="og:updated_time" content="2017-04-06T15:01:34.846Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bao Xizhao's Blog">
-<meta name="twitter:description" content="不告诉你">
+<meta name="twitter:title" content="python使用国内镜像">
+<meta name="twitter:description" content="python安装包推荐使用Anaconda,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
   
@@ -138,36 +139,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-python使用国内镜像" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      python使用国内镜像
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/06/python使用国内镜像/" class="archive-article-date">
+
+        
+        <a href="/2017/04/06/python使用国内镜像/" class="archive-article-date">
   	<time datetime="2017-04-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/06/python使用国内镜像/">python使用国内镜像</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python安装包推荐使用<a href="https://www.continuum.io/downloads/" target="_blank" rel="external">Anaconda</a>,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install python-qt5</div></pre></td></tr></table></figure></p>
+<p>但是有时下载速度会很慢，毕竟网站在国外，此时可以考虑用镜像。 </p>
+<p>国内镜像<br><a href="http://pypi.douban.com/simple/" target="_blank" rel="external">http://pypi.douban.com/simple/</a> 豆瓣<br><a href="http://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="external">http://mirrors.aliyun.com/pypi/simple/</a> 阿里<br><a href="http://pypi.hustunique.com/simple/" target="_blank" rel="external">http://pypi.hustunique.com/simple/</a> 华中理工大学<br><a href="http://pypi.sdutlinux.org/simple/" target="_blank" rel="external">http://pypi.sdutlinux.org/simple/</a> 山东理工大学<br><a href="http://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/simple/</a> 中国科学技术大学<br><a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="external">https://pypi.tuna.tsinghua.edu.cn/simple</a> 清华  </p>
+<p>食用方法：<br>1.临时食用    </p>
+<pre><code class="bash">pip install -i http://mirrors.aliyun.com/pypi/simple/ python-qt5
+</code></pre>
+<p>此时可能会报错，提示你如果信任该镜像网站的话，可以使用https,把http改成https就行了。<br>2.配制成默认的（没亲自试过）<br>在你的“C:\Users\你的用户名\”目录下创建“pip”目录，“pip”目录下创建“pip.ini”文件（注意：以UTF-8 无BOM格式编码）</p>
+<pre><code class="ini"><span class="section">[global]</span>  
+<span class="attr">index-url</span>=http://mirrors.aliyun.com/pypi/simple/  
+<span class="section">[install]</span>  
+<span class="attr">trusted-host</span>=mirrors.aliyun.com
+</code></pre>
+<p>注意：trusted-host 选项为了避免麻烦是必须的，否则使用的时候会提示不受信任，或者添加“–trusted-host=mirrors.aliyun.com”选项；<br>注意：有网页提示需要创建或修改配置文件（Linux的文件在~/.pip/pip.conf，windows在%HOMEPATH%\pip\pip.ini），至少Windows7下“%HOMEPATH%\pip\pip.ini”这个目录是不起作用的。<br>======================参考文档信息======================<br>版权声明：非商用自由转载-保持署名-注明出处<br>署名(BY) ：testcs_dn(微wx笑)<br>文章出处：<a href="http://blog.csdn.NET/testcs_dn" target="_blank" rel="external">无知人生，记录点滴</a>  </p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -179,7 +191,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -192,131 +204,86 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/04/06/python使用国内镜像/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/python openCV图像处理之提取轮廓/" class="archive-article-date">
-  	<time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/python openCV图像处理之提取轮廓/">python openCV图像处理之提取轮廓</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/python openCV图像处理之角度变换/" class="archive-article-date">
-  	<time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/python openCV图像处理之角度变换/">python openCV图像处理之角度变换</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/18/python openCV图像处理之提取轮廓/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python openCV图像处理之提取轮廓</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -339,9 +306,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
