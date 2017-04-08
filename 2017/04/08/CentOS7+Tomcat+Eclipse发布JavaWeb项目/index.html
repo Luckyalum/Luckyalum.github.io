@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="准备工作必需安装的有-jdk(1.7.0_79)-Tomcat(8.5.13)可选安装的有-MySQL(CentOS7用的是Maria)">
-<meta property="og:updated_time" content="2017-04-08T07:49:57.904Z">
+<meta property="og:updated_time" content="2017-04-08T07:59:32.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7+Tomcat+Eclipse发布JavaWeb项目">
 <meta name="twitter:description" content="准备工作必需安装的有-jdk(1.7.0_79)-Tomcat(8.5.13)可选安装的有-MySQL(CentOS7用的是Maria)">
@@ -160,13 +160,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>必需安装的有<br>-jdk(1.7.0_79)<br>-Tomcat(8.5.13)<br>可选安装的有<br>-MySQL(CentOS7用的是Maria)<br><a id="more"></a></p>
-<h2 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h2><h3 id="下载、解压"><a href="#下载、解压" class="headerlink" title="下载、解压"></a>下载、解压</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz  </div><div class="line">mv jdk-7u79-linux-x64.tar.gz /usr/<span class="built_in">local</span>/jdk</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></div><div class="line">tar -zxvf jdk</div><div class="line">```  </div><div class="line"><span class="comment">### 配置路径  </span></div><div class="line">```bash</div><div class="line">vi /etc/profile</div></pre></td></tr></table></figure>
-<p>在最后添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk/jdk1.7.0_79(JDK的解压目录)  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span>  </div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</div></pre></td></tr></table></figure></p>
+<h2 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h2><h3 id="下载、解压"><a href="#下载、解压" class="headerlink" title="下载、解压"></a>下载、解压</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz  </div><div class="line">mv jdk-7u79-linux-x64.tar.gz /usr/<span class="built_in">local</span>/jdk</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></div><div class="line">tar -zxvf jdk</div><div class="line">```   </div><div class="line"><span class="comment">### 配置路径  </span></div><div class="line">```bash</div><div class="line">vi /etc/profile</div><div class="line">```  </div><div class="line">在最后添加  </div><div class="line">```bash</div><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk/jdk1.7.0_79(JDK的解压目录)  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span>  </div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</div></pre></td></tr></table></figure>
 <p>使文件立即生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure></p>
 <p>检查是否安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
 <h2 id="2-下载并启动Tomcat8"><a href="#2-下载并启动Tomcat8" class="headerlink" title="2.下载并启动Tomcat8"></a>2.下载并启动Tomcat8</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://apache.fayea.com/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz</div><div class="line"><span class="built_in">cd</span> usr/<span class="built_in">local</span>/ </div><div class="line">tar -zxvf apache-tomcat-8.5.13.tar.gz</div><div class="line">/usr/<span class="built_in">local</span>/apache-tomcat-8.5.13/bin/startup.sh</div></pre></td></tr></table></figure>
-<p>网速慢可以使用镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz</div></pre></td></tr></table></figure></p>
-<h2 id="3-部署JavaWeb项目"><a href="#3-部署JavaWeb项目" class="headerlink" title="3.部署JavaWeb项目"></a>3.部署JavaWeb项目</h2><p>我使用的是Eclipse，于是右键要发布的项目，选择export，选择javaweb项目，然后就会得到WAR文件了<br>上传文件使用的是Xftp5,点击新建会话,填入服务器的ip,服务我选择的是sftp,端口选择选的是22（这些可能需要你根据实际情况选择），输入用户和密码，就可以连上了，把刚才的WAR文件拖拽到服务器的Tomcat的webapps目录下就行了，有可能需要你服务器开启FTP服务（我没遇到）。</p>
+<p>网速慢可以使用镜像</p>
+<pre><code class="bash">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz
+</code></pre>
+<h2 id="3-安装MySQL"><a href="#3-安装MySQL" class="headerlink" title="3.安装MySQL"></a>3.安装MySQL</h2><p>CentOS7用的是Maria，所以你想安装MySQL可能会收到错误<br>No package mysql-server available.<br>解决办法:<br>Centos 7 comes with MariaDB instead of MySQL. MariaDb is a open source equivalent to MySQL and can be installed with yum -y install mariadb-server mariadb. If you must have mysql you need to add the mysql-community repo sudo rpm -Uvh <a href="http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="external">http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</a> and then you can install MySQLl like you normally do<br>然后你就可以像MySQL一样用它了。  </p>
+<h2 id="4-部署JavaWeb项目"><a href="#4-部署JavaWeb项目" class="headerlink" title="4.部署JavaWeb项目"></a>4.部署JavaWeb项目</h2><p>我使用的是Eclipse，于是右键要发布的项目，选择export，选择javaweb项目，然后就会得到WAR文件了<br>上传文件使用的是Xftp5,点击新建会话,填入服务器的ip,服务我选择的是sftp,端口选择选的是22（这些可能需要你根据实际情况选择），输入用户和密码，就可以连上了，把刚才的WAR文件拖拽到服务器的Tomcat的webapps目录下就行了，有可能需要你服务器开启FTP服务（我没遇到）。</p>
 
       
 
@@ -375,6 +377,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -392,10 +398,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
