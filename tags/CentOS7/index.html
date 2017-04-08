@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>Bao Xizhao&#39;s Blog</title>
+  <title>Tag: CentOS7 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="不告诉你">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bao Xizhao's Blog">
-<meta property="og:url" content="http://baoxizhao.com/index.html">
+<meta property="og:url" content="http://baoxizhao.com/tags/CentOS7/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="不告诉你">
 <meta name="twitter:card" content="summary">
@@ -140,42 +140,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CentOS7+Tomcat+Eclipse发布JavaWeb项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/" class="archive-article-date">
+  	<time datetime="2017-04-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/">CentOS7+Tomcat+Eclipse发布JavaWeb项目</a>
+      <a class="archive-article-title" href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/">CentOS7+Tomcat+Eclipse发布JavaWeb项目</a>
     </h1>
   
 
-        
-        <a href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/" class="archive-article-date">
-  	<time datetime="2017-04-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>必需安装的有<br>-jdk(1.7.0_79)<br>-Tomcat(8.5.13)<br>可选安装的有<br>-MySQL</p>
-<h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><h3 id="下载、解压"><a href="#下载、解压" class="headerlink" title="下载、解压"></a>下载、解压</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz  </div><div class="line">mv jdk-7u79-linux-x64.tar.gz /usr/<span class="built_in">local</span>/jdk</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></div><div class="line">tar -zxvf jdk</div><div class="line">```  </div><div class="line"><span class="comment">### 配置路径  </span></div><div class="line">```bash</div><div class="line">vi /etc/profile</div></pre></td></tr></table></figure>
-<p>在最后添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk/jdk1.7.0_79(JDK的解压目录)  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span>  </div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</div></pre></td></tr></table></figure></p>
-<p>使文件立即生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure></p>
-<p>检查是否安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
-<h2 id="下载并启动Tomcat8"><a href="#下载并启动Tomcat8" class="headerlink" title="下载并启动Tomcat8"></a>下载并启动Tomcat8</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://apache.fayea.com/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz</div><div class="line"><span class="built_in">cd</span> usr/<span class="built_in">local</span>/ </div><div class="line">tar -zxvf apache-tomcat-8.5.13.tar.gz</div><div class="line">/usr/<span class="built_in">local</span>/apache-tomcat-8.5.13/bin/startup.sh</div></pre></td></tr></table></figure>
-<p>网速慢可以使用镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.13/bin/apache-tomcat-8.5.13.tar.gz</div></pre></td></tr></table></figure></p>
-<h2 id="部署JavaWeb项目"><a href="#部署JavaWeb项目" class="headerlink" title="部署JavaWeb项目"></a>部署JavaWeb项目</h2><p>我使用的是Eclipse，于是右键要发布的项目，选择export，选择javaweb项目，然后就会得到WAR文件了<br>上传文件使用的是Xftp5,点击新建会话,填入服务器的ip,服务我选择的是sftp,端口选择选的是22（这些可能需要你根据实际情况选择），输入用户和密码，就可以连上了，把刚才的WAR文件拖拽到服务器的Tomcat的webapps目录下就行了，有可能需要你服务器开启FTP服务（我没遇到）。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,7 +187,7 @@
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -208,499 +200,17 @@
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
-    <article id="post-python使用国内镜像" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/06/python使用国内镜像/">python使用国内镜像</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/06/python使用国内镜像/" class="archive-article-date">
-  	<time datetime="2017-04-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>python安装包推荐使用<a href="https://www.continuum.io/downloads/">Anaconda</a>,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如<br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/06/python使用国内镜像/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python openCV图像处理之提取轮廓" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/18/python openCV图像处理之提取轮廓/">python openCV图像处理之提取轮廓</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/18/python openCV图像处理之提取轮廓/" class="archive-article-date">
-  	<time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-导入需要的包"><a href="#1-导入需要的包" class="headerlink" title="1.导入需要的包"></a>1.导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
-<p>这里只做最简单的处理，所以只需导入cv2<br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/18/python openCV图像处理之提取轮廓/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python openCV图像处理之角度变换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/18/python openCV图像处理之角度变换/">python openCV图像处理之角度变换</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/18/python openCV图像处理之角度变换/" class="archive-article-date">
-  	<time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code class="python"><span class="keyword">import</span> cv2  
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-img = cv2.imread(<span class="string">'demo.jpg'</span>)
-conners = np.array([[<span class="number">873</span>,<span class="number">1322</span>],[<span class="number">1973</span>,<span class="number">1864</span>],[<span class="number">2645</span>,<span class="number">3152</span>],[<span class="number">857</span>,<span class="number">2568</span>]], dtype = <span class="string">"float32"</span>)  <span class="comment">#矩形(比如：书)的顶点 tl,tr,br,bl</span>
-canvas = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">500</span>],[<span class="number">0</span>,<span class="number">500</span>]], dtype = <span class="string">"float32"</span>)      <span class="comment">#输出文件的大小</span>
-M = cv2.getPerspectiveTransform(conners,canvas) 
-result = cv2.warpPerspective(img,M,(<span class="number">0</span>,<span class="number">0</span>))
-cv2.imshow(<span class="string">"img"</span>, result) 
-cv2.waitKey(<span class="number">0</span>)
-</code></pre>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">opencv</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/18/python openCV图像处理之角度变换/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2017-3-13-常见排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/13/2017-3-13-常见排序算法/">常见排序算法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/13/2017-3-13-常见排序算法/" class="archive-article-date">
-  	<time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/13/2017-3-13-常见排序算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2017-2-5-linux学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/2017-2-5-linux学习/">Linux基础学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/05/2017-2-5-linux学习/" class="archive-article-date">
-  	<time datetime="2017-02-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux基础学习（第一部分-Linux的规则与安装）"><a href="#Linux基础学习（第一部分-Linux的规则与安装）" class="headerlink" title="Linux基础学习（第一部分 Linux的规则与安装）"></a>Linux基础学习（第一部分 Linux的规则与安装）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/05/2017-2-5-linux学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2017-01-31-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/31/2017-01-31-hello-world/">Hello World!</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/31/2017-01-31-hello-world/" class="archive-article-date">
-  	<time datetime="2017-01-31T09:06:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>个人博客终于完成了！<br>关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：<br><strong>1.gem源</strong><br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jekyll</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术/" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/31/2017-01-31-hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -722,10 +232,10 @@ cv2.waitKey(<span class="number">0</span>)
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
