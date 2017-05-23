@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="个人博客终于完成了！关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：1.gem源">
-<meta property="og:updated_time" content="2017-05-22T23:55:01.795Z">
+<meta property="og:updated_time" content="2017-05-23T15:37:19.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World!">
 <meta name="twitter:description" content="个人博客终于完成了！关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：1.gem源">
@@ -166,6 +166,11 @@
 <p>有时还会遇到后面版本不向前兼容（不熟悉ruby，不知道为啥），我采取的措施是卸载不需要的那个版本,例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem uninstall minitest -v 5.9.3</div></pre></td></tr></table></figure></p>
 <p>安装包可以通过gem命令，也可在<a href="https://rubygems.org" target="_blank" rel="external">rubygems.org</a>上下载安装，举例<br>下载了minitest.gem文件，cd到下载目录后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install --local minitest.gem</div></pre></td></tr></table></figure></p>
 <p><strong>4.最后</strong><br>jekyll在windows下配置比较繁琐，因此后来使用了<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>，点击<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">教程</a>。<br>完成之后，更新博客只需在git bash 博客目录下输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g  </div><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
+<hr>
+<p>2017/05/23 更新:<br>最近换了Deepin linux,来更新一下Linux下Hexo的搭建<br>需要   node.js、npm、git<br>node.js及npm的安装<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143450141843488beddae2a1044cab5acb5125baf0882000" target="_blank" rel="external">见这</a><br>按照官网上的方法接下来只需<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<p>然而这时会报错，我的解决办法是使用淘宝源<br>安装淘宝源<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>安装Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<p>接下来<a href="http://blog.csdn.net/u012948710/article/details/23762879" target="_blank" rel="external">配置github</a><br>Over!</p>
 
       
 
@@ -366,6 +371,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -390,23 +403,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jekyll</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -414,7 +415,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Machine Learning</a>
+                <a href="javascript:void(0)" class="js-tag color2">opencv</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
             
             <div class="clearfix"></div>
