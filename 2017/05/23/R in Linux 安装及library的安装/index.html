@@ -6,24 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://baoxizhao.com">
-  <title>常见排序算法 | Bao Xizhao&#39;s Blog</title>
+  <title>R in Linux 安装及library的安装 | Bao Xizhao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+  <meta name="description" content="1.安装命令很简单（网上有些很复杂，需要上官网下载等，诚然直接apt-get版本可能有点旧，但是简单啊）12$:sudo apt-get install r-base$:R
+2.library的安装（这个可以和平台无关）1&amp;gt;install.packages(&quot;mypackages&quot;)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见排序算法">
-<meta property="og:url" content="http://baoxizhao.com/2017/03/13/2017-3-13-常见排序算法/index.html">
+<meta property="og:title" content="R in Linux 安装及library的安装">
+<meta property="og:url" content="http://baoxizhao.com/2017/05/23/R in Linux 安装及library的安装/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
-<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
-<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&fm=21&gp=0.jpg">
-<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&fm=21&gp=0.jpg">
-<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&fm=21&gp=0.jpg">
-<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&fm=23&gp=0.jpg">
-<meta property="og:updated_time" content="2017-05-22T23:55:02.015Z">
+<meta property="og:description" content="1.安装命令很简单（网上有些很复杂，需要上官网下载等，诚然直接apt-get版本可能有点旧，但是简单啊）12$:sudo apt-get install r-base$:R
+2.library的安装（这个可以和平台无关）1&amp;gt;install.packages(&quot;mypackages&quot;)">
+<meta property="og:updated_time" content="2017-05-23T05:55:30.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见排序算法">
-<meta name="twitter:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
-<meta name="twitter:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
+<meta name="twitter:title" content="R in Linux 安装及library的安装">
+<meta name="twitter:description" content="1.安装命令很简单（网上有些很复杂，需要上官网下载等，诚然直接apt-get版本可能有点旧，但是简单啊）12$:sudo apt-get install r-base$:R
+2.library的安装（这个可以和平台无关）1&amp;gt;install.packages(&quot;mypackages&quot;)">
   
     <link rel="alternative" href="/atom.xml" title="Bao Xizhao&#39;s Blog" type="application/atom+xml">
   
@@ -145,78 +142,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017-3-13-常见排序算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-R in Linux 安装及library的安装" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      常见排序算法
+      R in Linux 安装及library的安装
     </h1>
   
 
         
-        <a href="/2017/03/13/2017-3-13-常见排序算法/" class="archive-article-date">
-  	<time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
+        <a href="/2017/05/23/R in Linux 安装及library的安装/" class="archive-article-date">
+  	<time datetime="2017-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br><a id="more"></a><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2.插入排序"></a>2.插入排序</h3><p>算法：每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置,直到全部插入完毕<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&amp;fm=21&amp;gp=0.jpg" alt="插入排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> m = a[i];</div><div class="line">			<span class="keyword">int</span> j;</div><div class="line">			<span class="keyword">for</span>(j=i; j&gt;<span class="number">0</span>&amp;&amp;m&lt;a[j-<span class="number">1</span>]; j--)</div><div class="line">				a[j] = a[j-<span class="number">1</span>];</div><div class="line">			a[j] = m;</div><div class="line">		&#125;				           </div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="3-选择排序"><a href="#3-选择排序" class="headerlink" title="3.选择排序"></a>3.选择排序</h3><p>算法：每一趟排序从序列中未排好序的那些元素中选择一个值最小的元素，然后将其与这些未排好序的元素的第一个元素交换位置<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&amp;fm=21&amp;gp=0.jpg" alt="选择排序"><br>代码实现：</p>
-<pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span>
-    </span>{
-        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)
-        {
-            <span class="keyword">int</span> min = a[i];
-            <span class="keyword">int</span> index = i;
-            <span class="keyword">int</span> tmp;
-            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++)
-                <span class="keyword">if</span>(a[j]&lt;min)
-                {
-                    min = a[j];
-                    index = j;
-                }
-            tmp = a[i];
-            a[i] = min;
-            a[index] = tmp;
-        }                                   
-    }
-</code></pre>
-<hr>
-<h3 id="4-快速排序"><a href="#4-快速排序" class="headerlink" title="4.快速排序"></a>4.快速排序</h3><p>算法：先从数列中取出一个数作为基准数，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边，再对左右区间重复上述过程，直到各区间只有一个数<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&amp;fm=21&amp;gp=0.jpg" alt="快速排序"><br>代码实现：</p>
-<pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span>
-    </span>{
-        <span class="keyword">if</span>(left&lt;right)
-        {
-            <span class="keyword">int</span> i = left;
-            <span class="keyword">int</span> j = right;
-            <span class="keyword">int</span> m = a[i];
-            <span class="keyword">while</span>(i&lt;j)
-            {
-                <span class="keyword">while</span>(i&lt;j&amp;&amp;a[j]&gt;=m)
-                    j--;
-                <span class="keyword">if</span>(i&lt;j)
-                    a[i++] = a[j];
-                <span class="keyword">while</span>(i&lt;j&amp;&amp;a[i]&lt;=m)
-                    i++;
-                <span class="keyword">if</span>(i&lt;j)
-                    a[j--] = a[i];
-            }
-            a[i] = m;
-            QuickSort(a, left, i-<span class="number">1</span>);
-            QuickSort(a, i+<span class="number">1</span>, right);
-        }
-    }
-</code></pre>
-<hr>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&amp;fm=23&amp;gp=0.jpg" alt="最后"></p>
+        <p><strong>1.</strong>安装命令很简单（网上有些很复杂，需要上官网下载等，诚然直接apt-get版本可能有点旧，但是简单啊）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$:sudo apt-get install r-base</div><div class="line">$:R</div></pre></td></tr></table></figure></p>
+<p><strong>2.</strong>library的安装（这个可以和平台无关）<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;install.packages(<span class="string">"mypackages"</span>)</div></pre></td></tr></table></figure></p>
 
       
 
@@ -230,11 +177,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
         		</li>
       		
 		</ul>
@@ -301,7 +244,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/03/13/2017-3-13-常见排序算法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baoxizhao.com/2017/05/23/R in Linux 安装及library的安装/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -315,18 +258,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/18/python openCV图像处理之角度变换/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python openCV图像处理之角度变换
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/02/05/2017-2-5-linux学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux基础学习</div>
+    <a href="/2017/05/20/MachineLearning学习笔记之中文文本分类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Machine Learning学习笔记之中文文本分类</div>
       <i class="icon-circle-right"></i>
     </a>
   
