@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,Machine Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="文本挖掘与文本分类的概念文本挖掘：是指从大量的文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些识更好的组织信息以便将来参考。搜索和信息检索（IR）：存储和文本文档的检索，包括搜索引擎个关键字搜索文本聚类：使用聚类方法，对词汇、片段、段落或文件进行分组和归类文本分类：对片段、段落或文件进行分组和归类，在使用数据挖掘分类方法的基础上，经过训练的标记示例模型。Web挖掘：在互联网上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning学习笔记之中文文本分类">
+<meta property="og:url" content="http://baoxizhao.com/2017/05/20/MachineLearning学习笔记之中文文本分类/index.html">
+<meta property="og:site_name" content="Bao Xizhao's Blog">
+<meta property="og:description" content="文本挖掘与文本分类的概念文本挖掘：是指从大量的文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些识更好的组织信息以便将来参考。搜索和信息检索（IR）：存储和文本文档的检索，包括搜索引擎个关键字搜索文本聚类：使用聚类方法，对词汇、片段、段落或文件进行分组和归类文本分类：对片段、段落或文件进行分组和归类，在使用数据挖掘分类方法的基础上，经过训练的标记示例模型。Web挖掘：在互联网上">
+<meta property="og:image" content="http://baoxizhao.com/img/中文文本分类/1.bmp">
+<meta property="og:image" content="http://baoxizhao.com/img/中文文本分类/2.bmp">
+<meta property="og:image" content="http://baoxizhao.com/img/中文文本分类/3.png">
+<meta property="og:image" content="http://baoxizhao.com/img/中文文本分类/4.png">
+<meta property="og:image" content="http://baoxizhao.com/img/中文文本分类/5.png">
+<meta property="og:updated_time" content="2017-07-07T02:42:31.849Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Machine Learning学习笔记之中文文本分类">
+<meta name="twitter:description" content="文本挖掘与文本分类的概念文本挖掘：是指从大量的文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些识更好的组织信息以便将来参考。搜索和信息检索（IR）：存储和文本文档的检索，包括搜索引擎个关键字搜索文本聚类：使用聚类方法，对词汇、片段、段落或文件进行分组和归类文本分类：对片段、段落或文件进行分组和归类，在使用数据挖掘分类方法的基础上，经过训练的标记示例模型。Web挖掘：在互联网上">
+<meta name="twitter:image" content="http://baoxizhao.com/img/中文文本分类/1.bmp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baoxizhao.com/2017/05/20/MachineLearning学习笔记之中文文本分类/"/>
+
+
+
+
+
+  <title>Machine Learning学习笔记之中文文本分类 | Bao Xizhao's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bao Xizhao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">世界不只有眼前的苟且，还有诗和远方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/05/20/MachineLearning学习笔记之中文文本分类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bao Xizhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bao Xizhao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Machine Learning学习笔记之中文文本分类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T00:00:00+08:00">
+                2017-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文本挖掘与文本分类的概念"><a href="#文本挖掘与文本分类的概念" class="headerlink" title="文本挖掘与文本分类的概念"></a>文本挖掘与文本分类的概念</h2><p><strong>文本挖掘</strong>：是指从大量的文本数据中抽取事先未知的、可理解的、最终可用的知识的过程，同时运用这些识更好的组织信息以便将来参考。<br><strong>搜索和信息检索（IR）</strong>：存储和文本文档的检索，包括搜索引擎个关键字搜索<br><strong>文本聚类</strong>：使用聚类方法，对词汇、片段、段落或文件进行分组和归类<br><strong>文本分类</strong>：对片段、段落或文件进行分组和归类，在使用数据挖掘分类方法的基础上，经过训练的标记示例模型。<br><strong>Web挖掘</strong>：在互联网上进行数据和文本的挖掘，并特别关注网络的规模和相互的联系。<br><strong>信息抽取（IE）</strong>：从非结构化文本中识别与提取有关的事实和关系：从非结构化或半结构化文本中抽取结构化数据的过程。<br><strong>自然语言处理（NLP）</strong>：将语言作为一种有意义、有规则的符号系统，从底层解析和理解语言的任务（例如词性的标注）；目前的技术方法主要从语法、语义的角度发现语言最本质的结构和所表达的意义。<br>概念的提取：把单词和短语按语义分成意义相似的组<br><a id="more"></a></p>
+<h2 id="文本分类项目"><a href="#文本分类项目" class="headerlink" title="文本分类项目"></a>文本分类项目</h2><p>文本分类的一般步骤：  </p>
+<p>　　（1）<strong>预处理</strong>：去除文本的噪声信息，例如HTML标签、文本的格式转换、检测句子边界等。  </p>
+<p>　　（2）<strong>中文分词</strong>：使用中文分词器为文本分词，并去除停用词。  </p>
+<p>　　（3）<strong>构建词向量空间</strong>：统计文本词频，生成文本的词向量空间。  </p>
+<p>　　（4）<strong>权重策略—TF-IDF方法</strong>：使用TF-IDF发现特征词，并抽取为反应文档主题的特征。  </p>
+<p>　　（5）<strong>分类器</strong>：使用算法训练分类器。  </p>
+<p>　　（6）<strong>评价分类结果</strong>：分类器的测试结果分析  </p>
+<h3 id="文本预处理"><a href="#文本预处理" class="headerlink" title="文本预处理"></a>文本预处理</h3><p>　　1.<strong>选择处理的文本的范围</strong> </p>
+<p>　　2.<strong>建立分类文本语料库</strong>  </p>
+<p>　　中文文本分类语料库下载地址为：<a href="http://www.datatang.com/datares/go.aspx?dataid=602146" target="_blank" rel="external">点击这里</a>（但我阅读本书的时候，此网址已失效，我找的<a href="http://download.csdn.net/download/lilil371324/9565636" target="_blank" rel="external">这个</a>）<br>　　3.<strong>文本格式转换</strong><br>　　Python去除HTML标签，一般使用lxml<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree,html</div><div class="line"><span class="keyword">import</span> chardet</div><div class="line"></div><div class="line"><span class="comment">#HTML文件路径，以及读取文件</span></div><div class="line">path = <span class="string">'1.html'</span></div><div class="line">content = open(path,<span class="string">"rb"</span>).read()</div><div class="line"><span class="keyword">print</span> type(content)</div><div class="line">page = html.document_fromstring(content)<span class="comment">#解析文件</span></div><div class="line">text = page.text_content()<span class="comment">#去除所有标签</span></div><div class="line"><span class="comment"># print type(text)</span></div><div class="line"><span class="comment"># print chardet.detect(text)</span></div><div class="line"><span class="keyword">print</span> text <span class="comment">#输出去除标签后的解析结果 ```  </span></div><div class="line">　　<span class="number">4.</span>**检测句子边界**：标记句子的结束</div><div class="line"></div><div class="line"><span class="comment">### 2.2.2 中文分词介绍  </span></div><div class="line"></div><div class="line">文本的结构化表示简单分为四大类：词向量空间模型、主题模型、依存句法的树表示、RDF的图表示  </div><div class="line"></div><div class="line">jieba分词简单的样例代码</div><div class="line">``` python</div><div class="line"><span class="comment">#jieba分词</span></div><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"></div><div class="line"><span class="comment">#设置UTF-8 Unicode环境</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">seg_list = jieba.cut(<span class="string">"小明1995年毕业于北京清华大学"</span>,cut_all=<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"Default Mode:"</span>,<span class="string">" "</span>.join(seg_list)<span class="comment">#默认切分</span></div><div class="line"></div><div class="line">seg_list = jieba.cut(<span class="string">"小明1995年毕业于北京清华大学"</span>,cut_all=<span class="keyword">True</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"Full Mode:"</span>,<span class="string">" /"</span>.join(seg_list)<span class="comment">#默认切分</span></div><div class="line"></div><div class="line"><span class="comment">#搜索引擎模式</span></div><div class="line">seg_list = jieba.cut_for_search(<span class="string">"小明1995年毕业于北京清华大学"</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"search:"</span>,<span class="string">" /"</span>.join(seg_list)<span class="comment">#默认切分</span></div><div class="line"></div><div class="line"><span class="comment">#词性标注</span></div><div class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</div><div class="line">words =pseg.cut(<span class="string">"我爱北京天安门"</span>)</div><div class="line"><span class="keyword">for</span> w <span class="keyword">in</span> words:</div><div class="line">    <span class="keyword">print</span> w.word,w.flag</div><div class="line"></div><div class="line">Prefix dict has been built succesfully.</div><div class="line"> 小明 <span class="number">1995</span> 年 毕业 于 北京 清华大学</div><div class="line">Full Mode: 小 /明 /<span class="number">1995</span> /年 /毕业 /于 /北京 /清华 /清华大学 /华大 /大学</div><div class="line">search: 小明 /<span class="number">1995</span> /年 /毕业 /于 /北京 /清华 /华大 /大学 /清华大学</div><div class="line">我 r</div><div class="line">爱 v</div><div class="line">北京 ns</div><div class="line">天安门 ns</div></pre></td></tr></table></figure></p>
+<p>本项目创建分词后，语料路径为Root\train_corpus_seg.<br>1）设置字符集，并导入jieba分词包<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"></div><div class="line"><span class="comment">#设置UTF-8 Unicode环境</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"><span class="comment">#定义两个函数读取和保存文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">savefile</span><span class="params">(savepath,content)</span>:</span><span class="comment">#保存至文件</span></div><div class="line">    fp      = open(savepath,<span class="string">"wb"</span>)</div><div class="line">    fp.write(content)</div><div class="line">    fp.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line"><span class="comment">#整个语料库分词的主程序</span></div><div class="line"><span class="comment">#未分词分类语料库路径</span></div><div class="line"><span class="comment">#分词后的分类语料库路径</span></div><div class="line">corpus_path = <span class="string">"WorkSpace/TextClassification/train_corpus_small/"</span></div><div class="line">seg_path    = <span class="string">"WorkSpace/TextClassification/train_corpus_seg/"</span></div><div class="line"></div><div class="line"><span class="comment">#获取corpus_path下的所有子目录</span></div><div class="line">catelist    = os.listdir(corpus_path)</div><div class="line"><span class="keyword">for</span> mydir <span class="keyword">in</span> catelist:</div><div class="line">    <span class="comment">#拼出分类子目录的路径</span></div><div class="line">    class_path = corpus_path+mydir+<span class="string">"/"</span></div><div class="line">    <span class="comment">#拼出分词后的语料分类目录</span></div><div class="line">    seg_dir   = seg_path+mydir+<span class="string">"/"</span></div><div class="line">    <span class="comment">#是否存在目录，如果没有则创建</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(seg_dir):</div><div class="line">        os.makedirs(seg_dir)</div><div class="line">    <span class="comment">#获得类别目录下的所有文件</span></div><div class="line">    file_list = os.listdir(class_path)</div><div class="line">    <span class="comment">#遍历类别目录下的所有文件</span></div><div class="line">    <span class="keyword">for</span> file_path <span class="keyword">in</span> file_list:</div><div class="line">        <span class="comment">#拼出文件名的全路径</span></div><div class="line">        fullname    = class_path + file_path</div><div class="line">        <span class="comment">#读取文件的内容</span></div><div class="line">        content     = readfile(fullname).strip()</div><div class="line">        <span class="comment">#删除换行和多余的空格</span></div><div class="line">        content     = content.replace(<span class="string">"\r\n"</span>,<span class="string">""</span>).strip()</div><div class="line">        <span class="comment">#为文件的内容分词</span></div><div class="line">        content_seg = jieba.cut(content)</div><div class="line">        <span class="comment">#将处理后的文件保存到分词后的语目录</span></div><div class="line">        savefile(seg_dir+file_path,<span class="string">""</span>.join(content_seg))</div><div class="line"><span class="keyword">print</span> <span class="string">u"中文语料分析结束！！！"</span></div></pre></td></tr></table></figure></p>
+<p>在实际应用中，为了后续的生成空间模型的方便，这些分词后的文本信息还要转化为文本向量信息并对象化需要引入Scikit-Learn库的Bunch的数据结构：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"><span class="keyword">from</span> sklearn.datasets.base <span class="keyword">import</span> Bunch<span class="comment">#Bunch类</span></div><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"></div><div class="line"><span class="comment">#Bunch类提供了一种key,value的对象形式</span></div><div class="line"><span class="comment">#target_name:所有分类集名称列表</span></div><div class="line"><span class="comment">#label每个文件的分类标签列表</span></div><div class="line"><span class="comment">#filename:文件路径</span></div><div class="line"><span class="comment">#contents：分词后文件词向量形式</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line">bunch = Bunch(target_name = [],label = [],filename = [],contents = [])</div><div class="line"><span class="comment">#将分好词的文本文件转换并持久化为Bunch类形式的代码如下：</span></div><div class="line"><span class="comment">#分词语料Bunch对象持久化文件路径</span></div><div class="line">wordbag_path = <span class="string">"WorkSpace/TextClassification/train_word_bag/train_set.dat"</span></div><div class="line">seg_path     = <span class="string">"WorkSpace/TextClassification/train_corpus_seg/"</span>   <span class="comment">#分词后分类语料库路径</span></div><div class="line"></div><div class="line">catelist     = os.listdir(seg_path)    <span class="comment">#</span></div><div class="line">bunch.target_name.extend(catelist)     <span class="comment">#按类别信息保存到Bunch对象中</span></div><div class="line"><span class="keyword">for</span> mydir <span class="keyword">in</span> catelist:</div><div class="line">    class_path   = seg_path + mydir + <span class="string">"/"</span></div><div class="line">    file_list    = os.listdir(class_path)</div><div class="line">    <span class="keyword">for</span> file_path <span class="keyword">in</span> file_list:</div><div class="line">        fullname = class_path + file_path</div><div class="line">        bunch.label.append(mydir)<span class="comment">#保存当前文件的分类标签</span></div><div class="line">        bunch.filename.append(fullname)<span class="comment">#保存当前文件路径</span></div><div class="line">        bunch.contents.append(readfile(fullname).strip())<span class="comment">#保存文件词向量</span></div><div class="line"><span class="comment">#Bunch对象的持久化</span></div><div class="line">file_obj = open(wordbag_path,<span class="string">"wb"</span>)</div><div class="line">pickle.dump(bunch,file_obj)</div><div class="line">file_obj.close()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">u"构建文本对象结束！！！"</span></div></pre></td></tr></table></figure></p>
+<h3 id="Scikit-Learn库介绍"><a href="#Scikit-Learn库介绍" class="headerlink" title="Scikit-Learn库介绍"></a>Scikit-Learn库介绍</h3><p><a href="http://scikit-learn.org/" target="_blank" rel="external">点击这里</a></p>
+<h3 id="向量空间模型"><a href="#向量空间模型" class="headerlink" title="向量空间模型"></a>向量空间模型</h3><p>可以从<a href="http://www.threedweb.cn/thread-1294-1-1.html下载" target="_blank" rel="external">http://www.threedweb.cn/thread-1294-1-1.html下载</a><br>(同样，这里网址失效，我使用的是<a href="https://github.com/dongxiexidian/Chinese/blob/master/stopwords.dat" target="_blank" rel="external">这个</a>)<br>读取停用词：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#读取停用词列表代码</span></div><div class="line">stopword_path = <span class="string">"WorkSpace/TextClassification/train_word_bag/hlt_stop_words.txt"</span></div><div class="line">stpwrdlst     = readfile(stopword_path).splitlines()</div></pre></td></tr></table></figure></p>
+<h3 id="权重策略：TD-IDF方法"><a href="#权重策略：TD-IDF方法" class="headerlink" title="权重策略：TD-IDF方法"></a>权重策略：TD-IDF方法</h3><p><strong>含义</strong>：如果某个词或短语在一篇文章中出现的频率越高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。<br><strong>词频</strong>（Term Frequency，TF）指的是某一个给定的词语在该文件中出现的频率。这个数字是对词数（Term Count）的归一化，以防止它偏向长的文件。对于在某一特定文件里的词语来说，它的重要性可以表示为：<img src="/img/中文文本分类/1.bmp" alt="TF"><br>其中，分子是该词在文件中出现的次数，分母是文件中所有字词的出现次数之和：<br>逆向文件频率（Inverse Document Frequency，IDF）是一个词语普遍重要性的度量。某一特定词语的IDF，可以由总文件数目除以包含该词语的文件的数目，再将得到的商取对数得到：<br><img src="/img/中文文本分类/2.bmp" alt="IDF"><br>其中<br>|D|：语料库中的文件总数。<br>j：包含词语的文件数目。如果该词语不在语料库中，就会导致分母为零，因此一般情况下使用1+j作为分母<br>TF-IDF = TF *IDF<br>2.代码的实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> sklearn.datasets.base <span class="keyword">import</span> Bunch</div><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> feature_extraction</div><div class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfTransformer <span class="comment">#TF-IDF向量转换类</span></div><div class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</div><div class="line"></div><div class="line"><span class="comment">#配置utf-8输出环境</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line">stopword_path = <span class="string">"WorkSpace/TextClassification/train_word_bag/hlt_stop_words.txt"</span></div><div class="line">stpwrdlst     = readfile(stopword_path).splitlines()</div><div class="line"></div><div class="line"><span class="comment">#1.读取和写入Bunch对象的函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readbunchobj</span><span class="params">(path)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"rb"</span>)</div><div class="line">    bunch    = pickle.load(file_obj)</div><div class="line">    file_obj.close()</div><div class="line">    <span class="keyword">return</span> bunch</div><div class="line"></div><div class="line"><span class="comment">#写入Bunch对象</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">writebunchobj</span><span class="params">(path,bunchobj)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"wb"</span>)</div><div class="line">    pickle.dump(bunchobj,file_obj)</div><div class="line">    file_obj.close()</div><div class="line"></div><div class="line"><span class="comment">#从训练集生成TF-IDF向量词袋</span></div><div class="line"><span class="comment">#2.导入分词后的词向量Bunch对象</span></div><div class="line"></div><div class="line">path       = <span class="string">"WorkSpace/TextClassification/train_word_bag/train_set.dat"</span><span class="comment">#词向量空间保存路径</span></div><div class="line">bunch      = readbunchobj(path)</div><div class="line"></div><div class="line"><span class="comment">#3.构建TF-IDF向量空间模型</span></div><div class="line">tfidfspace = Bunch(target_name = bunch.target_name,label = bunch.label,\</div><div class="line">                   filename = bunch.filename,tdm = [],vocabulary = &#123;&#125;)</div><div class="line"><span class="comment">#使用TfidfVectorizer初始化向量空间模型</span></div><div class="line">vectorizer = TfidfVectorizer(stop_words = stpwrdlst,sublinear_tf = <span class="keyword">True</span>,max_df = <span class="number">0.5</span>)</div><div class="line">transform  = TfidfTransformer()<span class="comment">#该类会统计每个词语放入Tf-IDF权重</span></div><div class="line"></div><div class="line"><span class="comment">#4.文本转化为词频矩阵：单独保存字典文件</span></div><div class="line">tfidfspace.tdm        = vectorizer.fit_transform(bunch.contents)</div><div class="line">tfidfspace.vocabulary = vectorizer.vocabulary_</div><div class="line"></div><div class="line"><span class="comment">#5.创建词袋的持久化</span></div><div class="line">space_path = <span class="string">"WorkSpace/TextClassification/train_word_bag/tfidfspace.dat"</span><span class="comment">#词向量词袋的保存路径</span></div><div class="line">writebunchobj(space_path,tfidfspace)</div></pre></td></tr></table></figure></p>
+<h3 id="使用朴素贝叶斯分类模块"><a href="#使用朴素贝叶斯分类模块" class="headerlink" title="使用朴素贝叶斯分类模块"></a>使用朴素贝叶斯分类模块</h3><p>最常用的文本分类方法有KNN最近邻算法、朴素贝叶斯算法和支持向量机算法。一般来说，KNN最近邻算法的原理最简单，分类精度尚可，但速度最慢，朴素贝叶斯算法对于短文文本分类效果最好，精度最高；支持向量机算法的优势是支持线性不可分的情况，精度上取中。<br>测试集随机抽取子训练集中的文档集合，每个分类取10个文档，过滤掉1KB以下的文档。<br>训练步骤与训练集相同，首先是分词，之后生成文件词向量文件，直至生成词向量模型。不同的是，在训练词向量模型时，需要加载训练集词袋，将测试集产生的词向量映射到训练集词袋的词典中，生成向量空间模型。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding:utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> sklearn.datasets.base <span class="keyword">import</span> Bunch</div><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> feature_extraction</div><div class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfTransformer <span class="comment">#TF-IDF向量转换类</span></div><div class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</div><div class="line"></div><div class="line"><span class="comment">#设置UTF-8 Unicode环境</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line">stopword_path = <span class="string">"../WorkSpace/TextClassification/train_word_bag/hlt_stop_words.txt"</span></div><div class="line">stpwrdlst     = readfile(stopword_path).splitlines()</div><div class="line"></div><div class="line"><span class="comment">#1.读取和写入Bunch对象的函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readbunchobj</span><span class="params">(path)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"rb"</span>)</div><div class="line">    bunch    = pickle.load(file_obj)</div><div class="line">    file_obj.close()</div><div class="line">    <span class="keyword">return</span> bunch</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">writebunchobj</span><span class="params">(path,bunchobj)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"wb"</span>)</div><div class="line">    pickle.dump(bunchobj,file_obj)</div><div class="line">    file_obj.close()</div><div class="line"></div><div class="line"><span class="comment">#2.导入分词后的词向量Bunch对象</span></div><div class="line">path          = <span class="string">"../WorkSpace/TextClassification/test_word_bag/test_set.dat"</span><span class="comment">#词向量空间保存路径</span></div><div class="line">bunch         = readbunchobj(path)</div><div class="line"></div><div class="line"><span class="comment">#3.构建测试集TF-IDF向量空间</span></div><div class="line">testspace     = Bunch(target_name = bunch.target_name,label = bunch.label,filenames = \</div><div class="line">                      bunch.filename,tdm = [],vocabulary = &#123;&#125;)</div><div class="line"></div><div class="line"><span class="comment">#4.导入训练集词袋</span></div><div class="line">trainbunch    = readbunchobj(<span class="string">"../WorkSpace/TextClassification/train_word_bag/tfidfspace.dat"</span>)</div><div class="line"></div><div class="line"><span class="comment">#5.使用TfidfVectorizer初始化向量空间模型</span></div><div class="line">vectorizer    = TfidfVectorizer(stop_words = stpwrdlst,sublinear_tf = <span class="keyword">True</span> ,max_df = <span class="number">0.5</span>,\</div><div class="line">                                vocabulary = trainbunch.vocabulary) <span class="comment">#使用训练集词袋向量</span></div><div class="line">transformer   = TfidfTransformer()</div><div class="line">testspace.tdm = vectorizer.fit_transform(bunch.contents)</div><div class="line">testspace.vocabulary = trainbunch.vocabulary</div><div class="line"></div><div class="line"><span class="comment">#6.创建词袋的持久化</span></div><div class="line">space_path    = <span class="string">"../WorkSpace/TextClassification/test_word_bag/testspace.dat"</span></div><div class="line">writebunchobj(space_path,testspace)</div></pre></td></tr></table></figure></p>
+<p>测试集数据的处理：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#（1）设置字符集，并导入jieba分词包</span></div><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"></div><div class="line"><span class="comment">#设置UTF-8 Unicode环境</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"><span class="comment">#定义两个函数读取和保存文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">savefile</span><span class="params">(savepath,content)</span>:</span><span class="comment">#保存至文件</span></div><div class="line">    fp      = open(savepath,<span class="string">"wb"</span>)</div><div class="line">    fp.write(content)</div><div class="line">    fp.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line"><span class="comment">#整个语料库分词的主程序</span></div><div class="line"><span class="comment">#未分词分类语料库路径</span></div><div class="line"><span class="comment">#分词后的分类语料库路径</span></div><div class="line">corpus_path = <span class="string">"../WorkSpace/TextClassification/test_corpus/"</span></div><div class="line">seg_path    = <span class="string">"../WorkSpace/TextClassification/test_corpus_seg/"</span></div><div class="line"></div><div class="line"><span class="comment">#获取corpus_path下的所有子目录</span></div><div class="line">catelist    = os.listdir(corpus_path)</div><div class="line"><span class="keyword">for</span> mydir <span class="keyword">in</span> catelist:</div><div class="line">    <span class="comment">#拼出分类子目录的路径</span></div><div class="line">    class_path = corpus_path+mydir+<span class="string">"/"</span></div><div class="line">    <span class="comment">#拼出分词后的语料分类目录</span></div><div class="line">    seg_dir   = seg_path+mydir+<span class="string">"/"</span></div><div class="line">    <span class="comment">#是否存在目录，如果没有则创建</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(seg_dir):</div><div class="line">        os.makedirs(seg_dir)</div><div class="line">    <span class="comment">#获得类别目录下的所有文件</span></div><div class="line">    file_list = os.listdir(class_path)</div><div class="line">    <span class="comment">#遍历类别目录下的所有文件</span></div><div class="line">    <span class="keyword">for</span> file_path <span class="keyword">in</span> file_list:</div><div class="line">        <span class="comment">#拼出文件名的全路径</span></div><div class="line">        fullname    = class_path + file_path</div><div class="line">        <span class="comment">#读取文件的内容</span></div><div class="line">        content     = readfile(fullname).strip()</div><div class="line">        <span class="comment">#删除换行和多余的空格</span></div><div class="line">        content     = content.replace(<span class="string">"\r\n"</span>,<span class="string">""</span>).strip()</div><div class="line">        <span class="comment">#为文件的内容分词</span></div><div class="line">        content_seg = jieba.cut(content)</div><div class="line">        <span class="comment">#将处理后的文件保存到分词后的语目录</span></div><div class="line">        savefile(seg_dir+file_path,<span class="string">""</span>.join(content_seg))</div><div class="line"><span class="keyword">print</span> <span class="string">u"中文语料分析结束！！！"</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"><span class="keyword">from</span> sklearn.datasets.base <span class="keyword">import</span> Bunch<span class="comment">#Bunch类</span></div><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"><span class="string">'''</span></div><div class="line">Bunch类提供了一种key,value的对象形式</div><div class="line">target_name:所有分类集名称列表</div><div class="line">label每个文件的分类标签列表</div><div class="line">filename:文件路径</div><div class="line">contents：分词后文件词向量形式</div><div class="line">'''</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(path)</span>:</span></div><div class="line">   fp      = open(path,<span class="string">"rb"</span>)</div><div class="line">   content = fp.read()</div><div class="line">   fp.close()</div><div class="line">   <span class="keyword">return</span> content</div><div class="line"></div><div class="line">bunch = Bunch(target_name = [],label = [],filename = [],contents = [])</div><div class="line"><span class="comment">#将分好词的文本文件转换并持久化为Bunch类形式的代码如下：</span></div><div class="line"><span class="comment">#分词语料Bunch对象持久化文件路径</span></div><div class="line">wordbag_path = <span class="string">"../WorkSpace/TextClassification/test_word_bag/test_set.dat"</span></div><div class="line">seg_path     = <span class="string">"../WorkSpace/TextClassification/test_corpus_seg/"</span>   <span class="comment">#分词后分类语料库路径</span></div><div class="line"></div><div class="line">catelist     = os.listdir(seg_path)    <span class="comment">#</span></div><div class="line">bunch.target_name.extend(catelist)     <span class="comment">#按类别信息保存到Bunch对象中</span></div><div class="line"><span class="keyword">for</span> mydir <span class="keyword">in</span> catelist:</div><div class="line">    class_path   = seg_path + mydir + <span class="string">"/"</span></div><div class="line">    file_list    = os.listdir(class_path)</div><div class="line">    <span class="keyword">for</span> file_path <span class="keyword">in</span> file_list:</div><div class="line">        fullname = class_path + file_path</div><div class="line">        bunch.label.append(mydir)<span class="comment">#保存当前文件的分类标签</span></div><div class="line">        bunch.filename.append(fullname)<span class="comment">#保存当前文件路径</span></div><div class="line">        bunch.contents.append(readfile(fullname).strip())<span class="comment">#保存文件词向量</span></div><div class="line"><span class="comment">#Bunch对象的持久化</span></div><div class="line">file_obj = open(wordbag_path,<span class="string">"wb"</span>)</div><div class="line">pickle.dump(bunch,file_obj)</div><div class="line">file_obj.close()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">u"构建文本对象结束！！！"</span></div></pre></td></tr></table></figure></p>
+<p>执行朴素贝叶斯训练：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> MultinomialNB <span class="comment">#导入多项式贝叶斯算法包</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readbunchobj</span><span class="params">(path)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"rb"</span>)</div><div class="line">    bunch    = pickle.load(file_obj)</div><div class="line">    file_obj.close()</div><div class="line">    <span class="keyword">return</span> bunch</div><div class="line"></div><div class="line"><span class="comment">#导入训练向量空间</span></div><div class="line">trainpath = <span class="string">"../WorkSpace/TextClassification/train_word_bag/tfidfspace.dat"</span></div><div class="line">train_set = readbunchobj(trainpath)</div><div class="line"></div><div class="line"><span class="comment">#导入测试集向量空间</span></div><div class="line">testpath  = <span class="string">"../WorkSpace/TextClassification/test_word_bag/testspace.dat"</span></div><div class="line">test_set = readbunchobj(testpath)</div><div class="line"></div><div class="line"><span class="comment">#应用朴素贝叶斯</span></div><div class="line"><span class="comment">#alpha:0.001 alpha越小，迭代次数越多，精度越高</span></div><div class="line">clf       = MultinomialNB(alpha = <span class="number">0.001</span>).fit(train_set.tdm,train_set.label)</div><div class="line"></div><div class="line"><span class="comment">#预测分类结果</span></div><div class="line">predicted = clf.predict(test_set.tdm)</div><div class="line">total     = len(predicted)</div><div class="line">rate      = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> flabel,file_name,expct_cate <span class="keyword">in</span> zip(test_set.label,test_set.filenames,predicted):</div><div class="line">    <span class="keyword">if</span> flabel != expct_cate:</div><div class="line">        rate  += <span class="number">1</span></div><div class="line">        <span class="keyword">print</span> file_name,<span class="string">u":实际类别:"</span>,flabel,<span class="string">u"--&gt;预测类别:"</span>,expct_cate</div><div class="line"><span class="comment">#精度</span></div><div class="line"><span class="keyword">print</span> <span class="string">"error rate:"</span>,float(rate)*<span class="number">100</span>/float(total),<span class="string">"%"</span></div></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</div><div class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> MultinomialNB <span class="comment">#导入多项式贝叶斯算法包</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readbunchobj</span><span class="params">(path)</span>:</span></div><div class="line">    file_obj = open(path,<span class="string">"rb"</span>)</div><div class="line">    bunch    = pickle.load(file_obj)</div><div class="line">    file_obj.close()</div><div class="line">    <span class="keyword">return</span> bunch</div><div class="line"></div><div class="line"><span class="comment">#导入训练向量空间</span></div><div class="line">trainpath = <span class="string">"../WorkSpace/TextClassification/train_word_bag/tfidfspace.dat"</span></div><div class="line">train_set = readbunchobj(trainpath)</div><div class="line"></div><div class="line"><span class="comment">#导入测试集向量空间</span></div><div class="line">testpath  = <span class="string">"../WorkSpace/TextClassification/test_word_bag/testspace.dat"</span></div><div class="line">test_set = readbunchobj(testpath)</div><div class="line"></div><div class="line"><span class="comment">#应用朴素贝叶斯</span></div><div class="line"><span class="comment">#alpha:0.001 alpha越小，迭代次数越多，精度越高</span></div><div class="line">clf       = MultinomialNB(alpha = <span class="number">0.001</span>).fit(train_set.tdm,train_set.label)</div><div class="line"></div><div class="line"><span class="comment">#预测分类结果</span></div><div class="line">predicted = clf.predict(test_set.tdm)</div><div class="line">total     = len(predicted)</div><div class="line">rate      = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> flabel,file_name,expct_cate <span class="keyword">in</span> zip(test_set.label,test_set.filenames,predicted):</div><div class="line">    <span class="keyword">if</span> flabel != expct_cate:</div><div class="line">        rate  += <span class="number">1</span></div><div class="line">        <span class="keyword">print</span> file_name,<span class="string">u":实际类别:"</span>,flabel,<span class="string">u"--&gt;预测类别:"</span>,expct_cate</div><div class="line"><span class="comment">#精度</span></div><div class="line"><span class="keyword">print</span> <span class="string">"error rate:"</span>,float(rate)*<span class="number">100</span>/float(total),<span class="string">"%"</span></div></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<h3 id="分类结果评估"><a href="#分类结果评估" class="headerlink" title="分类结果评估"></a>分类结果评估</h3><p>（1）<strong>召回率</strong>（Recall Rate，也叫查全率）：是检索出相关文档数和文档库中所有相关文档的比率，衡量的是检索系统的查全率  </p>
+<p>　　　　召回率（Recall） = 系统检索到的相关文件/系统所有相关的文件的总数  </p>
+<p>（2）<strong>准确率</strong>（Precision，也成称为精度）：是检索出的相关文档数与检索出的文档总数的比率，衡量的是检索系统的查准率。  </p>
+<p>　　　　准确率（Precision） = 系统检索到的相关文件/系统所有检索到的文档总数<br><img src="/img/中文文本分类/3.png" alt="准确率"></p>
+<p>（3）Fβ-Mesure(又称为F-Score）：是机器学习领域常用的评价标准，计算公式：<br><img src="/img/中文文本分类/4.png" alt="F-Score"><br>　　其中，β是参数，p是准确率，R是召回率<br>　　当β=1时，就是最常见的F1-Mesure了：<br><img src="/img/中文文本分类/5.png" alt="F1-Mesure"><br>　　文本分类结果评估，代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</div><div class="line"></div><div class="line"><span class="comment">#定义分类精确度</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">metrics_result</span><span class="params">(actual,predict)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">u"精度:&#123;0:.3f&#125;"</span>.format(metrics.precision_score(actual,predict))</div><div class="line">    <span class="keyword">print</span> <span class="string">u"召回:&#123;0:.3f&#125;"</span>.format(metrics.recall_score(actual,predict))</div><div class="line">    <span class="keyword">print</span> <span class="string">u"f1-score:&#123;0:.3f&#125;"</span>.format(metrics.f1_score(actual,predict))</div><div class="line"></div><div class="line">metrics_result(test_set.label,predicted)</div></pre></td></tr></table></figure></p>
+<p>输出结果如下：</p>
+<p>精度:0.881</p>
+<p>召回:0.862</p>
+<p>f1-score:0.860 </p>
+<p>资料来源及相关版权所有：《机器学习算法原理与编程实践》 郑捷</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/" rel="next" title="CentOS7+Tomcat+Eclipse发布JavaWeb项目">
+                <i class="fa fa-chevron-left"></i> CentOS7+Tomcat+Eclipse发布JavaWeb项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/23/R in Linux 安装及library的安装/" rel="prev" title="R in Linux 安装及library的安装">
+                R in Linux 安装及library的安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/me.jpg"
+               alt="Bao Xizhao" />
+          <p class="site-author-name" itemprop="name">Bao Xizhao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本挖掘与文本分类的概念"><span class="nav-number">1.</span> <span class="nav-text">文本挖掘与文本分类的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本分类项目"><span class="nav-number">2.</span> <span class="nav-text">文本分类项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本预处理"><span class="nav-number">2.1.</span> <span class="nav-text">文本预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scikit-Learn库介绍"><span class="nav-number">2.2.</span> <span class="nav-text">Scikit-Learn库介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量空间模型"><span class="nav-number">2.3.</span> <span class="nav-text">向量空间模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重策略：TD-IDF方法"><span class="nav-number">2.4.</span> <span class="nav-text">权重策略：TD-IDF方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用朴素贝叶斯分类模块"><span class="nav-number">2.5.</span> <span class="nav-text">使用朴素贝叶斯分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类结果评估"><span class="nav-number">2.6.</span> <span class="nav-text">分类结果评估</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bao Xizhao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

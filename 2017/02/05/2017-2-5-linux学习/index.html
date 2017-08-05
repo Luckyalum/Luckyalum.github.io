@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Linux基础学习（第一部分 Linux的规则与安装）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础学习">
+<meta property="og:url" content="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/index.html">
+<meta property="og:site_name" content="Bao Xizhao's Blog">
+<meta property="og:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
+<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
+<meta property="og:updated_time" content="2017-07-07T02:42:31.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux基础学习">
+<meta name="twitter:description" content="Linux基础学习（第一部分 Linux的规则与安装）">
+<meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&fm=21&gp=0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/"/>
+
+
+
+
+
+  <title>Linux基础学习 | Bao Xizhao's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bao Xizhao's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">世界不只有眼前的苟且，还有诗和远方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bao Xizhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bao Xizhao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux基础学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-05T00:00:00+08:00">
+                2017-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Linux基础学习（第一部分-Linux的规则与安装）"><a href="#Linux基础学习（第一部分-Linux的规则与安装）" class="headerlink" title="Linux基础学习（第一部分 Linux的规则与安装）"></a>Linux基础学习（第一部分 Linux的规则与安装）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br><a id="more"></a><br><strong><em>主要参考来源</em></strong><br>-鸟哥的Linux私房菜基础学习篇（第三版）</p>
+<h3 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1.搭建环境"></a>1.搭建环境</h3><p>由于一些原因（就是穷，买不起服务器），通过虚拟机来学习Linux，但是这种环境很多硬件都是仿真的，因此有条件的话建议还是直接装Linux或利用多重引导装双系统。</p>
+<p><strong>相关配置：</strong>    </p>
+<ul>
+<li>主机系统： Windows 7 64位  </li>
+<li>虚拟机软件 <a href="http://rj.baidu.com/soft/detail/13808.html?ald" target="_blank" rel="external">VMare Workstation 12.5.2</a>  </li>
+<li>虚拟机系统 <a href="https://www.centos.org/" target="_blank" rel="external">CentOS 7</a><br><strong>安装：</strong><br> 首先安装VMare，然后下载CentOS 7镜像文件，VMare安装CentOS也没什么要特别注意的地方。  <h3 id="2-登录系统"><a href="#2-登录系统" class="headerlink" title="2.登录系统"></a>2.登录系统</h3></li>
+<li>CentOS 7有图形界面X Window（GNOME,GNOME classical等）和命令行界面。  </li>
+<li>两种模式的切换：<br><code>Ctrl</code>+<code>Alt</code>+<code>F2</code>~<code>F7</code>  命令行界面（tty2~tty7）<br><code>Ctrl</code>+<code>Alt</code>+<code>F1</code>  图形界面（tty1）<br>注意：不同的distribution不同，如CentOS 5.x tty7为图形界面  </li>
+<li>如果使用命令行模式启动的Linux，可以使用<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$start</span> x</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>不过该命令并非万能  </p>
+<ul>
+<li>终端界面登录Linux<pre><code class="bash">localhost login: baoxzh  
+password: 
+Last login: Wed Feb 8 19:30:30 on:0  
+[baoxzh@localhost~]$
+</code></pre>
+注意输入的密码不会显示出来  <h3 id="3-基础命令"><a href="#3-基础命令" class="headerlink" title="3.基础命令"></a>3.基础命令</h3></li>
+<li>命令行模式下执行命令<br>基本格式： command [-options] parameter1 parameter2…<br>即         命令或可执行文件+选项+参数1+参数2+…<br>注意：大小写区分</li>
+<li>简单命令：  <ul>
+<li>显示日期命令 date  </li>
+<li>显示日历命令 cal 不妨试试 <code>$ cal 9 1752</code>(和历法有关)  </li>
+<li>计算器 bc  </li>
+</ul>
+</li>
+<li>基本命令：  <ul>
+<li>改变目录 cd (change directory)  </li>
+<li>选择用户 su (switch user)  </li>
+<li>删除文件 rm (remove)  </li>
+<li>显示文件属性 ls  </li>
+<li>退出 exit  </li>
+</ul>
+</li>
+<li>重要热键：  <ul>
+<li><code>Tab</code>：命令补全或文件补齐    </li>
+<li><code>Ctrl</code>+<code>C</code>：终止当前命令  </li>
+<li><code>Ctrl</code>+<code>D</code>：离开，相当于exit  </li>
+</ul>
+</li>
+<li>求助命令（Manual） man page 和 info page   </li>
+<li>关机、重启  <ul>
+<li>shutdown  </li>
+<li>reboot  </li>
+<li>halt  </li>
+<li>poweroff  </li>
+</ul>
+</li>
+<li>切换执行等级  <ul>
+<li>run level 0：关机   </li>
+<li>run level 3：纯命令行模式  </li>
+<li>run level 5：含有图形界面模式  </li>
+<li>run level 6：重启  </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/31/2017-01-31-hello-world/" rel="next" title="Hello World!">
+                <i class="fa fa-chevron-left"></i> Hello World!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/13/2017-3-13-常见排序算法/" rel="prev" title="常见排序算法">
+                常见排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/me.jpg"
+               alt="Bao Xizhao" />
+          <p class="site-author-name" itemprop="name">Bao Xizhao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux基础学习（第一部分-Linux的规则与安装）"><span class="nav-number">1.</span> <span class="nav-text">Linux基础学习（第一部分 Linux的规则与安装）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-搭建环境"><span class="nav-number">1.1.</span> <span class="nav-text">1.搭建环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-登录系统"><span class="nav-number">1.2.</span> <span class="nav-text">2.登录系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-基础命令"><span class="nav-number">1.3.</span> <span class="nav-text">3.基础命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bao Xizhao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
