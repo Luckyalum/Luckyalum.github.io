@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法,排序," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -94,21 +94,21 @@
 
 
 
-<meta name="description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+<meta name="description" content="冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见排序算法">
 <meta property="og:url" content="http://baoxizhao.com/2017/03/13/2017-3-13-常见排序算法/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+<meta property="og:description" content="冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&fm=21&gp=0.jpg">
 <meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&fm=23&gp=0.jpg">
-<meta property="og:updated_time" content="2017-07-07T02:42:31.900Z">
+<meta property="og:updated_time" content="2017-08-05T09:20:10.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见排序算法">
-<meta name="twitter:description" content="1.冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
+<meta name="twitter:description" content="冒泡排序算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值">
 <meta name="twitter:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&fm=21&gp=0.jpg">
 
 
@@ -211,16 +211,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
           </a>
         </li>
       
@@ -339,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -376,11 +366,11 @@
       
 
       
-        <h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br><a id="more"></a><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+        <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br><a id="more"></a><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i;j++)</div><div class="line">				<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</div><div class="line">				&#123;</div><div class="line">					<span class="keyword">int</span> tmp;</div><div class="line">					tmp = a[j];</div><div class="line">					a[j] = a[j+<span class="number">1</span>];</div><div class="line">					a[j+<span class="number">1</span>] = tmp;</div><div class="line">				&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <hr>
-<h3 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2.插入排序"></a>2.插入排序</h3><p>算法：每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置,直到全部插入完毕<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&amp;fm=21&amp;gp=0.jpg" alt="插入排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> m = a[i];</div><div class="line">			<span class="keyword">int</span> j;</div><div class="line">			<span class="keyword">for</span>(j=i; j&gt;<span class="number">0</span>&amp;&amp;m&lt;a[j-<span class="number">1</span>]; j--)</div><div class="line">				a[j] = a[j-<span class="number">1</span>];</div><div class="line">			a[j] = m;</div><div class="line">		&#125;				           </div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>算法：每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置,直到全部插入完毕<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3868563194,1500098878&amp;fm=21&amp;gp=0.jpg" alt="插入排序"><br>代码实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> m = a[i];</div><div class="line">			<span class="keyword">int</span> j;</div><div class="line">			<span class="keyword">for</span>(j=i; j&gt;<span class="number">0</span>&amp;&amp;m&lt;a[j-<span class="number">1</span>]; j--)</div><div class="line">				a[j] = a[j-<span class="number">1</span>];</div><div class="line">			a[j] = m;</div><div class="line">		&#125;				           </div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <hr>
-<h3 id="3-选择排序"><a href="#3-选择排序" class="headerlink" title="3.选择排序"></a>3.选择排序</h3><p>算法：每一趟排序从序列中未排好序的那些元素中选择一个值最小的元素，然后将其与这些未排好序的元素的第一个元素交换位置<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&amp;fm=21&amp;gp=0.jpg" alt="选择排序"><br>代码实现：</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>算法：每一趟排序从序列中未排好序的那些元素中选择一个值最小的元素，然后将其与这些未排好序的元素的第一个元素交换位置<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2922301402,2780544944&amp;fm=21&amp;gp=0.jpg" alt="选择排序"><br>代码实现：</p>
 <pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n)</span>
     </span>{
         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)
@@ -401,7 +391,7 @@
     }
 </code></pre>
 <hr>
-<h3 id="4-快速排序"><a href="#4-快速排序" class="headerlink" title="4.快速排序"></a>4.快速排序</h3><p>算法：先从数列中取出一个数作为基准数，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边，再对左右区间重复上述过程，直到各区间只有一个数<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&amp;fm=21&amp;gp=0.jpg" alt="快速排序"><br>代码实现：</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>算法：先从数列中取出一个数作为基准数，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边，再对左右区间重复上述过程，直到各区间只有一个数<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3690839443,1771563680&amp;fm=21&amp;gp=0.jpg" alt="快速排序"><br>代码实现：</p>
 <pre><code class="java"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span>
     </span>{
         <span class="keyword">if</span>(left&lt;right)
@@ -427,7 +417,7 @@
     }
 </code></pre>
 <hr>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&amp;fm=23&amp;gp=0.jpg" alt="最后"></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045667996,1157799221&amp;fm=23&amp;gp=0.jpg" alt="最后"></p>
 
       
     </div>
@@ -446,8 +436,6 @@
         <div class="post-tags">
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-            <a href="/tags/排序/" rel="tag"># 排序</a>
           
         </div>
       
@@ -560,7 +548,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -571,7 +559,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -606,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">1.冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-插入排序"><span class="nav-number">2.</span> <span class="nav-text">2.插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-选择排序"><span class="nav-number">3.</span> <span class="nav-text">3.选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-快速排序"><span class="nav-number">4.</span> <span class="nav-text">4.快速排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number"></span> <span class="nav-text">最后</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">2.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">3.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">4.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
