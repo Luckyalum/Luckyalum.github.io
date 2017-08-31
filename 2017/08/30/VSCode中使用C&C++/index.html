@@ -103,7 +103,7 @@
 <meta property="og:description" content="安装安装 Visual Studio Code官网 https://code.visualstudio.com/Download
 安装 MinGW官网 http://www.mingw.org/安装之后你需要使用 MingGW Installation Manager 安装需要的Packages，比如gdb，如果你没有C/C++的编译器，你也可以同时安装gcc和g++。因为MinGW不会自己配置P">
 <meta property="og:image" content="http://baoxizhao.com/img/VSCode.png">
-<meta property="og:updated_time" content="2017-08-31T15:06:53.448Z">
+<meta property="og:updated_time" content="2017-08-31T15:13:05.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VSCode中使用C/C++">
 <meta name="twitter:description" content="安装安装 Visual Studio Code官网 https://code.visualstudio.com/Download
@@ -387,10 +387,50 @@
 <li>One Dark Pro：大概是VS Code安装量最高的主题</li>
 <li>GBKtoUTF8：把GBK编码的文档转换成UTF8编码的  </li>
 </ul>
-<p>或者你也可以使用其他的编译器，这些都不在本文的讨论内容之内。  </p>
+<p>或者你也可以使用其他的编译器，这些都不在本文的讨论内容之内。<br><a id="more"></a></p>
 <h3 id="配置json文件"><a href="#配置json文件" class="headerlink" title="配置json文件"></a>配置json文件</h3><h4 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h4><p>打开项目文件夹，找到你要调试的文件，例如test.c，点击左边工具栏的调试，如图所示点击齿轮按钮，<br><img src="/img/VSCode.png" alt="VSCode"><br>会提示你创建launch.json，点开后，修改成下面内容即可：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "version": "0.2.0",</div><div class="line">    "configurations": [</div><div class="line">        &#123;</div><div class="line">            "name": "C Launch",</div><div class="line">            "type": "cppvsdbg",</div><div class="line">            "request": "launch",</div><div class="line">            "program": "$&#123;fileBasenameNoExtension&#125;.exe",</div><div class="line">            "args": [],</div><div class="line">            "stopAtEntry": false,  </div><div class="line">            "miDebuggerPath":"E:\\Program\\MinGW\\bin\\gdb.exe",//这里填你gdb(MinGW)的地址</div><div class="line">            "cwd": "$&#123;workspaceRoot&#125;",</div><div class="line">            "environment": [],</div><div class="line">            "externalConsole": true,</div><div class="line">            "preLaunchTask": "gcc",</div><div class="line">        &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>同时配置 gcc 和 g++:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</div><div class="line">    <span class="attr">"configurations"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"C Launch"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"cppvsdbg"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileBasenameNoExtension&#125;.exe"</span>,</div><div class="line">            <span class="attr">"args"</span>: [],</div><div class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"miDebuggerPath"</span>:<span class="string">"E:\\Program\\MinGW\\bin\\gdb.exe"</span>,</div><div class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</div><div class="line">            <span class="attr">"environment"</span>: [],</div><div class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"gcc"</span>,</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"C++ Launch"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"cppvsdbg"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileBasenameNoExtension&#125;.exe"</span>,</div><div class="line">            <span class="attr">"args"</span>: [],</div><div class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"miDebuggerPath"</span>:<span class="string">"E:\\Program\\MinGW\\bin\\gdb.exe"</span>,</div><div class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</div><div class="line">            <span class="attr">"environment"</span>: [],</div><div class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"g++"</span>,</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="tasks-json"><a href="#tasks-json" class="headerlink" title="tasks.json"></a>tasks.json</h4><p>上一步完成后，点击调试会提示你配置任务运行程序,点击后随便选择一个，就会打开tasks.json文件，用下面替换即可：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "version": "0.1.0",</div><div class="line">    "tasks":[</div><div class="line">    &#123;</div><div class="line">        "taskName": "gcc", </div><div class="line">        "command": "gcc",</div><div class="line">        "args": ["-g","$&#123;file&#125;","-o","$&#123;fileBasenameNoExtension&#125;.exe"],    // 编译命令参数</div><div class="line">        "problemMatcher": &#123;</div><div class="line">            "owner": "cpp",</div><div class="line">            "fileLocation": ["relative", "$&#123;workspaceRoot&#125;"],</div><div class="line">            "pattern": &#123;</div><div class="line">                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",</div><div class="line">                "file": 1,</div><div class="line">                "line": 2,</div><div class="line">                "column": 3,</div><div class="line">                "severity": 4,</div><div class="line">                "message": 5</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        "taskName": "g++",</div><div class="line">        "command": "g++",</div><div class="line">        "args": ["-g","$&#123;file&#125;","-o","$&#123;fileBasenameNoExtension&#125;.exe"],    // 编译命令参数</div><div class="line">        "problemMatcher": &#123;</div><div class="line">            "owner": "cpp",</div><div class="line">            "fileLocation": ["relative", "$&#123;workspaceRoot&#125;"],</div><div class="line">            "pattern": &#123;</div><div class="line">                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",</div><div class="line">                "file": 1,</div><div class="line">                "line": 2,</div><div class="line">                "column": 3,</div><div class="line">                "severity": 4,</div><div class="line">                "message": 5</div><div class="line">            &#125;</div><div class="line">        &#125;        </div><div class="line">    &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="tasks-json"><a href="#tasks-json" class="headerlink" title="tasks.json"></a>tasks.json</h4><p>上一步完成后，点击调试会提示你配置任务运行程序,点击后随便选择一个，就会打开tasks.json文件，用下面替换即可：  </p>
+<pre><code class="json">{
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;tasks&quot;:[
+    {
+        &quot;taskName&quot;: &quot;gcc&quot;, 
+        &quot;command&quot;: &quot;gcc&quot;,
+        &quot;args&quot;: [&quot;-g&quot;,&quot;${file}&quot;,&quot;-o&quot;,&quot;${fileBasenameNoExtension}.exe&quot;],    // 编译命令参数
+        &quot;problemMatcher&quot;: {
+            &quot;owner&quot;: &quot;cpp&quot;,
+            &quot;fileLocation&quot;: [&quot;relative&quot;, &quot;${workspaceRoot}&quot;],
+            &quot;pattern&quot;: {
+                &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
+                &quot;file&quot;: 1,
+                &quot;line&quot;: 2,
+                &quot;column&quot;: 3,
+                &quot;severity&quot;: 4,
+                &quot;message&quot;: 5
+            }
+        }
+    },
+    {
+        &quot;taskName&quot;: &quot;g++&quot;,
+        &quot;command&quot;: &quot;g++&quot;,
+        &quot;args&quot;: [&quot;-g&quot;,&quot;${file}&quot;,&quot;-o&quot;,&quot;${fileBasenameNoExtension}.exe&quot;],    // 编译命令参数
+        &quot;problemMatcher&quot;: {
+            &quot;owner&quot;: &quot;cpp&quot;,
+            &quot;fileLocation&quot;: [&quot;relative&quot;, &quot;${workspaceRoot}&quot;],
+            &quot;pattern&quot;: {
+                &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
+                &quot;file&quot;: 1,
+                &quot;line&quot;: 2,
+                &quot;column&quot;: 3,
+                &quot;severity&quot;: 4,
+                &quot;message&quot;: 5
+            }
+        }        
+    }
+    ]
+}
+</code></pre>
 <p>到此，全部完成。 </p>
 
       

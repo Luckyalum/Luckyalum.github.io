@@ -94,20 +94,20 @@
 
 
 
-<meta name="description" content="layout: posttitle:  “同时安装python2和python3”date:   2017-08-8categories: 工具使用tags: 
+<meta name="description" content="layout: posttitle: “同时安装python2和python3”date:   2017-08-08categories: 工具使用tags: 
 - python简介python在逐渐向3发展，但是依然会遇到一些项目需要在2.7的环境中运行，同时安装2和3两个环境是一种解决方法。  
 安装Anaconda这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bao Xizhao's Blog">
 <meta property="og:url" content="http://baoxizhao.com/2017/08/08/同时安装python2和python3/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="layout: posttitle:  “同时安装python2和python3”date:   2017-08-8categories: 工具使用tags: 
+<meta property="og:description" content="layout: posttitle: “同时安装python2和python3”date:   2017-08-08categories: 工具使用tags: 
 - python简介python在逐渐向3发展，但是依然会遇到一些项目需要在2.7的环境中运行，同时安装2和3两个环境是一种解决方法。  
 安装Anaconda这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安">
-<meta property="og:updated_time" content="2017-08-31T15:02:26.432Z">
+<meta property="og:updated_time" content="2017-08-31T15:16:58.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bao Xizhao's Blog">
-<meta name="twitter:description" content="layout: posttitle:  “同时安装python2和python3”date:   2017-08-8categories: 工具使用tags: 
+<meta name="twitter:description" content="layout: posttitle: “同时安装python2和python3”date:   2017-08-08categories: 工具使用tags: 
 - python简介python在逐渐向3发展，但是依然会遇到一些项目需要在2.7的环境中运行，同时安装2和3两个环境是一种解决方法。  
 安装Anaconda这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安">
 
@@ -355,10 +355,11 @@
 
       
         <hr>
-<p>layout: post<br>title:  “同时安装python2和python3”<br>date:   2017-08-8<br>categories: 工具使用<br>tags: </p>
+<p>layout: post<br>title: “同时安装python2和python3”<br>date:   2017-08-08<br>categories: 工具使用<br>tags: </p>
 <h2 id="python"><a href="#python" class="headerlink" title="- python"></a>- python</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>python在逐渐向3发展，但是依然会遇到一些项目需要在2.7的环境中运行，同时安装2和3两个环境是一种解决方法。  </p>
-<h3 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h3><p>这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安装了2.7的版本，现在需要再安装3的环境）。<br>官网 <a href="https://www.anaconda.com/download/" target="_blank" rel="external">https://www.anaconda.com/download/</a><br>安装过程简单，不介绍。  </p>
-<h3 id="同时安装两个环境"><a href="#同时安装两个环境" class="headerlink" title="同时安装两个环境"></a>同时安装两个环境</h3><p>打开 Anaconda Prompt<br>创建一个版本为3，名字为py3的新环境：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">conda create -n py3 python=3</div><div class="line">```  </div><div class="line">使用以下命令可以看到已有的所有环境：  </div><div class="line">```bash</div><div class="line">conda info --envs</div></pre></td></tr></table></figure></p>
+<h3 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h3><p>这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安装了2.7的版本，现在需要再安装3的环境）。<br>官网 <a href="https://www.anaconda.com/download/" target="_blank" rel="external">https://www.anaconda.com/download/</a><br><a id="more"></a><br>安装过程简单，不介绍。  </p>
+<h3 id="同时安装两个环境"><a href="#同时安装两个环境" class="headerlink" title="同时安装两个环境"></a>同时安装两个环境</h3><p>打开 Anaconda Prompt<br>创建一个版本为3，名字为py3的新环境：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda create -n py3 python=3</div></pre></td></tr></table></figure></p>
+<p>使用以下命令可以看到已有的所有环境：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda info --envs</div></pre></td></tr></table></figure></p>
 <p>此时你会发现有root和py3两个环境,root为你默认的原始的环境。  </p>
 <h3 id="激活新环境："><a href="#激活新环境：" class="headerlink" title="激活新环境："></a>激活新环境：</h3><ul>
 <li>Linux / OS X：source activate py3  </li>
