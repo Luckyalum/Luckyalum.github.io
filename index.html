@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/08/08/同时安装python2和python3/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/08/30/VSCode中使用C&C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/08/同时安装python2和python3/" itemprop="url">同时安装python2和python3</a></h1>
+                <a class="post-title-link" href="/2017/08/30/VSCode中使用C&C++/" itemprop="url">VSCode中使用C/C++</a></h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T00:00:00+08:00">
-                2017-08-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T00:00:00+08:00">
+                2017-08-30
               </time>
             
 
@@ -372,7 +372,157 @@
       
         
           
-            <p>从目前情况来看，python在逐渐向3发展，但是</p>
+            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="安装-Visual-Studio-Code"><a href="#安装-Visual-Studio-Code" class="headerlink" title="安装 Visual Studio Code"></a>安装 Visual Studio Code</h4><p>官网 <a href="https://code.visualstudio.com/Download" target="_blank" rel="external">https://code.visualstudio.com/Download</a></p>
+<h4 id="安装-MinGW"><a href="#安装-MinGW" class="headerlink" title="安装 MinGW"></a>安装 MinGW</h4><p>官网 <a href="http://www.mingw.org/" target="_blank" rel="external">http://www.mingw.org/</a><br>安装之后你需要使用 MingGW Installation Manager 安装需要的Packages，比如gdb，如果你没有C/C++的编译器，你也可以同时安装gcc和g++。<br>因为MinGW不会自己配置PATH，所以你需要手动将MinGW下的bin文件夹添加到PATH中。配置好后可以在命令行中输入gdb,gcc,g++等检验是否安装成功。  </p>
+<h4 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h4><p>在VSCode的应用商店中安装C/C++的扩展。  </p>
+<h4 id="安装其他"><a href="#安装其他" class="headerlink" title="安装其他"></a>安装其他</h4><p>上面三个安装完成后，就可以满足最简单的需求了，如果你有更高阶的需求，可以安装更多的内容，例如一些可选扩展：  </p>
+<ul>
+<li>C/C++ Snippets（Snippets即重用代码块）  </li>
+<li>C/C++ Advanced Lint（vscode-c-cpp-flylint）（Lint即静态检测）  </li>
+<li>Code Runner  </li>
+<li>Rainbow Brackets：彩虹花括号，但注释掉以后不会变灰，算是一点不足</li>
+<li>One Dark Pro：大概是VS Code安装量最高的主题</li>
+<li>GBKtoUTF8：把GBK编码的文档转换成UTF8编码的  </li>
+</ul>
+<p>或者你也可以使用其他的编译器，这些都不在本文的讨论内容之内。  </p>
+<h3 id="配置json文件"><a href="#配置json文件" class="headerlink" title="配置json文件"></a>配置json文件</h3><h4 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h4><p>打开项目文件夹，找到你要调试的文件，例如test.c，点击左边工具栏的调试，如图所示点击齿轮按钮，<br><img src="/img/VSCode.png" alt="VSCode"><br>会提示你创建launch.json，点开后，修改成下面内容即可：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "version": "0.2.0",</div><div class="line">    "configurations": [</div><div class="line">        &#123;</div><div class="line">            "name": "C Launch",</div><div class="line">            "type": "cppvsdbg",</div><div class="line">            "request": "launch",</div><div class="line">            "program": "$&#123;fileBasenameNoExtension&#125;.exe",</div><div class="line">            "args": [],</div><div class="line">            "stopAtEntry": false,  </div><div class="line">            "miDebuggerPath":"E:\\Program\\MinGW\\bin\\gdb.exe",//这里填你gdb(MinGW)的地址</div><div class="line">            "cwd": "$&#123;workspaceRoot&#125;",</div><div class="line">            "environment": [],</div><div class="line">            "externalConsole": true,</div><div class="line">            "preLaunchTask": "gcc",</div><div class="line">        &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>同时配置 gcc 和 g++:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</div><div class="line">    <span class="attr">"configurations"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"C Launch"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"cppvsdbg"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileBasenameNoExtension&#125;.exe"</span>,</div><div class="line">            <span class="attr">"args"</span>: [],</div><div class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"miDebuggerPath"</span>:<span class="string">"E:\\Program\\MinGW\\bin\\gdb.exe"</span>,</div><div class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</div><div class="line">            <span class="attr">"environment"</span>: [],</div><div class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"gcc"</span>,</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"C++ Launch"</span>,</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"cppvsdbg"</span>,</div><div class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</div><div class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileBasenameNoExtension&#125;.exe"</span>,</div><div class="line">            <span class="attr">"args"</span>: [],</div><div class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"miDebuggerPath"</span>:<span class="string">"E:\\Program\\MinGW\\bin\\gdb.exe"</span>,</div><div class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</div><div class="line">            <span class="attr">"environment"</span>: [],</div><div class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"g++"</span>,</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="tasks-json"><a href="#tasks-json" class="headerlink" title="tasks.json"></a>tasks.json</h4><p>上一步完成后，点击调试会提示你配置任务运行程序,点击后随便选择一个，就会打开tasks.json文件，用下面替换即可：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "version": "0.1.0",</div><div class="line">    "tasks":[</div><div class="line">    &#123;</div><div class="line">        "taskName": "gcc", </div><div class="line">        "command": "gcc",</div><div class="line">        "args": ["-g","$&#123;file&#125;","-o","$&#123;fileBasenameNoExtension&#125;.exe"],    // 编译命令参数</div><div class="line">        "problemMatcher": &#123;</div><div class="line">            "owner": "cpp",</div><div class="line">            "fileLocation": ["relative", "$&#123;workspaceRoot&#125;"],</div><div class="line">            "pattern": &#123;</div><div class="line">                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",</div><div class="line">                "file": 1,</div><div class="line">                "line": 2,</div><div class="line">                "column": 3,</div><div class="line">                "severity": 4,</div><div class="line">                "message": 5</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        "taskName": "g++",</div><div class="line">        "command": "g++",</div><div class="line">        "args": ["-g","$&#123;file&#125;","-o","$&#123;fileBasenameNoExtension&#125;.exe"],    // 编译命令参数</div><div class="line">        "problemMatcher": &#123;</div><div class="line">            "owner": "cpp",</div><div class="line">            "fileLocation": ["relative", "$&#123;workspaceRoot&#125;"],</div><div class="line">            "pattern": &#123;</div><div class="line">                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",</div><div class="line">                "file": 1,</div><div class="line">                "line": 2,</div><div class="line">                "column": 3,</div><div class="line">                "severity": 4,</div><div class="line">                "message": 5</div><div class="line">            &#125;</div><div class="line">        &#125;        </div><div class="line">    &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>到此，全部完成。 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/08/08/同时安装python2和python3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bao Xizhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bao Xizhao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/同时安装python2和python3/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T11:02:49+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>layout: post<br>title:  “同时安装python2和python3”<br>date:   2017-08-8<br>categories: 工具使用<br>tags: </p>
+<h2 id="python"><a href="#python" class="headerlink" title="- python"></a>- python</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>python在逐渐向3发展，但是依然会遇到一些项目需要在2.7的环境中运行，同时安装2和3两个环境是一种解决方法。  </p>
+<h3 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h3><p>这是一个很好的Python工具，下载的时候可以选择2或3的版本（这里假定你安装了2.7的版本，现在需要再安装3的环境）。<br>官网 <a href="https://www.anaconda.com/download/" target="_blank" rel="external">https://www.anaconda.com/download/</a><br>安装过程简单，不介绍。  </p>
+<h3 id="同时安装两个环境"><a href="#同时安装两个环境" class="headerlink" title="同时安装两个环境"></a>同时安装两个环境</h3><p>打开 Anaconda Prompt<br>创建一个版本为3，名字为py3的新环境：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">conda create -n py3 python=3</div><div class="line">```  </div><div class="line">使用以下命令可以看到已有的所有环境：  </div><div class="line">```bash</div><div class="line">conda info --envs</div></pre></td></tr></table></figure></p>
+<p>此时你会发现有root和py3两个环境,root为你默认的原始的环境。  </p>
+<h3 id="激活新环境："><a href="#激活新环境：" class="headerlink" title="激活新环境："></a>激活新环境：</h3><ul>
+<li>Linux / OS X：source activate py3  </li>
+<li>Windows : activate py3  </li>
+</ul>
+<p>此时你会发现当前路径前会多出一个(py3)，表明你已进入py3环境。  </p>
+<h3 id="删除环境"><a href="#删除环境" class="headerlink" title="删除环境"></a>删除环境</h3><p>删除刚刚的 py3 环境：  </p>
+<pre><code class="bash">conda remove -n py3 --all
+</code></pre>
+<p>需要注意的是，如果你想要删除当前环境，你必须先切换为其他环境，然后使用上面命令。  </p>
 
           
         
@@ -1583,152 +1733,6 @@ cv2.waitKey(<span class="number">0</span>)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/02/05/2017-2-5-linux学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bao Xizhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bao Xizhao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/05/2017-2-5-linux学习/" itemprop="url">Linux基础学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-05T00:00:00+08:00">
-                2017-02-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Linux基础学习（第一部分-Linux的规则与安装）"><a href="#Linux基础学习（第一部分-Linux的规则与安装）" class="headerlink" title="Linux基础学习（第一部分 Linux的规则与安装）"></a>Linux基础学习（第一部分 Linux的规则与安装）</h2><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2560367200,474525958&amp;fm=21&amp;gp=0.jpg" alt="Linux图片" title="Linux"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/05/2017-2-5-linux学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1779,7 +1783,7 @@ cv2.waitKey(<span class="number">0</span>)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1801,7 +1805,7 @@ cv2.waitKey(<span class="number">0</span>)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
