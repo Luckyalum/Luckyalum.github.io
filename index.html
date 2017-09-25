@@ -279,6 +279,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/09/25/jsp usebean使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bao Xizhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bao Xizhao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/25/jsp usebean使用/" itemprop="url">jsp:useBean用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T00:00:00+08:00">
+                2017-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="jsp-useBean介绍"><a href="#jsp-useBean介绍" class="headerlink" title="jsp:useBean介绍"></a>jsp:useBean介绍</h3><h4 id="什么是JavaBean"><a href="#什么是JavaBean" class="headerlink" title="什么是JavaBean"></a>什么是JavaBean</h4><p>JavaBean是特殊的Java类，使用Java语言书写，并且遵守JavaBean API规范。<br>接下来给出的是JavaBean与其它Java类相比而言独一无二的特征：  </p>
+<ul>
+<li>提供一个默认的无参构造函数。  </li>
+<li>需要被序列化并且实现了Serializable接口。  </li>
+<li>可能有一系列可读写属性。  </li>
+<li>可能有一系列的”getter”或”setter”方法  <h3 id="JavaBean属性"><a href="#JavaBean属性" class="headerlink" title="JavaBean属性"></a>JavaBean属性</h3>一个JavaBean对象的属性应该是可访问的。这个属性可以是任意合法的Java数据类型，包括自定义Java类。<br>一个JavaBean对象的属性可以是可读写，或只读，或只写。JavaBean对象的属性通过JavaBean实现类中提供的两个方法来访问：  </li>
+<li>getPropertyName()<br>举例来说，如果属性的名称为myName，那么这个方法的名字就要写成getMyName()来读取这个属性。这个方法也称为访问器  </li>
+<li>setPropertyName()<br>举例来说，如果属性的名称为myName，那么这个方法的名字就要写成setMyName()来写入这个属性。这个方法也称为写入器。  <h3 id="访问JavaBean"><a href="#访问JavaBean" class="headerlink" title="访问JavaBean"></a>访问JavaBean</h3><jsp:usebean> 标签可以在JSP中声明一个JavaBean，然后使用。声明后，JavaBean对象就成了脚本变量，可以通过脚本元素或其他自定义标签来访问。<jsp:usebean>标签的语法格式如下：  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line">&lt;jsp:useBean id="bean 的名字" scope="bean 的作用域" class="bean类"&gt;</div><div class="line">    &lt;jsp:setProperty name="变量名" property="*"/&gt;</div><div class="line">&lt;/jsp:useBean&gt;</div><div class="line">```  </div><div class="line">* id属性用于指定JavaBean实例对象的引用名称  </div><div class="line">* class属性用于指定JavaBean的完整类名(即需要带有包名)  </div><div class="line">* scope属性用于指定JavaBean实例对象所存储的域范围，只能为page，request，session或application，默认为page。   </div><div class="line"></div><div class="line">&lt;jsp:setProperty&gt;用来设置已经实例化的Bean对象的属性：  </div><div class="line">* &lt;jps:setProperty name = "JavaBean实例名"  property = "*"/&gt;  </div><div class="line">* &lt;jsp:setProperty name = "JavaBean实例名" property = "JavaBean属性名" /&gt; </div><div class="line">* &lt;jsp:setProperty name = "JavaBean实例名" property = "JavaBean属性名" value = "BeanValue"/&gt;  </div><div class="line">* &lt;jsp:setProperty name = "JavaBean实例名" property = "propertyName" param = "request对象中的参数名"   </div><div class="line"></div><div class="line">相应的含义：</div><div class="line">* 该形式是设置Bean 属性的快捷方式.在Bean 中属性的名字，类型必须和request对象中的参数名称相匹配。由于表单中传过来的数据类型都是String 类型的，Jsp内在机制会把这些参数转化成Bean属性对应的类型。property = "*"表示所有名字和Bean属性名字匹配的请求参数都将被传递给相应的属性set方法。  </div><div class="line">* 使用request对象中的一个参数值来指定Bean中的一个属性值。在这个语法中，property指定Bean 的属性名，而且Bean 属性和request参数的名字应相同。也就是说，如果在Bean 中有setUserName(String userName)方法，那么，propertyName的值就是"userName".这种形式灵活性较强,可以有选择的对Bean中的属性赋值</div><div class="line">* value用来指定Bean属性的值。字符串数据会在目标类中通过标准的valueOf方法自动转换成数字、boolean、Boolean、byte、Byte、char、Character。例如，boolean和Boolean类型的属性值（比如“true”）通过Boolean.valueOf转换，int和Integer类型的属性值（比如“42”）通过Integer.valueOf转换。 </div><div class="line">* param指定用哪个请求参数作为Bean属性的值。Bean 属性和request参数的名字可以不同。如果当前请求没有参数，则什么事情也不做，系统不会把null传递给Bean属性的set方法。因此，你可以让Bean自己提供默认属性值，只有当请求参数明确指定了新值时才修改默认属性值。  </div><div class="line"></div><div class="line">### 示例：制作一个简单计算器  </div><div class="line">#### 不使用JavaBean</div><div class="line">直接使用javascript:</div><div class="line">Calculator.jsp</div><div class="line">```jsp</div><div class="line">&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"</div><div class="line">    pageEncoding="ISO-8859-1"%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;</div><div class="line">		&lt;title&gt;My first Calculator&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">	This is My first Calculator.&lt;br&gt;</div><div class="line">	First number:&lt;input type="text" id="num1" size="6"/&gt;&lt;br&gt;</div><div class="line">	Operator:</div><div class="line">	&lt;select id="op"&gt;</div><div class="line">		&lt;option value="+"&gt;+&lt;/option&gt;	</div><div class="line">		&lt;option value="-"&gt;-&lt;/option&gt;	</div><div class="line">		&lt;option value="*"&gt;*&lt;/option&gt;	</div><div class="line">		&lt;option value="/"&gt;/&lt;/option&gt;	</div><div class="line">	&lt;/select&gt;&lt;br&gt;</div><div class="line">	Second number:&lt;input type="text" id="num2" size="6"/&gt;&lt;br&gt;</div><div class="line">	Result:&lt;input type="text" id="result" size="6"/&gt;&lt;br&gt;</div><div class="line">	&lt;button onclick="calculate()"&gt;Calculate&lt;/button&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">	&lt;script type="text/javascript"&gt;</div><div class="line">	function calculate()</div><div class="line">	&#123;</div><div class="line">		var num1 = parseInt(document.getElementById("num1").value);</div><div class="line">		var num2 = parseInt(document.getElementById("num2").value);</div><div class="line">		var op = document.getElementById("op").value;</div><div class="line">		var result = document.getElementById("result");	</div><div class="line">		if(op=="+") result.value = num1+num2;</div><div class="line">		else if(op=="-") result.value = num1-num2;</div><div class="line">			 else if(op=="*") result.value = num1*num2;</div><div class="line">			      else result.value = num1/num2;</div><div class="line">	&#125;</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">```  </div><div class="line">#### 使用JavaBean </div><div class="line">calculator.jsp</div><div class="line">```jsp</div><div class="line">&lt;%@ page language="java" contentType="text/html; charset=utf-8"</div><div class="line">    pageEncoding="utf-8"%&gt;</div><div class="line">&lt;jsp:useBean id="cal" scope="request" class="bean.Calculator"&gt;</div><div class="line">	&lt;jsp:setProperty name="cal" property="*"/&gt;</div><div class="line">&lt;/jsp:useBean&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</div><div class="line">		&lt;title&gt;My Second Calculator&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">	&lt;%</div><div class="line">		String result = null;</div><div class="line">		/*Here must has try and catch*/</div><div class="line">		try&#123;</div><div class="line">			cal.calculate();</div><div class="line">			result = cal.getResult();</div><div class="line">	       &#125;catch (Exception e) &#123;</div><div class="line">	    	result = e.getMessage();</div><div class="line">	       &#125;</div><div class="line">	 %&gt;</div><div class="line">	&lt;form method="get" action="calculator2.jsp"&gt;</div><div class="line">		This is My Second Calculator(use jsp:useBean).&lt;br&gt;</div><div class="line">		First number:&lt;input type="text" name="num1" size="6"/&gt;&lt;br&gt;</div><div class="line">		Operator:</div><div class="line">		&lt;select name="op"&gt;</div><div class="line">			&lt;option value="+"&gt;+&lt;/option&gt;	</div><div class="line">			&lt;option value="-"&gt;-&lt;/option&gt;	</div><div class="line">			&lt;option value="*"&gt;*&lt;/option&gt;	</div><div class="line">			&lt;option value="/"&gt;/&lt;/option&gt;	</div><div class="line">		&lt;/select&gt;&lt;br&gt;</div><div class="line">		Second number:&lt;input type="text" name="num2" size="6"/&gt;&lt;br&gt;</div><div class="line">		Result:&lt;input type="text" name="result" value="&lt;%= result %&gt;"/&gt;&lt;br&gt;</div><div class="line">		&lt;button type="submit"&gt;Calculate&lt;/button&gt;</div><div class="line">	&lt;/form&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">```  </div><div class="line">Calculator.java</div><div class="line">```java</div><div class="line">package bean;</div><div class="line"></div><div class="line">public class Calculator &#123;</div><div class="line">		private String num1;</div><div class="line">		private String num2;</div><div class="line">		private String op;</div><div class="line">		private String result;</div><div class="line">		private Double result_d;</div><div class="line">		</div><div class="line">		public String getNum1() &#123;</div><div class="line">			return num1;</div><div class="line">		&#125;</div><div class="line">		public void setNum1(String num1) &#123;</div><div class="line">			this.num1 = num1;</div><div class="line">		&#125;</div><div class="line">		public String getNum2() &#123;</div><div class="line">			return num2;</div><div class="line">		&#125;</div><div class="line">		public void setNum2(String num2) &#123;</div><div class="line">			this.num2 = num2;</div><div class="line">		&#125;</div><div class="line">		public String getOp() &#123;</div><div class="line">			return op;</div><div class="line">		&#125;</div><div class="line">		public void setOp(String op) &#123;</div><div class="line">			this.op = op;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		public void calculate()</div><div class="line">		&#123;</div><div class="line">			double num1_d = Double.parseDouble(num1);</div><div class="line">			double num2_d = Double.parseDouble(num2);</div><div class="line">		</div><div class="line">			if(op.equals("+")) result_d = num1_d+num2_d;</div><div class="line">			else if(op.equals("-")) result_d= num1_d-num2_d;</div><div class="line">				 else if(op.equals("*")) result_d = num1_d*num2_d;</div><div class="line">				      else result_d = num1_d/num2_d;</div><div class="line">			result = result_d+"";</div><div class="line">		&#125;</div><div class="line">		public String getResult() &#123;</div><div class="line">			return result;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></jsp:usebean></jsp:usebean></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/08/30/VSCode中使用C&C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1600,152 +1750,6 @@ cv2.waitKey(<span class="number">0</span>)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/13/2017-3-13-常见排序算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bao Xizhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bao Xizhao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/13/2017-3-13-常见排序算法/" itemprop="url">常见排序算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T00:00:00+08:00">
-                2017-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>算法：重复经过未排序数组，每次比较两个相邻元素，如果它们值相反，就交换它们的值<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=89641899,1675602716&amp;fm=21&amp;gp=0.jpg" alt="冒泡排序"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/13/2017-3-13-常见排序算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1796,7 +1800,7 @@ cv2.waitKey(<span class="number">0</span>)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1818,7 +1822,7 @@ cv2.waitKey(<span class="number">0</span>)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
