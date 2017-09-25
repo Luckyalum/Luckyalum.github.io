@@ -110,7 +110,7 @@
 需要被序列化并且实现了Serializable接口。  
 可能有一系列可读写属性。  
 可能有一系列的”getter”或”setter”方法">
-<meta property="og:updated_time" content="2017-09-25T08:50:50.530Z">
+<meta property="og:updated_time" content="2017-09-25T09:03:00.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jsp:useBean用法">
 <meta name="twitter:description" content="jsp:useBean介绍什么是JavaBeanJavaBean是特殊的Java类，使用Java语言书写，并且遵守JavaBean API规范。接下来给出的是JavaBean与其它Java类相比而言独一无二的特征：  
@@ -390,24 +390,18 @@
 <li>提供一个默认的无参构造函数。  </li>
 <li>需要被序列化并且实现了Serializable接口。  </li>
 <li>可能有一系列可读写属性。  </li>
-<li>可能有一系列的”getter”或”setter”方法  <a id="more"></a>
-<h4 id="JavaBean属性"><a href="#JavaBean属性" class="headerlink" title="JavaBean属性"></a>JavaBean属性</h4>一个JavaBean对象的属性应该是可访问的。这个属性可以是任意合法的Java数据类型，包括自定义Java类。<br>一个JavaBean对象的属性可以是可读写，或只读，或只写。JavaBean对象的属性通过JavaBean实现类中提供的两个方法来访问：  </li>
+<li>可能有一系列的”getter”或”setter”方法  <a id="more"></a><h4 id="JavaBean属性"><a href="#JavaBean属性" class="headerlink" title="JavaBean属性"></a>JavaBean属性</h4>一个JavaBean对象的属性应该是可访问的。这个属性可以是任意合法的Java数据类型，包括自定义Java类。<br>一个JavaBean对象的属性可以是可读写，或只读，或只写。JavaBean对象的属性通过JavaBean实现类中提供的两个方法来访问：  </li>
 <li>getPropertyName()<br>举例来说，如果属性的名称为myName，那么这个方法的名字就要写成getMyName()来读取这个属性。这个方法也称为访问器  </li>
-<li>setPropertyName()<br>举例来说，如果属性的名称为myName，那么这个方法的名字就要写成setMyName()来写入这个属性。这个方法也称为写入器。  </li>
-</ul>
-<h3 id="访问JavaBean"><a href="#访问JavaBean" class="headerlink" title="访问JavaBean"></a>访问JavaBean</h3><p><jsp:usebean> 标签可以在JSP中声明一个JavaBean，然后使用。声明后，JavaBean对象就成了脚本变量，可以通过脚本元素或其他自定义标签来访问。<jsp:usebean>标签的语法格式如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;jsp:useBean id="bean 的名字" scope="bean 的作用域" class="bean类"&gt;</div><div class="line">    &lt;jsp:setProperty name="变量名" property="*"/&gt;</div><div class="line">&lt;/jsp:useBean&gt;</div></pre></td></tr></table></figure></jsp:usebean></jsp:usebean></p>
-<ul>
-<li>id属性用于指定JavaBean实例对象的引用名称  </li>
+<li><p>setPropertyName()<br>举例来说，如果属性的名称为myName，那么这个方法的名字就要写成setMyName()来写入这个属性。这个方法也称为写入器。  </p>
+<h3 id="访问JavaBean"><a href="#访问JavaBean" class="headerlink" title="访问JavaBean"></a>访问JavaBean</h3><p>jsp:useBean 标签可以在JSP中声明一个JavaBean，然后使用。声明后，JavaBean对象就成了脚本变量，可以通过脚本元素或其他自定义标签来访问。jsp:useBean 标签的语法格式如下：  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;jsp:useBean id="bean 的名字" scope="bean 的作用域" class="bean类"&gt;</div><div class="line">    &lt;jsp:setProperty name="变量名" property="*"/&gt;</div><div class="line">&lt;/jsp:useBean&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>id属性用于指定JavaBean实例对象的引用名称  </p>
+</li>
 <li>class属性用于指定JavaBean的完整类名(即需要带有包名)  </li>
 <li>scope属性用于指定JavaBean实例对象所存储的域范围，只能为page，request，session或application，默认为page。   </li>
 </ul>
-<p><jsp:setproperty>用来设置已经实例化的Bean对象的属性：  </jsp:setproperty></p>
-<ul>
-<li><jps:setproperty name="JavaBean实例名" property="*">  </jps:setproperty></li>
-<li><jsp:setproperty name="JavaBean实例名" property="JavaBean属性名">   </jsp:setproperty></li>
-<li><jsp:setproperty name="JavaBean实例名" property="JavaBean属性名" value="BeanValue">  </jsp:setproperty></li>
-<li>&lt;jsp:setProperty name = “JavaBean实例名” property = “propertyName” param = “request对象中的参数名”   </li>
-</ul>
+<p>标签 jsp:setProperty 用来设置已经实例化的Bean对象的属性：<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;jsp:setProperty name = <span class="string">"JavaBean实例名"</span>  property = <span class="string">"*"</span>/&gt;  </div><div class="line">&lt;jsp:setProperty name = <span class="string">"JavaBean实例名"</span> property = <span class="string">"JavaBean属性名"</span> /&gt;   </div><div class="line">&lt;jsp:setProperty name = <span class="string">"JavaBean实例名"</span> property = <span class="string">"JavaBean属性名"</span> value = <span class="string">"BeanValue"</span>/&gt;  </div><div class="line">&lt;jsp:setProperty name = <span class="string">"JavaBean实例名"</span> property = <span class="string">"propertyName"</span> param = <span class="string">"request对象中的参数名"</span></div></pre></td></tr></table></figure></p>
 <p>相应的含义：  </p>
 <ul>
 <li>该形式是设置Bean 属性的快捷方式.在Bean 中属性的名字，类型必须和request对象中的参数名称相匹配。由于表单中传过来的数据类型都是String 类型的，Jsp内在机制会把这些参数转化成Bean属性对应的类型。property = “*”表示所有名字和Bean属性名字匹配的请求参数都将被传递给相应的属性set方法。  </li>
