@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,opencv,图像处理," />
+  <meta name="keywords" content="Tomcat,Java," />
 
 
 
@@ -94,31 +94,16 @@
 
 
 
-<meta name="description" content="import cv2  
-import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
+<meta name="description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python openCV图像处理之角度变换">
-<meta property="og:url" content="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/index.html">
+<meta property="og:title" content="CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)">
+<meta property="og:url" content="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="import cv2  
-import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
-<meta property="og:image" content="http://baoxizhao.com/img/perspectiveTransform.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/perspectiveTransformNew.PNG">
-<meta property="og:updated_time" content="2017-08-05T09:24:37.528Z">
+<meta property="og:description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
+<meta property="og:updated_time" content="2018-06-10T07:13:22.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python openCV图像处理之角度变换">
-<meta name="twitter:description" content="import cv2  
-import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
-<meta name="twitter:image" content="http://baoxizhao.com/img/perspectiveTransform.jpg">
+<meta name="twitter:title" content="CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)">
+<meta name="twitter:description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
 
 
 
@@ -147,13 +132,13 @@ canvas = np.array([[0,0],[">
 
 
 
-  <link rel="canonical" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/"/>
+  <link rel="canonical" href="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/"/>
 
 
 
 
 
-  <title>python openCV图像处理之角度变换 | Bao Xizhao's Blog</title>
+  <title>CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新) | Bao Xizhao's Blog</title>
   
 
 
@@ -296,7 +281,7 @@ canvas = np.array([[0,0],[">
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -313,7 +298,7 @@ canvas = np.array([[0,0],[">
 
         
         
-          <h1 class="post-title" itemprop="name headline">python openCV图像处理之角度变换</h1>
+          <h1 class="post-title" itemprop="name headline">CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)</h1>
         
 
         <div class="post-meta">
@@ -325,8 +310,8 @@ canvas = np.array([[0,0],[">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T00:00:00+08:00">
-                2017-03-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-08T00:00:00+08:00">
+                2017-06-08
               </time>
             
 
@@ -348,8 +333,8 @@ canvas = np.array([[0,0],[">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图像处理/" itemprop="url" rel="index">
-                    <span itemprop="name">图像处理</span>
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
                   </a>
                 </span>
 
@@ -385,18 +370,15 @@ canvas = np.array([[0,0],[">
       
 
       
-        <pre><code class="python"><span class="keyword">import</span> cv2  
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-img = cv2.imread(<span class="string">'demo.jpg'</span>)
-conners = np.array([[<span class="number">873</span>,<span class="number">1322</span>],[<span class="number">1973</span>,<span class="number">1864</span>],[<span class="number">2645</span>,<span class="number">3152</span>],[<span class="number">857</span>,<span class="number">2568</span>]], dtype = <span class="string">"float32"</span>)  <span class="comment">#矩形(比如：书)的顶点 tl,tr,br,bl</span>
-canvas = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">500</span>],[<span class="number">0</span>,<span class="number">500</span>]], dtype = <span class="string">"float32"</span>)      <span class="comment">#输出文件的大小</span>
-M = cv2.getPerspectiveTransform(conners,canvas) 
-result = cv2.warpPerspective(img,M,(<span class="number">0</span>,<span class="number">0</span>))
-cv2.imshow(<span class="string">"img"</span>, result) 
-cv2.waitKey(<span class="number">0</span>)
-</code></pre>
-<a id="more"></a> 
-<p><img src="/img/perspectiveTransform.jpg" alt="原图"><img src="/img/perspectiveTransformNew.PNG" alt="转换后的图"></p>
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>必须安装的有<br>-jdk(10.0.1)<br>-Tomcat(9.0.8)<br>可选安装的有<br>-MySQL(CentOS7用的是Maria)<br><a id="more"></a></p>
+<h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><h3 id="下载、解压、配置路径"><a href="#下载、解压、配置路径" class="headerlink" title="下载、解压、配置路径"></a>下载、解压、配置路径</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.tar.gz</div><div class="line">mv jdk-10.0.1_linux-x64_bin.tar.gz /usr/<span class="built_in">local</span>/jdk/jdk-10.0.1_linux-x64_bin.tar.gz</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/jdk</div><div class="line">tar -zxvf jdk-10.0.1_linux-x64_bin.tar.gz      </div><div class="line">vi /etc/profile</div></pre></td></tr></table></figure>
+<p>在最后添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk/jdk-10.0.1(JDK的解压目录)  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span>  </div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</div></pre></td></tr></table></figure></p>
+<p>使文件立即生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure></p>
+<p>检查是否安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
+<h2 id="下载并启动Tomcat8"><a href="#下载并启动Tomcat8" class="headerlink" title="下载并启动Tomcat8"></a>下载并启动Tomcat8</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://apache.fayea.com/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz</div><div class="line"><span class="built_in">cd</span> usr/<span class="built_in">local</span>/ </div><div class="line">tar -zxvf apache-tomcat-9.0.8.tar.gz</div><div class="line">/usr/<span class="built_in">local</span>/apache-tomcat-9.0.8/bin/startup.sh</div></pre></td></tr></table></figure>
+<p>网速慢可以使用镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz</div><div class="line">```  </div><div class="line"><span class="comment">## 安装MySQL</span></div><div class="line">CentOS7用的是Maria，所以你想安装MySQL可能会收到错误  </div><div class="line">No package mysql-server available.  </div><div class="line">解决办法:  </div><div class="line">Centos 7 comes with MariaDB instead of MySQL. MariaDb is a open <span class="built_in">source</span> equivalent to MySQL and can be installed with yum -y install mariadb-server mariadb. If you must have mysql you need to add the mysql-community repo sudo rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm and <span class="keyword">then</span> you can install MySQLl like you normally <span class="keyword">do</span>  </div><div class="line">在后来有一次安装后启动，报了错：</div><div class="line">```bash</div><div class="line">ERROR 2002 (HY000): Can<span class="string">'t connect to local MySQL server through socket '</span>/var/lib/mysql/mysql.sock<span class="string">'</span></div></pre></td></tr></table></figure></p>
+<p>我的原因是maria没启动，启动即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start mariadb</div></pre></td></tr></table></figure></p>
+<h2 id="部署JavaWeb项目"><a href="#部署JavaWeb项目" class="headerlink" title="部署JavaWeb项目"></a>部署JavaWeb项目</h2><p>我使用的是Eclipse，于是右键要发布的项目，选择export，选择javaweb项目，然后就会得到WAR文件了,上传文件使用的是Xftp5,点击新建会话,填入服务器的ip,服务我选择的是sftp,端口选择选的是22（这些可能需要你根据实际情况选择），输入用户和密码，就可以连上了，把刚才的WAR文件拖拽到服务器的Tomcat的webapps目录下就行了，有可能需要你服务器开启FTP服务（我没遇到）。<br>如果是使用IDEA发布webservice，则把项目的\out\artifacts\项目名_war_exploded这个文件拷到Tomcat的webapps目录下就行</p>
 
       
     </div>
@@ -414,11 +396,9 @@ cv2.waitKey(<span class="number">0</span>)
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
           
-            <a href="/tags/opencv/" rel="tag"># opencv</a>
-          
-            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -431,8 +411,8 @@ cv2.waitKey(<span class="number">0</span>)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/13/2017-3-13-常见排序算法/" rel="next" title="常见排序算法">
-                <i class="fa fa-chevron-left"></i> 常见排序算法
+              <a href="/2017/06/04/银行家算法（C语言实现）/" rel="next" title="银行家算法（C语言实现）">
+                <i class="fa fa-chevron-left"></i> 银行家算法（C语言实现）
               </a>
             
           </div>
@@ -441,8 +421,8 @@ cv2.waitKey(<span class="number">0</span>)
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/18/python openCV图像处理之提取轮廓/" rel="prev" title="python openCV图像处理之提取轮廓">
-                python openCV图像处理之提取轮廓 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/08/同时安装python2和python3/" rel="prev" title="同时安装python2和python3">
+                同时安装python2和python3 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -497,8 +477,17 @@ cv2.waitKey(<span class="number">0</span>)
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/me.jpg"
@@ -560,6 +549,22 @@ cv2.waitKey(<span class="number">0</span>)
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装JDK"><span class="nav-number">2.</span> <span class="nav-text">安装JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载、解压、配置路径"><span class="nav-number">2.1.</span> <span class="nav-text">下载、解压、配置路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载并启动Tomcat8"><span class="nav-number">3.</span> <span class="nav-text">下载并启动Tomcat8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署JavaWeb项目"><span class="nav-number">4.</span> <span class="nav-text">部署JavaWeb项目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
