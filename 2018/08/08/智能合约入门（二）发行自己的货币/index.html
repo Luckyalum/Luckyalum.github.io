@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2018/08/08/智能合约入门（二）发行自己的货币/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="我们可以在以太坊发布各种各样的Dapp，最多的就是发行代币。">
-<meta property="og:updated_time" content="2018-08-08T08:00:52.039Z">
+<meta property="og:updated_time" content="2018-08-09T02:14:55.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="智能合约入门（二）发行自己的货币">
 <meta name="twitter:description" content="我们可以在以太坊发布各种各样的Dapp，最多的就是发行代币。">
@@ -374,7 +374,7 @@
 <h3 id="1-建立并进入文件夹"><a href="#1-建立并进入文件夹" class="headerlink" title="1.建立并进入文件夹"></a>1.建立并进入文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir new_project   </div><div class="line">sudo chown bao new_project </div><div class="line"><span class="built_in">cd</span> new_project</div></pre></td></tr></table></figure>
 <p>sudo chown bao new_project 目的是修改文件夹拥有者，避免后面无法在文件夹里修改文件</p>
 <h3 id="2-初始化项目"><a href="#2-初始化项目" class="headerlink" title="2.初始化项目"></a>2.初始化项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">truffle init</div></pre></td></tr></table></figure>
-<h3 id="3-git项目"><a href="#3-git项目" class="headerlink" title="3.git项目"></a>3.git项目</h3><p>把公司项目git或下载下来，放到new_project下，同名目录merge，同名文件覆盖</p>
+<h3 id="3-使用支持ERC20标准的合约"><a href="#3-使用支持ERC20标准的合约" class="headerlink" title="3.使用支持ERC20标准的合约"></a>3.使用支持ERC20标准的合约</h3><p>这里有我们需要的支持ERC20标准的合约<br><a href="https://github.com/OpenZeppelin/openzeppelin-solidity/tree/master/contracts/token/ERC20" target="_blank" rel="external">https://github.com/OpenZeppelin/openzeppelin-solidity/tree/master/contracts/token/ERC20</a><br>git或下载下来，放到new_project下，这样我们就不用现在就开始写许多的函数。</p>
 <h3 id="4-修改truffle-js"><a href="#4-修改truffle-js" class="headerlink" title="4.修改truffle.js"></a>4.修改truffle.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">networks</span>:&#123;</div><div class="line">    <span class="attr">development</span>:&#123;</div><div class="line">        <span class="attr">host</span>:<span class="string">"127.0.0.1"</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">7545</span>,</div><div class="line">        <span class="attr">network_id</span>: <span class="string">"*"</span></div><div class="line">    &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h3 id="5-新建合约"><a href="#5-新建合约" class="headerlink" title="5.新建合约"></a>5.新建合约</h3><p>在contracts下新建文件DemoToken.sol，也可以别的名字，但是要对应<br>文件内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import &quot;./StandardToken.sol&quot;;</div><div class="line"></div><div class="line">contract DemoToken is StandardToken &#123;</div><div class="line">  // public variables</div><div class="line">  string public name = &quot;Demo Token&quot;;</div><div class="line">  string public symbol = &quot;DEMO&quot;;</div><div class="line">  uint8 public decimals = 18;</div><div class="line"></div><div class="line">  // public functions</div><div class="line">  constructor() public &#123;</div><div class="line">    _totalSupply = 10000 * (10 ** uint256(decimals));</div><div class="line"></div><div class="line">    _balances[msg.sender] = _totalSupply;</div><div class="line">    emit Transfer(0x0, msg.sender, _totalSupply);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="6-设置发布文件"><a href="#6-设置发布文件" class="headerlink" title="6.设置发布文件"></a>6.设置发布文件</h3><p>修改 migrations/1_initial_migration.js：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Migrations = artifacts.require(<span class="string">"./Migrations.sol"</span>);</div><div class="line"><span class="keyword">var</span> DemoToken = artifacts.require(<span class="string">"./DemoToken.sol"</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">deployer</span>) </span>&#123;</div><div class="line">  <span class="comment">//deployer.deploy(Migrations);</span></div><div class="line">  deployer.deploy(DemoToken);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
@@ -413,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/08/智能合约入门（一）发布第一个智能合约/" rel="next" title="智能合约入门（一）发布第一个智能合约">
-                <i class="fa fa-chevron-left"></i> 智能合约入门（一）发布第一个智能合约
+              <a href="/2018/06/27/制作一个云盘网站/" rel="next" title="制作一个云盘网站">
+                <i class="fa fa-chevron-left"></i> 制作一个云盘网站
               </a>
             
           </div>
@@ -422,6 +422,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/08/智能合约入门（一）发布第一个智能合约/" rel="prev" title="智能合约入门（一）发布第一个智能合约">
+                智能合约入门（一）发布第一个智能合约 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -557,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-建立并进入文件夹"><span class="nav-number">1.</span> <span class="nav-text">1.建立并进入文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-初始化项目"><span class="nav-number">2.</span> <span class="nav-text">2.初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-git项目"><span class="nav-number">3.</span> <span class="nav-text">3.git项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-修改truffle-js"><span class="nav-number">4.</span> <span class="nav-text">4.修改truffle.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-新建合约"><span class="nav-number">5.</span> <span class="nav-text">5.新建合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-设置发布文件"><span class="nav-number">6.</span> <span class="nav-text">6.设置发布文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-编译项目"><span class="nav-number">7.</span> <span class="nav-text">7.编译项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-发布合约"><span class="nav-number">8.</span> <span class="nav-text">8.发布合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-进入控制台"><span class="nav-number">9.</span> <span class="nav-text">9.进入控制台</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-建立并进入文件夹"><span class="nav-number">1.</span> <span class="nav-text">1.建立并进入文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-初始化项目"><span class="nav-number">2.</span> <span class="nav-text">2.初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用支持ERC20标准的合约"><span class="nav-number">3.</span> <span class="nav-text">3.使用支持ERC20标准的合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-修改truffle-js"><span class="nav-number">4.</span> <span class="nav-text">4.修改truffle.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-新建合约"><span class="nav-number">5.</span> <span class="nav-text">5.新建合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-设置发布文件"><span class="nav-number">6.</span> <span class="nav-text">6.设置发布文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-编译项目"><span class="nav-number">7.</span> <span class="nav-text">7.编译项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-发布合约"><span class="nav-number">8.</span> <span class="nav-text">8.发布合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-进入控制台"><span class="nav-number">9.</span> <span class="nav-text">9.进入控制台</span></a></li></ol></div>
             
 
           </div>
