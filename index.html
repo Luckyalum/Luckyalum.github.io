@@ -371,21 +371,14 @@
 
       
         
-          
-            <p>问题发生在我在安装pip的时候:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> apt-get install python-pip</div></pre></td></tr></table></figure></p>
-<p>报错如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Reading package lists... Done</div><div class="line">Building dependency tree       </div><div class="line">Reading state information... Done</div><div class="line">You might want to run <span class="string">'apt --fix-broken install'</span> to correct these.</div><div class="line">The following packages have unmet dependencies:</div><div class="line"> ethereum : Depends: ethereum-swarm but it is not going to be installed</div><div class="line"> python-pip : Depends: python-pip-whl (= 9.0.1-2.3~ubuntu1) but it is not going to be installed</div><div class="line">              Recommends: python-all-dev (&gt;= 2.6) but it is not going to be installed</div><div class="line">              Recommends: python-setuptools but it is not going to be installed</div><div class="line">              Recommends: python-wheel but it is not going to be installed</div><div class="line">E: Unmet dependencies. Try <span class="string">'apt --fix-broken install'</span> with no packages (or specify a solution).</div></pre></td></tr></table></figure></p>
-<p>大概意思是之前有个包没安装完（我这里是ethereum-swarm这个包）<br>按照提示看能否解决:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> apt --fix-broken install</div></pre></td></tr></table></figure></p>
-<p>报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">Reading package lists... Done</div><div class="line">Building dependency tree       </div><div class="line">Reading state information... Done</div><div class="line">Correcting dependencies... Done</div><div class="line">The following packages were automatically installed and are no longer required:</div><div class="line">  amule-common amule-utils libcrypto++6 libtorrent-rasterbar9 libwxbase3.0-0v5</div><div class="line">  libwxgtk3.0-0v5 swarm ttf-dejavu-core</div><div class="line">Use &apos;sudo apt autoremove&apos; to remove them.</div><div class="line">The following additional packages will be installed:</div><div class="line">  ethereum-swarm</div><div class="line">The following NEW packages will be installed:</div><div class="line">  ethereum-swarm</div><div class="line">0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.</div><div class="line">1 not fully installed or removed.</div><div class="line">Need to get 0 B/5,561 kB of archives.</div><div class="line">After this operation, 22.2 MB of additional disk space will be used.</div><div class="line">Do you want to continue? [Y/n] y </div><div class="line">(Reading database ... 209881 files and directories currently installed.)</div><div class="line">Preparing to unpack .../ethereum-swarm_0.3.1+build14601+bionic_amd64.deb ...</div><div class="line">Unpacking ethereum-swarm (0.3.1+build14601+bionic) ...</div><div class="line">dpkg: error processing archive /var/cache/apt/archives/ethereum-swarm_0.3.1+build14601+bionic_amd64.deb (--unpack):</div><div class="line"> trying to overwrite &apos;/usr/bin/swarm&apos;, which is also in package swarm 2.2.2+dfsg-1</div><div class="line">dpkg-deb: error: paste subprocess was killed by signal (Broken pipe)</div><div class="line">Errors were encountered while processing:</div><div class="line"> /var/cache/apt/archives/ethereum-swarm_0.3.1+build14601+bionic_amd64.deb</div><div class="line">E: Sub-process /usr/bin/dpkg returned an error code (1)</div></pre></td></tr></table></figure></p>
-<p>按照网上的方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/$sudo apt install -f</div></pre></td></tr></table></figure></p>
-<p>报同样的错<br>我们分析一下错误是什么意思，到下载这步都没有问题，问题出在解压这步<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Unpacking ethereum-swarm (0.3.1+build14601+bionic)</div><div class="line">dpkg: error processing archive /var/cache/apt/archives/ethereum-swarm_0.3.1+build14601+bionic_amd64.deb (--unpack):</div><div class="line"> trying to overwrite <span class="string">'/usr/bin/swarm'</span>, <span class="built_in">which</span> is also <span class="keyword">in</span> package swarm 2.2.2+dfsg-1</div><div class="line"> ...</div></pre></td></tr></table></figure></p>
-<p>大概就是ethereum-swarm这个包想要overwrite一个文件/usr/bin/swarm，而这个文件已经被一个已安装的包使用了，我尝试删掉这个文件（人混胆子大，可以先备份）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> rm /usr/bin/swarm</div></pre></td></tr></table></figure></p>
-<p>再次安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/$sudo apt install -f</div></pre></td></tr></table></figure></p>
-<p>还是同样的错误<br>我们再使用dpkg -i –force-overwrite 试试：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> dpkg -i --force-overwrite  /var/cache/apt/archives/ethereum-swarm_0.3.1+build14601+bionic_amd64.deb</div><div class="line">(Reading database ... 209881 files and directories currently installed.)</div><div class="line">Preparing to unpack .../ethereum-swarm_0.3.1+build14601+bionic_amd64.deb ...</div><div class="line">Unpacking ethereum-swarm (0.3.1+build14601+bionic) ...</div><div class="line">dpkg: warning: overriding problem because --force enabled:</div><div class="line">dpkg: warning: trying to overwrite <span class="string">'/usr/bin/swarm'</span>, <span class="built_in">which</span> is also <span class="keyword">in</span> package swarm 2.2.2+dfsg-1</div><div class="line">Setting up ethereum-swarm (0.3.1+build14601+bionic) ...Ok</div></pre></td></tr></table></figure></p>
-<p>没有报错，再次输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> apt-get install <span class="_">-f</span></div></pre></td></tr></table></figure></p>
-<p>发现ethereum-swarm 安装成功了。<br>后面就可以安装你想要的软件了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> apt-get install python-pip</div></pre></td></tr></table></figure></p>
-<p>最后我去了解了下 dpkg -i –force-overwrite 这个命令，这篇文章讲的很好<br><a href="https://www.techtimejourney.net/for-sudo-and-root-usersdealing-with-apt-errors/#more-1759" target="_blank" rel="external">https://www.techtimejourney.net/for-sudo-and-root-usersdealing-with-apt-errors/#more-1759</a></p>
-
-          
+          <p>问题发生在我在安装pip的时候:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/<span class="variable">$sudo</span> apt-get install python-pip</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/15/ubuntu软件未完全安装带来的问题及解决方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -486,8 +479,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
+                  <a href="/categories/Block-Chain/" itemprop="url" rel="index">
+                    <span itemprop="name">Block Chain</span>
                   </a>
                 </span>
 
@@ -632,8 +625,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/区块链/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
+                  <a href="/categories/Block-Chain/" itemprop="url" rel="index">
+                    <span itemprop="name">Block Chain</span>
                   </a>
                 </span>
 
@@ -890,6 +883,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1026,8 +1041,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
                   </a>
                 </span>
 
@@ -1172,8 +1187,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具使用/" itemprop="url" rel="index">
-                    <span itemprop="name">工具使用</span>
+                  <a href="/categories/Software/" itemprop="url" rel="index">
+                    <span itemprop="name">Software</span>
                   </a>
                 </span>
 
@@ -1320,8 +1335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
                   </a>
                 </span>
 
@@ -1617,8 +1632,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具使用/" itemprop="url" rel="index">
-                    <span itemprop="name">工具使用</span>
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
                   </a>
                 </span>
 
@@ -1762,7 +1777,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1773,7 +1788,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
