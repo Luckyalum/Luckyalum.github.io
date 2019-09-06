@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tomcat,Java," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -94,16 +94,16 @@
 
 
 
-<meta name="description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
+<meta name="description" content="不知不觉已经离保研成功已经快一年了，恰好有几个学弟学妹问我保研的事，就在这里总结一下保研的整个过程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)">
-<meta property="og:url" content="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/index.html">
+<meta property="og:title" content="北师大保研复试经验">
+<meta property="og:url" content="http://baoxizhao.com/2019/09/06/北师大保研复试经验/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
-<meta property="og:updated_time" content="2018-08-15T09:42:06.573Z">
+<meta property="og:description" content="不知不觉已经离保研成功已经快一年了，恰好有几个学弟学妹问我保研的事，就在这里总结一下保研的整个过程。">
+<meta property="og:updated_time" content="2019-09-06T08:51:41.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)">
-<meta name="twitter:description" content="准备工作必须安装的有-jdk(10.0.1)-Tomcat(9.0.8)可选安装的有-MySQL(CentOS7用的是Maria)">
+<meta name="twitter:title" content="北师大保研复试经验">
+<meta name="twitter:description" content="不知不觉已经离保研成功已经快一年了，恰好有几个学弟学妹问我保研的事，就在这里总结一下保研的整个过程。">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/"/>
+  <link rel="canonical" href="http://baoxizhao.com/2019/09/06/北师大保研复试经验/"/>
 
 
 
 
 
-  <title>CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新) | Bao Xizhao's Blog</title>
+  <title>北师大保研复试经验 | Bao Xizhao's Blog</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/06/08/CentOS7+Tomcat+Eclipse发布JavaWeb项目/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2019/09/06/北师大保研复试经验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS7+Tomcat+Eclipse发布JavaWeb项目(2018/6/10更新)</h1>
+          <h1 class="post-title" itemprop="name headline">北师大保研复试经验</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-08T00:00:00+08:00">
-                2017-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T00:00:00+08:00">
+                2019-09-06
               </time>
             
 
@@ -320,28 +320,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -370,15 +348,12 @@
       
 
       
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>必须安装的有<br>-jdk(10.0.1)<br>-Tomcat(9.0.8)<br>可选安装的有<br>-MySQL(CentOS7用的是Maria)<br><a id="more"></a></p>
-<h2 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h2><h3 id="下载、解压、配置路径"><a href="#下载、解压、配置路径" class="headerlink" title="下载、解压、配置路径"></a>下载、解压、配置路径</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.tar.gz</div><div class="line">mv jdk-10.0.1_linux-x64_bin.tar.gz /usr/<span class="built_in">local</span>/jdk/jdk-10.0.1_linux-x64_bin.tar.gz</div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/jdk</div><div class="line">tar -zxvf jdk-10.0.1_linux-x64_bin.tar.gz      </div><div class="line">vi /etc/profile</div></pre></td></tr></table></figure>
-<p>在最后添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk/jdk-10.0.1(JDK的解压目录)  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span>  </div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</div></pre></td></tr></table></figure></p>
-<p>使文件立即生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile</div></pre></td></tr></table></figure></p>
-<p>检查是否安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
-<h2 id="下载并启动Tomcat8"><a href="#下载并启动Tomcat8" class="headerlink" title="下载并启动Tomcat8"></a>下载并启动Tomcat8</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://apache.fayea.com/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz</div><div class="line"><span class="built_in">cd</span> usr/<span class="built_in">local</span>/ </div><div class="line">tar -zxvf apache-tomcat-9.0.8.tar.gz</div><div class="line">/usr/<span class="built_in">local</span>/apache-tomcat-9.0.8/bin/startup.sh</div></pre></td></tr></table></figure>
-<p>网速慢可以使用镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz</div><div class="line">```  </div><div class="line"><span class="comment">## 安装MySQL</span></div><div class="line">CentOS7用的是Maria，所以你想安装MySQL可能会收到错误  </div><div class="line">No package mysql-server available.  </div><div class="line">解决办法:  </div><div class="line">Centos 7 comes with MariaDB instead of MySQL. MariaDb is a open <span class="built_in">source</span> equivalent to MySQL and can be installed with yum -y install mariadb-server mariadb. If you must have mysql you need to add the mysql-community repo sudo rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm and <span class="keyword">then</span> you can install MySQLl like you normally <span class="keyword">do</span>  </div><div class="line">在后来有一次安装后启动，报了错：</div><div class="line">```bash</div><div class="line">ERROR 2002 (HY000): Can<span class="string">'t connect to local MySQL server through socket '</span>/var/lib/mysql/mysql.sock<span class="string">'</span></div></pre></td></tr></table></figure></p>
-<p>我的原因是maria没启动，启动即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start mariadb</div></pre></td></tr></table></figure></p>
-<h2 id="部署JavaWeb项目"><a href="#部署JavaWeb项目" class="headerlink" title="部署JavaWeb项目"></a>部署JavaWeb项目</h2><p>我使用的是Eclipse，于是右键要发布的项目，选择export，选择javaweb项目，然后就会得到WAR文件了,上传文件使用的是Xftp5,点击新建会话,填入服务器的ip,服务我选择的是sftp,端口选择选的是22（这些可能需要你根据实际情况选择），输入用户和密码，就可以连上了，把刚才的WAR文件拖拽到服务器的Tomcat的webapps目录下就行了，有可能需要你服务器开启FTP服务（我没遇到）。<br>如果是使用IDEA发布webservice，则把项目的\out\artifacts\项目名_war_exploded这个文件拷到Tomcat的webapps目录下就行</p>
+        <p>不知不觉已经离保研成功已经快一年了，恰好有几个学弟学妹问我保研的事，就在这里总结一下保研的整个过程。<br><a id="more"></a></p>
+<h3 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h3><p>报名大约是9月中旬左右，需要注意北师大研究生招生网上的通知。报名时会给你一个系统的网址，进入系统后需要填写一堆信息，要保证准确，照片就是以后校园卡上的照片。<br>报名之后，还需要提交纸质材料，例如成绩单，四六级证明这些，直接按照地址交到院办公室就行。整个报名和提交材料加起来的时间大概为一周左右，交完材料会有几天审核时间，审核结果会在系统里公布，需要密切关注。</p>
+<h3 id="复试"><a href="#复试" class="headerlink" title="复试"></a>复试</h3><p>审核通过后，过几天会进行复试。通知里会给复试的安排，以这个为准。我说下我的经历。早上八点去报道，需要带100元复试费。八点半开始考试，应该是三个小时左右，我当时服务器出现问题，给延长了一点时间。上午是两门一起考，机考（100分）和专业英语笔试（100分）。下午一点半考试，应该也是三个小时，两个一起考，专业知识笔试（100分）和面试（100分）。</p>
+<h4 id="上午场"><a href="#上午场" class="headerlink" title="上午场"></a>上午场</h4><p>上午是直接进机房，然后发一张英语卷子，编程和写英语自己安排，时间到了，两个同时结束。<br>英语相对而言最简单，一些专业词汇的汉译英，英译汉，然后专业文章的汉译英，英译汉。词汇难一点的也就是芯片之类的词（可能是因为和通信的一张卷子），文章也不难，我当时是一篇讲信息技术的文章。<br>机考应该是最难的，毕竟通知里直接说了是ACM竞赛题。机房里的IDE是code blocks（理论上平台也接受别的语言，但我没仔细看有没有提供其他语言的环境），平台就是moodle平台。注意，每道题是有时间复杂度和空间复杂度限制的，提交结果也会隐藏，就是你只知道你这道题没有通过，但不知道具体是哪个测试用例没过。上机分八道题，前六道每道10分，后两道每道20分。第一题是送分题，有些同学可能没有用过moodle，这题就是教你怎么读题，提交，最后交个a+b或者hello,world就行了。第二题难度就上来了，假设连续三个奇数都是素数，则称这三个数为三元组，输入N，输出1-N范围内的所有三元组。大部分人这题都没做出来，因为有时间限制（100ms）,而N的最大测试用例可以到1000000，许多同学的时间复杂度太高。事实上，这题并不是考素数查找的优化，而是一个简单的数学问题，任意连续的三个奇数必定会有一个能被3整除，所以N&gt;=7时，只有3,5,7这一组解（证明很简单，这里就不写了）。后面题就比较常规了，比如检查输入字符串是否符合驼峰命名法等，难度大概和leetcode的medium差不多。平台里可以随时看到别人的进度，我走的时候看了下我是第9（60分），差异比较大，后面有一大堆10分的，前面有竞赛党很快刷完的，但是不用急，有些是大佬拿北师来保底的，他们最终不一定接受offer。</p>
+<h4 id="下午场"><a href="#下午场" class="headerlink" title="下午场"></a>下午场</h4><p>中午休息时间不是很多，但是还是要好好休息，下午的也并不容易。<br>下午会先进考场，发笔试卷子，做的同时会按一个顺序叫人出去面试。面试的老师会分几组，每组六七个老师，你会被随机叫到一组去。因为我第一个被叫出去面试，所以先讲面试。<br>面试，进去先问好，然后入座。老师先让自我介绍，介绍下个人信息、学校、专业、GPA、四六级、获奖经历、科研经历等。然后老师会轮流问问题，也会问一个英语问题，比如介绍自己的学校，或者介绍自己等。面试的时候不要慌，我英语介绍自己的母校，介绍了一句就不会了，尴尬了几秒后，旁边老师就来打圆场了，所以不用太慌张。老师也可能会问你拿到offer后会不会换别的学校，这个诚实作答就好，不要说不会，最后又食言了，这样会浪费名额，本科学校会上他们黑名单，影响学弟学妹。<br>笔试的内容是两块：数据结构和计算机体系结构。数据结构难度正常，题目做的多了会发现基本就是经典题型，但是不会有期末考试那种简单题，数据结构最难的一题是大题中的一个线性再散列问题。计算机体系结构可能比较难应付，因为和本科计算机系统课不太一致，选择题可能有一些没学过，突击学习的时间不够把所有知识点过完，但是大题是可以做的，是和cpu指令周期、频率有关的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>满分是400分，每部分分所占比例都一样，所以一场没考好，问题也不是很大。出分结果很快，可能一两天就会出，通过了老师会给你打电话，如果不放心的话，打电话去问老师结果也行。<br>最后，祝学弟学妹金榜题名！</p>
 
       
     </div>
@@ -394,14 +369,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
-          
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-        </div>
-      
 
       
       
@@ -411,8 +378,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/04/银行家算法（C语言实现）/" rel="next" title="银行家算法（C语言实现）">
-                <i class="fa fa-chevron-left"></i> 银行家算法（C语言实现）
+              <a href="/2018/08/15/ubuntu软件未完全安装带来的问题及解决方案/" rel="next" title="ubuntu软件未完全安装带来的问题及解决方案">
+                <i class="fa fa-chevron-left"></i> ubuntu软件未完全安装带来的问题及解决方案
               </a>
             
           </div>
@@ -420,10 +387,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/08/同时安装python2和python3/" rel="prev" title="同时安装python2和python3">
-                同时安装python2和python3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,7 +522,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装JDK"><span class="nav-number">2.</span> <span class="nav-text">安装JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载、解压、配置路径"><span class="nav-number">2.1.</span> <span class="nav-text">下载、解压、配置路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载并启动Tomcat8"><span class="nav-number">3.</span> <span class="nav-text">下载并启动Tomcat8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署JavaWeb项目"><span class="nav-number">4.</span> <span class="nav-text">部署JavaWeb项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#报名"><span class="nav-number">1.</span> <span class="nav-text">报名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复试"><span class="nav-number">2.</span> <span class="nav-text">复试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#上午场"><span class="nav-number">2.1.</span> <span class="nav-text">上午场</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下午场"><span class="nav-number">2.2.</span> <span class="nav-text">下午场</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
