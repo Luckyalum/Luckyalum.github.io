@@ -1608,7 +1608,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之提取轮廓/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -1627,7 +1627,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/18/python openCV图像处理之提取轮廓/" itemprop="url">python openCV图像处理之提取轮廓</a></h1>
+                <a class="post-title-link" href="/2017/03/18/python openCV图像处理之角度变换/" itemprop="url">python openCV图像处理之角度变换</a></h1>
         
 
         <div class="post-meta">
@@ -1700,11 +1700,19 @@
 
       
         
-          <h3 id="导入需要的包"><a href="#导入需要的包" class="headerlink" title="导入需要的包"></a>导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
-<p>这里只做最简单的处理，所以只需导入cv2<br>
+          <pre><code class="python"><span class="keyword">import</span> cv2  
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+img = cv2.imread(<span class="string">'demo.jpg'</span>)
+conners = np.array([[<span class="number">873</span>,<span class="number">1322</span>],[<span class="number">1973</span>,<span class="number">1864</span>],[<span class="number">2645</span>,<span class="number">3152</span>],[<span class="number">857</span>,<span class="number">2568</span>]], dtype = <span class="string">"float32"</span>)  <span class="comment">#矩形(比如：书)的顶点 tl,tr,br,bl</span>
+canvas = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">500</span>],[<span class="number">0</span>,<span class="number">500</span>]], dtype = <span class="string">"float32"</span>)      <span class="comment">#输出文件的大小</span>
+M = cv2.getPerspectiveTransform(conners,canvas) 
+result = cv2.warpPerspective(img,M,(<span class="number">0</span>,<span class="number">0</span>))
+cv2.imshow(<span class="string">"img"</span>, result) 
+cv2.waitKey(<span class="number">0</span>)
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/python openCV图像处理之提取轮廓/#more" rel="contents">
+            <a class="btn" href="/2017/03/18/python openCV图像处理之角度变换/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
