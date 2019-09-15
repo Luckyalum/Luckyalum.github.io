@@ -65,7 +65,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2019/09/15/最大字串/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="问题描述  给定n个整数组成的序列，求该序列所有子序列中和最大的一个。例如序列为 0,-1,-2,3,2 时，最大子序列为 3,2，最大值为5。">
-<meta property="og:updated_time" content="2019-09-15T11:24:55.941Z">
+<meta property="og:updated_time" content="2019-09-15T11:53:40.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大字串">
 <meta name="twitter:description" content="问题描述  给定n个整数组成的序列，求该序列所有子序列中和最大的一个。例如序列为 0,-1,-2,3,2 时，最大子序列为 3,2，最大值为5。">
@@ -371,7 +371,66 @@
 
       
         <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>  给定n个整数组成的序列，求该序列所有子序列中和最大的一个。例如序列为 0,-1,-2,3,2 时，最大子序列为 3,2，最大值为5。<br><a id="more"></a></p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>  我们先进行穷举，计算所有子序列，然后找出最大值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1.穷举</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol1</span><span class="params">(nums)</span>:</span></div><div class="line">    N = len(nums)</div><div class="line">    s = <span class="number">0</span></div><div class="line">    max_sub = s</div><div class="line">    left = right = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</div><div class="line">        s = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i,N):</div><div class="line">            s = sum(nums[i:j+<span class="number">1</span>])</div><div class="line">            <span class="keyword">if</span> s &gt; max_sub:</div><div class="line">                max_sub = s</div><div class="line">                left = i</div><div class="line">                right = j</div><div class="line">    <span class="keyword">return</span> max_sub,left,right</div><div class="line">```  </div><div class="line">我们用s(i,j)来表示起点为i，终点为j的子序列，遍历所有子序列时,先遍历起点i，时间复杂度O(n),再遍历终点j，复杂度也为O(n),对于每个子序列，i和j确定后，计算该序列的和也为O(n)，故该方法的总时间复杂度为O(n^<span class="number">3</span>)。</div><div class="line">我们用一个矩阵来表示所有的子序列，如下所示：  </div><div class="line"><span class="number">0</span> | <span class="number">1</span> | <span class="number">2</span> | ... | n<span class="number">-1</span>  </div><div class="line">:-: | :-: | :-: | :-: | :-:</div><div class="line">s(<span class="number">0</span>,<span class="number">0</span>) | s(<span class="number">0</span>,<span class="number">1</span>) | s(<span class="number">0</span>,<span class="number">2</span>) | ... | s(<span class="number">0</span>,n<span class="number">-1</span>) </div><div class="line"><span class="number">0</span> | s(<span class="number">1</span>,<span class="number">1</span>) | s(<span class="number">1</span>,<span class="number">2</span>) | ... | s(<span class="number">1</span>,n<span class="number">-1</span>) </div><div class="line"><span class="number">0</span> | <span class="number">0</span> | s(<span class="number">2</span>,<span class="number">2</span>) | ... | s(<span class="number">2</span>,n<span class="number">-1</span>) </div><div class="line"><span class="meta">... </span>| ... | .. | ... | ...</div><div class="line"><span class="number">0</span> | <span class="number">0</span> | <span class="number">0</span> | ... | s(n<span class="number">-1</span>,n<span class="number">-1</span>)</div><div class="line">我们的目标就是计算出这个矩阵，然后找出最大值，穷举法的计算过程是从左向右，从上到下。观察到，每个子序列都可以由之前已经计算出的序列得到。例如 s(<span class="number">0</span>,<span class="number">1</span>)=s(<span class="number">0</span>,<span class="number">0</span>) + nums[<span class="number">1</span>]，我们可以得到下面这个公式：  </div><div class="line">    $$ s(i,j) = </div><div class="line">    \begin&#123;cases&#125; </div><div class="line">    nums[i], <span class="keyword">if</span> i = j</div><div class="line">    s(i,j<span class="number">-1</span>) + nums[j], <span class="keyword">else</span></div><div class="line">    \end&#123;cases&#125; </div><div class="line">    $$</div><div class="line">穷举时，我们每一项都要重新计算，现在我们每一项只需要常数时间就可以计算出，也就是动态规划,此时时间复杂度为O(n^<span class="number">2</span>)。  </div><div class="line">```python</div><div class="line"><span class="comment"># 2.动态规划</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol2</span><span class="params">(nums)</span>:</span></div><div class="line">    N = len(nums)</div><div class="line">    matrics = np.zeros((N,N),dtype=int)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i,N):</div><div class="line">            <span class="keyword">if</span> i == j:</div><div class="line">                matrics[i,j] = nums[i]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                matrics[i,j] = matrics[i,j<span class="number">-1</span>] + nums[j]</div><div class="line">    position = np.argmax(matrics)</div><div class="line">    left = position // N</div><div class="line">    right = position % N</div><div class="line">    <span class="keyword">return</span> matrics[left,right],left,right</div><div class="line">```  </div><div class="line">我们可以比较一下两个算法的时间：</div><div class="line">```python</div><div class="line"><span class="comment"># 时间比较</span></div><div class="line">N = <span class="number">1000</span></div><div class="line">nums = np.random.randint(low=-N/<span class="number">2</span>,high=N/<span class="number">2</span>,size=N)</div><div class="line"></div><div class="line">sol1_start = time.clock()</div><div class="line">sol1(nums)</div><div class="line">sol1_end = time.clock()</div><div class="line">print(<span class="string">"穷举法cpu时间:"</span>,sol1_end-sol1_start)</div><div class="line"></div><div class="line">sol2_start = time.clock()</div><div class="line">sol2(nums)</div><div class="line">sol2_end = time.clock()</div><div class="line">print(<span class="string">"动态规划cpu时间:"</span>,sol2_end-sol2_start)</div><div class="line">```  </div><div class="line">```bash</div><div class="line">穷举法cpu时间: <span class="number">31.870616599999998</span></div><div class="line">动态规划cpu时间: <span class="number">0.7049935000000005</span></div></pre></td></tr></table></figure></p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>  我们先进行穷举，计算所有子序列，然后找出最大值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1.穷举</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol1</span><span class="params">(nums)</span>:</span></div><div class="line">    N = len(nums)</div><div class="line">    s = <span class="number">0</span></div><div class="line">    max_sub = s</div><div class="line">    left = right = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</div><div class="line">        s = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i,N):</div><div class="line">            s = sum(nums[i:j+<span class="number">1</span>])</div><div class="line">            <span class="keyword">if</span> s &gt; max_sub:</div><div class="line">                max_sub = s</div><div class="line">                left = i</div><div class="line">                right = j</div><div class="line">    <span class="keyword">return</span> max_sub,left,right</div></pre></td></tr></table></figure></p>
+<p>我们用s(i,j)来表示起点为i，终点为j的子序列，遍历所有子序列时,先遍历起点i，时间复杂度O(n),再遍历终点j，复杂度也为O(n),对于每个子序列，i和j确定后，计算该序列的和也为O(n)，故该方法的总时间复杂度为O(n^3)。<br>我们用一个矩阵来表示所有的子序列，如下所示：    </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">n-1    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s(0,0)</td>
+<td style="text-align:center">s(0,1)</td>
+<td style="text-align:center">s(0,2)</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">s(0,n-1)  </td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">s(1,1)</td>
+<td style="text-align:center">s(1,2)</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">s(1,n-1)  </td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">s(2,2)</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">s(2,n-1)  </td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">..</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…  </td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">s(n-1,n-1)  </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们的目标就是计算出这个矩阵，然后找出最大值，穷举法的计算过程是从左向右，从上到下。观察到，每个子序列都可以由之前已经计算出的序列得到。例如 s(0,1)=s(0,0) + nums[1]，我们可以得到下面这个公式：  </p>
+<script type="math/tex; mode=display">s(i,j) = 
+    \begin{cases} 
+    nums[i], i = j\\
+    s(i,j-1) + nums[j], i<j
+    \end{cases}</script><p>穷举时，我们每一项都要重新计算，现在我们每一项只需要常数时间就可以计算出，此时时间复杂度为O(n^2)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 2.动态规划</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol2</span><span class="params">(nums)</span>:</span></div><div class="line">    N = len(nums)</div><div class="line">    matrics = np.zeros((N,N),dtype=int)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i,N):</div><div class="line">            <span class="keyword">if</span> i == j:</div><div class="line">                matrics[i,j] = nums[i]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                matrics[i,j] = matrics[i,j<span class="number">-1</span>] + nums[j]</div><div class="line">    position = np.argmax(matrics)</div><div class="line">    left = position // N</div><div class="line">    right = position % N</div><div class="line">    <span class="keyword">return</span> matrics[left,right],left,right</div></pre></td></tr></table></figure></p>
+<p>我们可以比较一下两个算法的时间：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 时间比较</span></div><div class="line">N = <span class="number">1000</span></div><div class="line">nums = np.random.randint(low=-N/<span class="number">2</span>,high=N/<span class="number">2</span>,size=N)</div><div class="line"></div><div class="line">sol1_start = time.clock()</div><div class="line">sol1(nums)</div><div class="line">sol1_end = time.clock()</div><div class="line">print(<span class="string">"穷举法cpu时间:"</span>,sol1_end-sol1_start)</div><div class="line"></div><div class="line">sol2_start = time.clock()</div><div class="line">sol2(nums)</div><div class="line">sol2_end = time.clock()</div><div class="line">print(<span class="string">"动态规划cpu时间:"</span>,sol2_end-sol2_start)</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">穷举法cpu时间: 31.870616599999998</div><div class="line">动态规划cpu时间: 0.7049935000000005</div></pre></td></tr></table></figure>
 <p>可以看到当序列长度为1000时，相差已经很大了。</p>
 
       
@@ -730,6 +789,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
