@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2017/04/06/python使用国内镜像/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="python安装包推荐使用Anaconda,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如">
-<meta property="og:updated_time" content="2018-08-15T09:48:26.257Z">
+<meta property="og:updated_time" content="2018-08-15T09:48:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python使用国内镜像">
 <meta name="twitter:description" content="python安装包推荐使用Anaconda,但是有的时候，Anaconda里没有所需的包，就只能用pip命令了，如">
@@ -374,15 +374,15 @@
 <p>但是有时下载速度会很慢，毕竟网站在国外，此时可以考虑用镜像。 </p>
 <p>国内镜像<br><a href="http://pypi.douban.com/simple/" target="_blank" rel="external">http://pypi.douban.com/simple/</a> 豆瓣<br><a href="http://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="external">http://mirrors.aliyun.com/pypi/simple/</a> 阿里<br><a href="http://pypi.hustunique.com/simple/" target="_blank" rel="external">http://pypi.hustunique.com/simple/</a> 华中理工大学<br><a href="http://pypi.sdutlinux.org/simple/" target="_blank" rel="external">http://pypi.sdutlinux.org/simple/</a> 山东理工大学<br><a href="http://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/simple/</a> 中国科学技术大学<br><a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="external">https://pypi.tuna.tsinghua.edu.cn/simple</a> 清华  </p>
 <p>食用方法：<br>1.临时食用    </p>
-<pre><code class="bash">pip install -i http://mirrors.aliyun.com/pypi/simple/ python-qt5
+<pre><code class="lang-bash">pip install -i http://mirrors.aliyun.com/pypi/simple/ python-qt5
 </code></pre>
 <p>此时可能会报错，提示你如果信任该镜像网站的话，可以使用https,把http改成https就行了。<br>2.配制成默认的（没亲自试过）<br>在你的“C:\Users\你的用户名\”目录下创建“pip”目录，“pip”目录下创建“pip.ini”文件（注意：以UTF-8 无BOM格式编码）</p>
-<pre><code class="ini"><span class="section">[global]</span>  
-<span class="attr">index-url</span>=http://mirrors.aliyun.com/pypi/simple/  
-<span class="section">[install]</span>  
-<span class="attr">trusted-host</span>=mirrors.aliyun.com
+<pre><code class="lang-ini">[global]  
+index-url=http://mirrors.aliyun.com/pypi/simple/  
+[install]  
+trusted-host=mirrors.aliyun.com
 </code></pre>
-<p>注意：trusted-host 选项为了避免麻烦是必须的，否则使用的时候会提示不受信任，或者添加“–trusted-host=mirrors.aliyun.com”选项；<br>注意：有网页提示需要创建或修改配置文件（Linux的文件在~/.pip/pip.conf，windows在%HOMEPATH%\pip\pip.ini），至少Windows7下“%HOMEPATH%\pip\pip.ini”这个目录是不起作用的。<br>======================参考文档信息======================<br>版权声明：非商用自由转载-保持署名-注明出处<br>署名(BY) ：testcs_dn(微wx笑)<br>文章出处：<a href="http://blog.csdn.NET/testcs_dn" target="_blank" rel="external">无知人生，记录点滴</a>  </p>
+<p>注意：trusted-host 选项为了避免麻烦是必须的，否则使用的时候会提示不受信任，或者添加“—trusted-host=mirrors.aliyun.com”选项；<br>注意：有网页提示需要创建或修改配置文件（Linux的文件在~/.pip/pip.conf，windows在%HOMEPATH%\pip\pip.ini），至少Windows7下“%HOMEPATH%\pip\pip.ini”这个目录是不起作用的。<br>======================参考文档信息======================<br>版权声明：非商用自由转载-保持署名-注明出处<br>署名(BY) ：testcs_dn(微wx笑)<br>文章出处：<a href="http://blog.csdn.NET/testcs_dn" target="_blank" rel="external">无知人生，记录点滴</a>  </p>
 
       
     </div>
@@ -413,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/18/python openCV图像处理之角度变换/" rel="next" title="python openCV图像处理之角度变换">
-                <i class="fa fa-chevron-left"></i> python openCV图像处理之角度变换
+              <a href="/2017/03/18/python openCV图像处理之提取轮廓/" rel="next" title="python openCV图像处理之提取轮廓">
+                <i class="fa fa-chevron-left"></i> python openCV图像处理之提取轮廓
               </a>
             
           </div>

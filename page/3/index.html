@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之提取轮廓/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/18/python openCV图像处理之提取轮廓/" itemprop="url">python openCV图像处理之提取轮廓</a></h1>
+                <a class="post-title-link" href="/2017/03/18/python openCV图像处理之角度变换/" itemprop="url">python openCV图像处理之角度变换</a></h1>
         
 
         <div class="post-meta">
@@ -371,11 +371,19 @@
 
       
         
-          <h3 id="导入需要的包"><a href="#导入需要的包" class="headerlink" title="导入需要的包"></a>导入需要的包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
-<p>这里只做最简单的处理，所以只需导入cv2<br>
+          <pre><code class="lang-python">import cv2  
+import numpy as np
+img = cv2.imread(&#39;demo.jpg&#39;)
+conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
+canvas = np.array([[0,0],[500,0],[500,500],[0,500]], dtype = &quot;float32&quot;)      #输出文件的大小
+M = cv2.getPerspectiveTransform(conners,canvas) 
+result = cv2.warpPerspective(img,M,(0,0))
+cv2.imshow(&quot;img&quot;, result) 
+cv2.waitKey(0)
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/python openCV图像处理之提取轮廓/#more" rel="contents">
+            <a class="btn" href="/2017/03/18/python openCV图像处理之角度变换/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

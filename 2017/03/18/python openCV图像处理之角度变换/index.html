@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="opencv,python," />
+  <meta name="keywords" content="python,opencv," />
 
 
 
@@ -96,28 +96,28 @@
 
 <meta name="description" content="import cv2  
 import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
+img = cv2.imread(&amp;#39;demo.jpg&amp;#39;)
+conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &amp;quot;float32&amp;quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
+canvas =">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python openCV图像处理之角度变换">
 <meta property="og:url" content="http://baoxizhao.com/2017/03/18/python openCV图像处理之角度变换/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="import cv2  
 import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
+img = cv2.imread(&amp;#39;demo.jpg&amp;#39;)
+conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &amp;quot;float32&amp;quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
+canvas =">
 <meta property="og:image" content="http://baoxizhao.com/img/perspectiveTransform.jpg">
 <meta property="og:image" content="http://baoxizhao.com/img/perspectiveTransformNew.PNG">
-<meta property="og:updated_time" content="2018-08-15T09:48:07.100Z">
+<meta property="og:updated_time" content="2018-08-15T09:48:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python openCV图像处理之角度变换">
 <meta name="twitter:description" content="import cv2  
 import numpy as np
-img = cv2.imread(&apos;demo.jpg&apos;)
-conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
-canvas = np.array([[0,0],[">
+img = cv2.imread(&amp;#39;demo.jpg&amp;#39;)
+conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &amp;quot;float32&amp;quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
+canvas =">
 <meta name="twitter:image" content="http://baoxizhao.com/img/perspectiveTransform.jpg">
 
 
@@ -385,15 +385,15 @@ canvas = np.array([[0,0],[">
       
 
       
-        <pre><code class="python"><span class="keyword">import</span> cv2  
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-img = cv2.imread(<span class="string">'demo.jpg'</span>)
-conners = np.array([[<span class="number">873</span>,<span class="number">1322</span>],[<span class="number">1973</span>,<span class="number">1864</span>],[<span class="number">2645</span>,<span class="number">3152</span>],[<span class="number">857</span>,<span class="number">2568</span>]], dtype = <span class="string">"float32"</span>)  <span class="comment">#矩形(比如：书)的顶点 tl,tr,br,bl</span>
-canvas = np.array([[<span class="number">0</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">0</span>],[<span class="number">500</span>,<span class="number">500</span>],[<span class="number">0</span>,<span class="number">500</span>]], dtype = <span class="string">"float32"</span>)      <span class="comment">#输出文件的大小</span>
+        <pre><code class="lang-python">import cv2  
+import numpy as np
+img = cv2.imread(&#39;demo.jpg&#39;)
+conners = np.array([[873,1322],[1973,1864],[2645,3152],[857,2568]], dtype = &quot;float32&quot;)  #矩形(比如：书)的顶点 tl,tr,br,bl
+canvas = np.array([[0,0],[500,0],[500,500],[0,500]], dtype = &quot;float32&quot;)      #输出文件的大小
 M = cv2.getPerspectiveTransform(conners,canvas) 
-result = cv2.warpPerspective(img,M,(<span class="number">0</span>,<span class="number">0</span>))
-cv2.imshow(<span class="string">"img"</span>, result) 
-cv2.waitKey(<span class="number">0</span>)
+result = cv2.warpPerspective(img,M,(0,0))
+cv2.imshow(&quot;img&quot;, result) 
+cv2.waitKey(0)
 </code></pre>
 <a id="more"></a> 
 <p><img src="/img/perspectiveTransform.jpg" alt="原图"><img src="/img/perspectiveTransformNew.PNG" alt="转换后的图"></p>
@@ -414,9 +414,9 @@ cv2.waitKey(<span class="number">0</span>)
       
         <div class="post-tags">
           
-            <a href="/tags/opencv/" rel="tag"># opencv</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/opencv/" rel="tag"># opencv</a>
           
         </div>
       
@@ -429,8 +429,8 @@ cv2.waitKey(<span class="number">0</span>)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/18/python openCV图像处理之提取轮廓/" rel="next" title="python openCV图像处理之提取轮廓">
-                <i class="fa fa-chevron-left"></i> python openCV图像处理之提取轮廓
+              <a href="/2017/03/13/2017-3-13-常见排序算法/" rel="next" title="常见排序算法">
+                <i class="fa fa-chevron-left"></i> 常见排序算法
               </a>
             
           </div>
@@ -439,8 +439,8 @@ cv2.waitKey(<span class="number">0</span>)
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/06/python使用国内镜像/" rel="prev" title="python使用国内镜像">
-                python使用国内镜像 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/18/python openCV图像处理之提取轮廓/" rel="prev" title="python openCV图像处理之提取轮廓">
+                python openCV图像处理之提取轮廓 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

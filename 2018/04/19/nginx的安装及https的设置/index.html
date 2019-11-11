@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2018/04/19/nginx的安装及https的设置/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="配置  OS: Centos7  server: aliyun ECS  certificate: 阿里或腾讯的免费证书，需要你有域名">
-<meta property="og:updated_time" content="2018-08-15T09:46:59.049Z">
+<meta property="og:updated_time" content="2018-08-15T09:47:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx的安装及https的设置">
 <meta name="twitter:description" content="配置  OS: Centos7  server: aliyun ECS  certificate: 阿里或腾讯的免费证书，需要你有域名">
@@ -379,46 +379,46 @@
 <h4 id="zlib-安装"><a href="#zlib-安装" class="headerlink" title="zlib 安装"></a>zlib 安装</h4><p>   zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y zlib zlib-devel</div></pre></td></tr></table></figure></p>
 <h4 id="OpenSSL-安装"><a href="#OpenSSL-安装" class="headerlink" title="OpenSSL 安装"></a>OpenSSL 安装</h4><p>   OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。<br>   nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），我们这次也是要配置https，所以需要在 Centos 安装 OpenSSL 库。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl openssl-devel</div></pre></td></tr></table></figure></p>
 <h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p>   下载 Nginx，下载地址：<a href="http://nginx.org/download/nginx-1.6.2.tar.gz。" target="_blank" rel="external">http://nginx.org/download/nginx-1.6.2.tar.gz。</a><br>   当然，你可以根据自己需要下载对应版本，我们把它下载安装到/usr/local下。</p>
-<pre><code class="bash"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>
+<pre><code class="lang-bash">cd /usr/local
 wget http://nginx.org/download/nginx-1.6.2.tar.gz
 </code></pre>
 <p>   解压安装包</p>
-<pre><code class="bash">tar zxvf nginx-1.6.2.tar.gz
+<pre><code class="lang-bash">tar zxvf nginx-1.6.2.tar.gz
 </code></pre>
 <p>   进入安装包目录</p>
-<pre><code class="bash"><span class="built_in">cd</span> nginx-1.6.2
+<pre><code class="lang-bash">cd nginx-1.6.2
 </code></pre>
 <p>   编译安装</p>
-<pre><code class="bash">./configure --with-http_ssl_module
+<pre><code class="lang-bash">./configure --with-http_ssl_module
 make
 make install
 </code></pre>
 <p>  查看nginx版本</p>
-<pre><code class="bash">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -v
+<pre><code class="lang-bash">/usr/local/nginx/sbin/nginx -v
 </code></pre>
 <h4 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h4><p>   修改nginx配置文件：</p>
-<pre><code class="bash">vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf
+<pre><code class="lang-bash">vi /usr/local/nginx/conf/nginx.conf
 </code></pre>
 <p>   找到下面这段代码：</p>
-<pre><code class="bash"><span class="comment"># HTTPS server</span>
-<span class="comment"># #server {</span>
-<span class="comment"># listen 443;</span>
-<span class="comment"># server_name localhost;</span>
-<span class="comment"># ssl on;</span>
-<span class="comment"># ssl_certificate cert.pem;</span>
-<span class="comment"># ssl_certificate_key cert.key;</span>
-<span class="comment"># ssl_session_timeout 5m;</span>
-<span class="comment"># ssl_protocols SSLv2 SSLv3 TLSv1;</span>
-<span class="comment"># ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;</span>
-<span class="comment"># ssl_prefer_server_ciphers on;</span>
-<span class="comment"># location / {</span>
-<span class="comment">#</span>
-<span class="comment">#</span>
-<span class="comment">#}</span>
-<span class="comment">#}</span>
+<pre><code class="lang-bash"># HTTPS server
+# #server {
+# listen 443;
+# server_name localhost;
+# ssl on;
+# ssl_certificate cert.pem;
+# ssl_certificate_key cert.key;
+# ssl_session_timeout 5m;
+# ssl_protocols SSLv2 SSLv3 TLSv1;
+# ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+# ssl_prefer_server_ciphers on;
+# location / {
+#
+#
+#}
+#}
 </code></pre>
 <p>   修改成如下：<br>   server_name 也可以改成你申请证书时用的域名</p>
-<pre><code class="bash">server {
+<pre><code class="lang-bash">server {
     listen 443;
     server_name localhost;
     ssl on;
@@ -438,16 +438,16 @@ make install
 </code></pre>
 <h4 id="下载证书"><a href="#下载证书" class="headerlink" title="下载证书"></a>下载证书</h4><p>最后，你需要一些证书，很多证书价格不菲，好在阿里云、腾讯云等都提供免费证书下载，前提是你需要有域名。<br>下载证书后，在Nginx的安装目录下创建cert目录，并且将下载的全部文件拷贝到cert目录中。<br>上面的cert/152xxxxxxx.pem、cert/152xxxxxxx.key就是下载的证书。  </p>
 <h4 id="检查是否成功"><a href="#检查是否成功" class="headerlink" title="检查是否成功"></a>检查是否成功</h4><pre><code>检查语法是否正确
-</code></pre><pre><code class="bash">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t
+</code></pre><pre><code class="lang-bash">/usr/local/nginx/sbin/nginx -t
 </code></pre>
 <pre><code>启动nginx
-</code></pre><pre><code class="bash">/usr/<span class="built_in">local</span>/nginx/sbin/nginx
+</code></pre><pre><code class="lang-bash">/usr/local/nginx/sbin/nginx
 </code></pre>
 <pre><code>停止nginx
-</code></pre><pre><code class="bash">/usr/<span class="built_in">local</span>/nginx/sbin/nginx <span class="_">-s</span> quit
+</code></pre><pre><code class="lang-bash">/usr/local/nginx/sbin/nginx -s quit
 </code></pre>
 <pre><code>重新载入配置
-</code></pre><pre><code class="bash">/usr/<span class="built_in">local</span>/nginx/sbin/nginx <span class="_">-s</span> reload
+</code></pre><pre><code class="lang-bash">/usr/local/nginx/sbin/nginx -s reload
 </code></pre>
 <pre><code>注意，修改完nginx.conf后需要重启nginx或重新载入配置。
 </code></pre>

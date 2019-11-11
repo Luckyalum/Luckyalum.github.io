@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="opencv,python," />
+  <meta name="keywords" content="python,opencv," />
 
 
 
@@ -104,7 +104,7 @@
 这里只做最简单的处理，所以只需导入cv2">
 <meta property="og:image" content="http://baoxizhao.com/img/kindle.jpg">
 <meta property="og:image" content="http://baoxizhao.com/img/kindlenew.jpg">
-<meta property="og:updated_time" content="2018-08-15T09:48:01.168Z">
+<meta property="og:updated_time" content="2018-08-15T09:48:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python openCV图像处理之提取轮廓">
 <meta name="twitter:description" content="导入需要的包1import cv2
@@ -382,20 +382,20 @@
 <h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><p>因为后面的cv2.findContours函数要求传入的为二值图像，所以需要先对图片进行处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span></div><div class="line">ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像</span></div></pre></td></tr></table></figure></p>
 <h3 id="轮廓提取"><a href="#轮廓提取" class="headerlink" title="轮廓提取"></a>轮廓提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)    <span class="comment">#提取轮廓</span></div></pre></td></tr></table></figure>
 <p>contours即为轮廓的像素集合（可能有多个轮廓，需要找到自己要提取的轮廓）<br>具体参数可查<a href="http://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#cv2.findContours" target="_blank" rel="external">doc.opencv.org</a>   </p>
-<h3 id="显示图像"><a href="#显示图像" class="headerlink" title="显示图像"></a>显示图像</h3><pre><code class="python">cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  <span class="comment">#图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度</span>
-cv2.imshow(<span class="string">"img"</span>, img)  
-cv2.waitKey(<span class="number">0</span>)
+<h3 id="显示图像"><a href="#显示图像" class="headerlink" title="显示图像"></a>显示图像</h3><pre><code class="lang-python">cv2.drawContours(img,contours,-1,(0,0,255),2)  #图片，轮廓集合，第几个轮廓 ，画笔颜色，画笔宽度
+cv2.imshow(&quot;img&quot;, img)  
+cv2.waitKey(0)
 </code></pre>
-<h3 id="所有代码及结果"><a href="#所有代码及结果" class="headerlink" title="所有代码及结果"></a>所有代码及结果</h3><pre><code class="python"><span class="comment">#-*- coding=utf8 -*-</span>
-<span class="keyword">import</span> cv2  
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-img = cv2.imread(<span class="string">'kindle.jpg'</span>)  
-gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        <span class="comment">#转换为灰度图像</span>
-ret, binary = cv2.threshold(gray,<span class="number">127</span>,<span class="number">255</span>,cv2.THRESH_BINARY)        <span class="comment">#转换为二值图像  </span>
-_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)<span class="comment">#提取轮廓</span>
-cv2.drawContours(img,contours,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)  
-cv2.imshow(<span class="string">"img"</span>, img)  
-cv2.waitKey(<span class="number">0</span>)
+<h3 id="所有代码及结果"><a href="#所有代码及结果" class="headerlink" title="所有代码及结果"></a>所有代码及结果</h3><pre><code class="lang-python">#-*- coding=utf8 -*-
+import cv2  
+import numpy as np
+img = cv2.imread(&#39;kindle.jpg&#39;)  
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)                        #转换为灰度图像
+ret, binary = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)        #转换为二值图像  
+_,contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)#提取轮廓
+cv2.drawContours(img,contours,-1,(0,0,255),2)  
+cv2.imshow(&quot;img&quot;, img)  
+cv2.waitKey(0)
 </code></pre>
 <p><img src="/img/kindle.jpg" alt="source"> <img src="/img/kindlenew.jpg" alt="findcotours"></p>
 
@@ -415,9 +415,9 @@ cv2.waitKey(<span class="number">0</span>)
       
         <div class="post-tags">
           
-            <a href="/tags/opencv/" rel="tag"># opencv</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/opencv/" rel="tag"># opencv</a>
           
         </div>
       
@@ -430,8 +430,8 @@ cv2.waitKey(<span class="number">0</span>)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/13/2017-3-13-常见排序算法/" rel="next" title="常见排序算法">
-                <i class="fa fa-chevron-left"></i> 常见排序算法
+              <a href="/2017/03/18/python openCV图像处理之角度变换/" rel="next" title="python openCV图像处理之角度变换">
+                <i class="fa fa-chevron-left"></i> python openCV图像处理之角度变换
               </a>
             
           </div>
@@ -440,8 +440,8 @@ cv2.waitKey(<span class="number">0</span>)
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/18/python openCV图像处理之角度变换/" rel="prev" title="python openCV图像处理之角度变换">
-                python openCV图像处理之角度变换 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/06/python使用国内镜像/" rel="prev" title="python使用国内镜像">
+                python使用国内镜像 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
