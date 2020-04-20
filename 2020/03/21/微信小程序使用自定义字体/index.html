@@ -68,18 +68,18 @@
 
 
 
-<meta name="description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身是提供一些常用的字体，但远远满足不了我们的需求。">
+<meta name="description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身提供一些常用的字体，但远远满足不了我们的需求。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序使用自定义字体">
 <meta property="og:url" content="http://baoxizhao.com/2020/03/21/微信小程序使用自定义字体/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身是提供一些常用的字体，但远远满足不了我们的需求。">
+<meta property="og:description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身提供一些常用的字体，但远远满足不了我们的需求。">
 <meta property="og:image" content="http://baoxizhao.com/img/transfonter.jpg">
 <meta property="og:image" content="http://baoxizhao.com/img/miniapp_result.jpg">
-<meta property="og:updated_time" content="2020-03-21T02:30:24.241Z">
+<meta property="og:updated_time" content="2020-03-21T02:35:17.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序使用自定义字体">
-<meta name="twitter:description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身是提供一些常用的字体，但远远满足不了我们的需求。">
+<meta name="twitter:description" content="在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身提供一些常用的字体，但远远满足不了我们的需求。">
 <meta name="twitter:image" content="http://baoxizhao.com/img/transfonter.jpg">
 
 
@@ -347,7 +347,7 @@
       
 
       
-        <p>  在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身是提供一些常用的字体，但远远满足不了我们的需求。<br><a id="more"></a><br>  我们首先需要有我们需要的字体文件，例如tff文件等。字体包可以在网上找，有些可能需要付费。<br>  找到字体包后我们需要先将它进行Base64编码，<a href="https://transfonter.org/" target="_blank" rel="external">https://transfonter.org/</a> 可以提供在线编码。<br>  <img src="/img/transfonter.jpg" alt="transfonter"><br>  注意勾选Base64 encode和TTF。<br>  convert完成后点击download，下载的文件解压后会有多个文件，我们只需要用到stylesheet.css即可。将stylesheet.css里的内容复制到小程序的wxss里即可。  </p>
+        <p>  在微信小程序里我们有时候需要不同的字体来达到不同的显示的效果，小程序本身提供一些常用的字体，但远远满足不了我们的需求。<br><a id="more"></a><br>  我们首先需要有我们需要的字体文件，例如tff文件等。字体包可以在网上找，有些可能需要付费。<br>  找到字体包后我们需要先将它进行Base64编码，<a href="https://transfonter.org/" target="_blank" rel="external">https://transfonter.org/</a> 可以提供在线编码。<br>  <img src="/img/transfonter.jpg" alt="transfonter"><br>  注意勾选Base64 encode和TTF。<br>  convert完成后点击download，下载的文件解压后会有多个文件，我们只需要用到stylesheet.css即可。将stylesheet.css里的内容复制到小程序的wxss里即可。  </p>
 <pre><code class="lang-css">  @font-face {
     font-family: &#39;Heiti TC&#39;;
     src: url(data:font/truetype;charset=utf-8;base64,AAEAAAANAIAAAwBQRkZUTWv7JrYAABKoAAAAHEdERUYAKQAWAAASiAAAAB5PUy8yNs6S8wAAAVgAAABgY21hcHCZclkAAAH4AAABUmdhc3D//
