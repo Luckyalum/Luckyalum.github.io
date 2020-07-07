@@ -75,12 +75,12 @@
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="在学习小程序时，有时候页面布局总出问题。因此对position属性进行一些探析。">
 <meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/1.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/2.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/3.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/4.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/absolute.jpg">
-<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/fixed.jpg">
-<meta property="og:updated_time" content="2020-07-07T02:34:29.672Z">
+<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/2.JPG">
+<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/3.JPG">
+<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/4.JPG">
+<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/absolute.JPG">
+<meta property="og:image" content="http://baoxizhao.com/img/小程序position属性探析/fixed.JPG">
+<meta property="og:updated_time" content="2020-07-07T02:51:45.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序position属性探析">
 <meta name="twitter:description" content="在学习小程序时，有时候页面布局总出问题。因此对position属性进行一些探析。">
@@ -365,12 +365,12 @@
 <p>根据代码，我们应该看到三个方块整齐的竖着排着：<br><img src="/img/小程序position属性探析/1.jpg" alt="1"></p>
 <h2 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h2><p>首先我们来看看relative:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;view class="container"&gt;</div><div class="line">    &lt;view class="cube red"&gt;a&lt;/view&gt;</div><div class="line">    &lt;view class="cube gray other"&gt;b&lt;/view&gt;</div><div class="line">    &lt;view class="cube gold"&gt;c&lt;/view&gt;</div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.other</span>&#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">  <span class="attribute">top</span>:<span class="number">50</span>rpx;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50</span>rpx;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>按照描述，我们应该看到A和C还在原来的位置，B向右下角平移了：<br><img src="/img/小程序position属性探析/2.jpg" alt="2"><br>结果验证了我们的理解。  </p>
+<p>按照描述，我们应该看到A和C还在原来的位置，B向右下角平移了：<br><img src="/img/小程序position属性探析/2.JPG" alt="2"><br>结果验证了我们的理解。  </p>
 <h2 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h2><p>接下来我们来看看absolute:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.other</span>&#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>:<span class="number">50</span>rpx;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50</span>rpx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>按照描述，我们应该看到A还在原来的位置，C在B原来的位置，而B应该跑到了整个页面的左上角：<br><img src="/img/小程序position属性探析/3.jpg" alt="3"><br>结果验证了我们的理解。</p>
+<p>按照描述，我们应该看到A还在原来的位置，C在B原来的位置，而B应该跑到了整个页面的左上角：<br><img src="/img/小程序position属性探析/3.JPG" alt="3"><br>结果验证了我们的理解。</p>
 <h2 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h2><p>接下来我们来看看absolute:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.other</span>&#123;</div><div class="line">  <span class="attribute">position</span>: fixed;</div><div class="line">  <span class="attribute">top</span>:<span class="number">50</span>rpx;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50</span>rpx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>按照描述，我们应该看到和absolute一样<br><img src="/img/小程序position属性探析/4.jpg" alt="4"><br>结果验证了我们的理解。<br>那fixed和absolute的区别是什么呢？<br>我们来把container修改一下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">position</span>:relative;</div><div class="line">  <span class="attribute">top</span>:<span class="number">200</span>rpx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们将container相对于整个页面，向下挪了200rpx，按照描述，absolute下B相对于container平移了50，所以相对于整个页面平移了200+50。而fixed是相对于页面，因此和前面一样。两个结果如下所示，第一张为absolute，第二张为fixed。可以看出效果和预期一致。<br><img src="/img/小程序position属性探析/absolute.jpg" alt="absolute"><br><img src="/img/小程序position属性探析/fixed.jpg" alt="fixed"></p>
+<p>按照描述，我们应该看到和absolute一样<br><img src="/img/小程序position属性探析/4.JPG" alt="4"><br>结果验证了我们的理解。<br>那fixed和absolute的区别是什么呢？<br>我们来把container修改一下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">position</span>:relative;</div><div class="line">  <span class="attribute">top</span>:<span class="number">200</span>rpx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们将container相对于整个页面，向下挪了200rpx，按照描述，absolute下B相对于container平移了50，所以相对于整个页面平移了200+50。而fixed是相对于页面，因此和前面一样。两个结果如下所示，第一张为absolute，第二张为fixed。可以看出效果和预期一致。<br><img src="/img/小程序position属性探析/absolute.JPG" alt="absolute"><br><img src="/img/小程序position属性探析/fixed.JPG" alt="fixed"></p>
 
       
     </div>
@@ -499,7 +499,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
