@@ -74,7 +74,7 @@
 <meta property="og:url" content="http://baoxizhao.com/2020/08/22/论文阅读：DeformationGraph/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
 <meta property="og:description" content="title：Embedded Deformation for Shape Manipulationpaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfcode: https://github.com/hwdong/deformation_graph (非作者提供)">
-<meta property="og:updated_time" content="2020-08-23T07:30:12.681Z">
+<meta property="og:updated_time" content="2020-08-23T09:07:25.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读：Deformation Graph">
 <meta name="twitter:description" content="title：Embedded Deformation for Shape Manipulationpaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfcode: https://github.com/hwdong/deformation_graph (非作者提供)">
@@ -351,17 +351,23 @@
 <li>对一些点进行变形（例如用户拖拽了一些点）</li>
 <li>已变形点会对未变形点产生作用，根据这种作用对未变形点进行变形</li>
 </ul>
-<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>作者认为模型的变形可以认为是有一组仿射变换表示。因此作者对模型表面进行采样，（一般为均匀采样），将采样的点建立一个图G。<br>例如模型的表面有10000个点，反复地在点附近删除一定半径内的所有点，直至达到期望的采样密度，最后得到500个点，这些点都由边相连。每个点都有两个属性：时间、仿射变换。也就是说每个时刻，每个点都有自己对应的仿射变换。下面我们对某一个时刻进行分析：<br>对于图上的某个节点来说, $g_j \in R^3$是它此刻的三维坐标，$N(j)$是与它有边相连的点的集合即相邻点集合，该点对应的仿射变换由$R_j$这个$3\times 3$矩阵和$t_j$这个$3 \times 1$ 这个向量组成。<br>当$g_j$发生变形了后，比如用户给他拽到了某个位置后，其他的点就会被它连着动起来。其他点受$g_j$的影响得到的新坐标如下：  </p>
-<script type="math/tex; mode=display">p' = R_j(p-g_j) + g_j +t_j</script><p>这个公式表示的是未变形点受到一个变形点的影响。注意，当$p$就是$g_j$时，计算出来的$g_j +t_j$就是$g_j$的新位置。<br>当然，变形点可能不止一个，当受到多个变形点影响时，可以对他们加权：</p>
-<script type="math/tex; mode=display">v'_i = \sum_{j=1}^{m}w_j(v_i)[R_j(v_i-g_j) + g_j +t_j]</script><p>权重和点之间的距离有关，越远的点施加的影响就越小:  </p>
-<script type="math/tex; mode=display">w_j(v_i) = (1-\frac{\| v_i - g_j \|}{d_{max}})^2</script><p>其中$d<em>{max}$表示$v_i$到第$k+1$近的点的距离，这样可以控制只受最近$k$个点影响。例如，$v_i$的邻点与$v_i$的距离分别为2,3,4,7,11,15,…。当我们取$k=4$时，$d</em>{max}=9$，此时我们只计算前四个点对$v_i$的影响，过远的点我们就不考虑了。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>论文提出了三个约束：$E<em>{rot},E</em>{reg},E_{con}$。<br>作者认为为了保证细节，仿射变换的$R$，必须尽量是旋转矩阵。要使$R$是旋转矩阵，则必须满足$SO(3)$（旋转群），也就是六个条件：三个列必须两两正交，三个列必须都是单位长度：</p>
-<script type="math/tex; mode=display">Rot(R) = (c_1 \cdot c_2) + (c_1 \cdot c_3) +(c_2 \cdot c_3) +
-            (c_1 \cdot c_1 - 1)^2 + (c_2 \cdot c_2 - 1)^2 +(c_3 \cdot c_3 - 1)^2</script><p>上式中的$c<em>1,c_2,c_3$分别是$R$的三个列向量。所以旋转项的约束$E</em>{rot}$: </p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>作者认为模型的变形可以认为是有一组仿射变换表示。因此作者对模型表面进行采样，（一般为均匀采样），将采样的点建立一个图G。</p>
+<p>例如模型的表面有10000个点，反复地在点附近删除一定半径内的所有点，直至达到期望的采样密度，最后得到500个点，这些点都由边相连。每个点都有两个属性：时间、仿射变换。也就是说每个时刻，每个点都有自己对应的仿射变换。下面我们对某一个时刻进行分析：</p>
+<p>对于图上的某个节点来说, $g_j \in R^3$是它此刻的三维坐标，$N(j)$是与它有边相连的点的集合即相邻点集合，该点对应的仿射变换由$R_j$这个$3\times 3$矩阵和$t_j$这个$3 \times 1$ 这个向量组成。  </p>
+<p>当$g_j$发生变形了后，比如用户给他拽到了某个位置后，其他的点就会被它连着动起来。其他点受$g_j$的影响得到的新坐标如下：  </p>
+<script type="math/tex; mode=display">p' = R_j(p-g_j) + g_j +t_j</script><p>这个公式表示的是未变形点受到一个变形点的影响。注意，当$p$就是$g_j$时，计算出来的$g_j +t_j$就是$g_j$的新位置。  </p>
+<p>当然，变形点可能不止一个，当受到多个变形点影响时，可以对他们加权：  </p>
+<script type="math/tex; mode=display">v'_i = \sum_{j=1}^{m}w_j(v_i)[R_j(v_i-g_j) + g_j +t_j]</script><p>权重和点之间的距离有关，越远的点施加的影响就越小:    </p>
+<script type="math/tex; mode=display">w_j(v_i) = (1-\frac{\| v_i - g_j \|}{d_{max}})^2</script><p>其中 $d_{max}$表示$v_i$到第$k+1$近的点的距离，这样可以控制只受最近$k$个点影响。<br>例如，$v_i$的邻点与$v_i$的距离分别为2,3,4,7,11,15,…。当我们取$k=4$时，$d_{max}=9$，<br>此时我们只计算前四个点对$v_i$的影响，过远的点我们就不考虑了。  </p>
+<h2 id="优化s"><a href="#优化s" class="headerlink" title="优化s"></a>优化s</h2><p>论文提出了三个约束：$E_{rot},E_{reg},E_{con}$。  </p>
+<p>作者认为为了保证细节，仿射变换的$R$，必须尽量是旋转矩阵。要使$R$是旋转矩阵，则必须满足$SO(3)$（旋转群），也就是六个条件：三个列必须两两正交，三个列必须都是单位长度：</p>
+<script type="math/tex; mode=display">Rot(R) = (c_1 \cdot c_2) + (c_1 \cdot c_3) +(c_2 \cdot c_3) + \\
+            (c_1 \cdot c_1 - 1)^2 + (c_2 \cdot c_2 - 1)^2 +(c_3 \cdot c_3 - 1)^2</script><p>上式中的$c_1,c_2,c_3$分别是$R$的三个列向量。所以旋转项的约束$E_{rot}$: </p>
 <script type="math/tex; mode=display">E_{rot} = \sum_{j=1}^{m}Rot(R_j)</script><p>接下来第二项约束的是点的联动。作者想要优化的是点自己的真实坐标，和通过其他点计算得到的坐标应该是一致的：</p>
-<script type="math/tex; mode=display">E_{reg} = \sum_{j=1}^{m} \sum_{k \in N(j)} \alpha_{j,k} \| R_j(g_k-g_j)+g_j+t_j -(g_k+t_k)\|^2</script><p>最后一个约束表示的是计算出来的点的坐标要符合用户的要求，比如用户把一个点$p$拽到了位置$A$，那么你的模型计算出来的$p$的位置必须也是$A$:</p>
-<script type="math/tex; mode=display">E_{con} = \sum_{l=1}^{p} \| v'_{index(l)} - q_l \| ^2_2</script><p>上式中，$l=1,2,..p$是用户的约束，$q<em>l$是用户约束下的位置，$index(l)$是约束$l$对应的顶点的索引，所以$v’</em>{index(l)}$就是通过我们模型计算得到的坐标，它和用户约束给定的位置应该是一致的。<br>最后问题就可以写成：</p>
-<script type="math/tex; mode=display">\min_{R_1,t_1,..,R_m,t_m} w_{rot}E_{rot} + w_{reg}E_{reg} + w_{con}E_{con}</script><p>其中三个权重作者取值为$w<em>{rot}=1,w</em>{reg}=10,w_{con}=100$。  </p>
+<script type="math/tex; mode=display">E_{reg} = \sum_{j=1}^{m} \sum_{k \in N(j)} \alpha_{j,k} \| R_j(g_k-g_j)+g_j+t_j -(g_k+t_k)\|^2</script><p>最后一个约束表示的是计算出来的点的坐标要符合用户的要求，比如用户把一个点$p$拽到了位置$A$，那么你的模型计算出来的$p$的位置必须也是$A$:  </p>
+<script type="math/tex; mode=display">E_{con} = \sum_{l=1}^{p} \| v'_{index(l)} - q_l \| ^2_2</script><p>上式中，$l=1,2,..p$是用户的约束，$q_l$是用户约束下的位置，$index(l)$是约束$l$对应的顶点的索引，所以$v’_{index(l)}$就是通过我们模型计算得到的坐标，它和用户约束给定的位置应该是一致的。  </p>
+<p>最后问题就可以写成：  </p>
+<script type="math/tex; mode=display">\min_{R_1,t_1,..,R_m,t_m} w_{rot}E_{rot} + w_{reg}E_{reg} + w_{con}E_{con}</script><p>其中三个权重作者取值为$w_{rot}=1,w_{reg}=10,w_{con}=100$。  </p>
 <p>上述问题使用高斯牛顿法来求解，这个就不介绍了。</p>
 
       
@@ -537,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化s"><span class="nav-number">3.</span> <span class="nav-text">优化s</span></a></li></ol></div>
             
 
           </div>
@@ -745,7 +751,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
