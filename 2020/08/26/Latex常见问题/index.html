@@ -52,7 +52,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jekyll,hexo," />
+  <meta name="keywords" content="latex," />
 
 
 
@@ -68,22 +68,28 @@
 
 
 
-<meta name="description" content="个人博客终于完成了！  
-使用jekyll搭建关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：  
-gem源">
+<meta name="description" content="Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。
+如何使用参考文献Latex有两种方法：
+
+\begin{thebibliography}
+Bibtex第一种方法很简单：1234\begin&amp;#123;thebibliography&amp;#125;    \bibitem&amp;#123;key&amp;#125; citepaper    ...\end&amp;#123;thebibliogr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World!">
-<meta property="og:url" content="http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/index.html">
+<meta property="og:title" content="Latex 常见问题">
+<meta property="og:url" content="http://baoxizhao.com/2020/08/26/Latex常见问题/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="个人博客终于完成了！  
-使用jekyll搭建关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：  
-gem源">
-<meta property="og:updated_time" content="2018-08-15T09:40:38.000Z">
+<meta property="og:description" content="Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。
+如何使用参考文献Latex有两种方法：
+
+\begin{thebibliography}
+Bibtex第一种方法很简单：1234\begin&amp;#123;thebibliography&amp;#125;    \bibitem&amp;#123;key&amp;#125; citepaper    ...\end&amp;#123;thebibliogr">
+<meta property="og:updated_time" content="2020-08-26T08:58:02.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World!">
-<meta name="twitter:description" content="个人博客终于完成了！  
-使用jekyll搭建关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：  
-gem源">
+<meta name="twitter:title" content="Latex 常见问题">
+<meta name="twitter:description" content="Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。
+如何使用参考文献Latex有两种方法：
+
+\begin{thebibliography}
+Bibtex第一种方法很简单：1234\begin&amp;#123;thebibliography&amp;#125;    \bibitem&amp;#123;key&amp;#125; citepaper    ...\end&amp;#123;thebibliogr">
 
 
 
@@ -112,13 +118,13 @@ gem源">
 
 
 
-  <link rel="canonical" href="http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/"/>
+  <link rel="canonical" href="http://baoxizhao.com/2020/08/26/Latex常见问题/"/>
 
 
 
 
 
-  <title>Hello World! | Bao Xizhao's Blog</title>
+  <title>Latex 常见问题 | Bao Xizhao's Blog</title>
   
 
 
@@ -261,7 +267,7 @@ gem源">
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2017/01/31/2017-01-31-hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2020/08/26/Latex常见问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bao Xizhao">
@@ -278,7 +284,7 @@ gem源">
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World!</h1>
+          <h1 class="post-title" itemprop="name headline">Latex 常见问题</h1>
         
 
         <div class="post-meta">
@@ -290,8 +296,8 @@ gem源">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-31T17:06:25+08:00">
-                2017-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T00:00:00+08:00">
+                2020-08-26
               </time>
             
 
@@ -300,28 +306,6 @@ gem源">
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -350,23 +334,36 @@ gem源">
       
 
       
-        <p>个人博客终于完成了！  </p>
-<h2 id="使用jekyll搭建"><a href="#使用jekyll搭建" class="headerlink" title="使用jekyll搭建"></a>使用jekyll搭建</h2><p>关于jekyll建立blog的教程有很多，这里只记下动手时遇到的几点注意事项：  </p>
-<h3 id="gem源"><a href="#gem源" class="headerlink" title="gem源"></a>gem源</h3><a id="more"></a>
-<p>由于gem源 ruby.taobao.org已不再维护，故要改为gems.ruby-china.org<br>即 <a href="http://gems.ruby-china.org" target="_blank" rel="external">http://gems.ruby-china.org</a>  </p>
-<h3 id="bundler错误"><a href="#bundler错误" class="headerlink" title="bundler错误"></a>bundler错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll error bundler</div></pre></td></tr></table></figure>
-<p>需安装 bundler，即<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install jekyll bundler</div></pre></td></tr></table></figure></p>
-<h3 id="各种包错误问题"><a href="#各种包错误问题" class="headerlink" title="各种包错误问题"></a>各种包错误问题</h3><p>安装别人主题时可能需要下载所需的包,例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could not find minitest-5.8.3 <span class="keyword">in</span> any of the sources</div></pre></td></tr></table></figure></p>
-<p>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install minitest -v 5.8.3</div></pre></td></tr></table></figure></p>
-<p>有时还会遇到后面版本不向前兼容（不熟悉ruby，不知道为啥），我采取的措施是卸载不需要的那个版本,例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem uninstall minitest -v 5.9.3</div></pre></td></tr></table></figure></p>
-<p>安装包可以通过gem命令，也可在<a href="https://rubygems.org" target="_blank" rel="external">rubygems.org</a>上下载安装，举例<br>下载了minitest.gem文件，cd到下载目录后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install --local minitest.gem</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="使用Hexo搭建"><a href="#使用Hexo搭建" class="headerlink" title="使用Hexo搭建"></a>使用Hexo搭建</h2><h3 id="简单安装"><a href="#简单安装" class="headerlink" title="简单安装"></a>简单安装</h3><p>jekyll在windows下配置比较繁琐，因此后来使用了<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>，点击<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">教程</a>。<br>完成之后，更新博客只需在git bash 博客目录下输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g  </div><div class="line">$ hexo d</div></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="后续更新"><a href="#后续更新" class="headerlink" title="后续更新"></a>后续更新</h3><p>2017/05/23 更新:<br>最近换了Deepin linux,来更新一下Linux下Hexo的搭建<br>需要   node.js、npm、git<br>node.js及npm的安装<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143450141843488beddae2a1044cab5acb5125baf0882000" target="_blank" rel="external">见这</a><br>按照官网上的方法接下来只需<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
-<p>然而这时会报错，我的解决办法是使用淘宝源<br>安装淘宝源<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
-<p>安装Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install -g hexo-cli</div></pre></td></tr></table></figure></p>
-<p>接下来<a href="http://blog.csdn.net/u012948710/article/details/23762879" target="_blank" rel="external">配置github</a><br>Over!</p>
+        <p>Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。</p>
+<h2 id="如何使用参考文献"><a href="#如何使用参考文献" class="headerlink" title="如何使用参考文献"></a>如何使用参考文献</h2><p>Latex有两种方法：</p>
+<ul>
+<li>\begin{thebibliography}</li>
+<li>Bibtex<br>第一种方法很简单：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\begin&#123;thebibliography&#125;</div><div class="line">    \bibitem&#123;key&#125; citepaper</div><div class="line">    ...</div><div class="line">\end&#123;thebibliography&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但是这种方法不够强大，如果你想把参看文献按论文里的引用顺序排序的话，就办不到，当然你也可以用一些<a href="https://github.com/LaTeX-Bibitem-Styler/latex-bibitemstyler" target="_blank" rel="external">工具</a>，但总归不太方便。  </p>
+<p>第二种方法非常强大，首先在你需要在论文的项目目录下新建一个.bib文件，比如建了一个ref.bib。然后去百度学术或者google scholar里搜你要引用的论文，然后点引用下面的BibTex，这时候你会得到一个这样的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@inproceedings&#123;ren2015faster,</div><div class="line">  title=&#123;Faster r-cnn: Towards real-time object detection with region proposal networks&#125;,</div><div class="line">  author=&#123;Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian&#125;,</div><div class="line">  booktitle=&#123;Advances in neural information processing systems&#125;,</div><div class="line">  pages=&#123;91--99&#125;,</div><div class="line">  year=&#123;2015&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>把这些保存到ref.bib，接下来就可以在latex里引用它了。<br>首先添加cite包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\usepackage&#123;cite&#125;</div></pre></td></tr></table></figure></p>
+<p>接下来就可以在论文里用\cite引用了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Here\cite&#123;ren2015faster&#125; is an example.</div></pre></td></tr></table></figure></p>
+<p>然后要在latex里告诉它参考文献的风格和你的bib文件名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">% 参考文献风格</div><div class="line">\bibliographystyle&#123;unsrt&#125;</div><div class="line"></div><div class="line">% bib文件名，我们的例子是ref.bib，所以这里写ref就行</div><div class="line">\bibliography&#123;ref&#125;</div></pre></td></tr></table></figure></p>
+<p>参考文献的风格有以下这些：</p>
+<ul>
+<li>plain，按字母的顺序排列，比较次序为作者、年度和标题.</li>
+<li>unsrt，样式同plain，只是按照引用的先后排序.</li>
+<li>alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.</li>
+<li>abbrv，类似plain，将月份全拼改为缩写，更显紧凑.</li>
+<li>ieeetr，国际电气电子工程师协会期刊样式.</li>
+<li>acm，美国计算机学会期刊样式.</li>
+<li>siam，美国工业和应用数学学会期刊样式.</li>
+<li>apalike，美国心理学学会期刊样式.</li>
+</ul>
+<p>上述完成后，就可以编译了，编译时注意，如果你的论文pdf用别的浏览器打开了，需要先关闭，不然会提示pdf被占用。</p>
+<ul>
+<li>编译 latex </li>
+<li>编译 bibtex </li>
+<li>编译 latex </li>
+<li>编译 latex<br>如果你的latex文件名是demo.tex，那么编译bibtex时，只要在项目路径下bibtex demo即可。</li>
+</ul>
 
       
     </div>
@@ -384,9 +381,7 @@ gem源">
       
         <div class="post-tags">
           
-            <a href="/tags/jekyll/" rel="tag"># jekyll</a>
-          
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/latex/" rel="tag"># latex</a>
           
         </div>
       
@@ -399,15 +394,15 @@ gem源">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/08/22/论文阅读：DeformationGraph/" rel="next" title="论文阅读：Deformation Graph">
+                <i class="fa fa-chevron-left"></i> 论文阅读：Deformation Graph
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/05/2017-2-5-linux学习/" rel="prev" title="Linux基础学习">
-                Linux基础学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +538,7 @@ gem源">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用jekyll搭建"><span class="nav-number">1.</span> <span class="nav-text">使用jekyll搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gem源"><span class="nav-number">1.1.</span> <span class="nav-text">gem源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bundler错误"><span class="nav-number">1.2.</span> <span class="nav-text">bundler错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各种包错误问题"><span class="nav-number">1.3.</span> <span class="nav-text">各种包错误问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Hexo搭建"><span class="nav-number">2.</span> <span class="nav-text">使用Hexo搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单安装"><span class="nav-number">2.1.</span> <span class="nav-text">简单安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后续更新"><span class="nav-number">2.2.</span> <span class="nav-text">后续更新</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用参考文献"><span class="nav-number">1.</span> <span class="nav-text">如何使用参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -732,6 +727,26 @@ gem源">
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
