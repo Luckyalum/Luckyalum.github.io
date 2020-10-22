@@ -68,16 +68,16 @@
 
 
 
-<meta name="description" content="title：Embedded Deformation for Shape Manipulationpaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfcode: https://github.com/hwdong/deformation_graph (非作者提供)">
+<meta name="description" content="Title：Embedded Deformation for Shape ManipulationPaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfCode: https://github.com/hwdong/deformation_graph (非作者提供)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读：Deformation Graph">
 <meta property="og:url" content="http://baoxizhao.com/2020/08/22/论文阅读：DeformationGraph/index.html">
 <meta property="og:site_name" content="Bao Xizhao's Blog">
-<meta property="og:description" content="title：Embedded Deformation for Shape Manipulationpaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfcode: https://github.com/hwdong/deformation_graph (非作者提供)">
-<meta property="og:updated_time" content="2020-08-23T09:07:25.051Z">
+<meta property="og:description" content="Title：Embedded Deformation for Shape ManipulationPaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfCode: https://github.com/hwdong/deformation_graph (非作者提供)">
+<meta property="og:updated_time" content="2020-10-22T01:24:35.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读：Deformation Graph">
-<meta name="twitter:description" content="title：Embedded Deformation for Shape Manipulationpaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfcode: https://github.com/hwdong/deformation_graph (非作者提供)">
+<meta name="twitter:description" content="Title：Embedded Deformation for Shape ManipulationPaper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdfCode: https://github.com/hwdong/deformation_graph (非作者提供)">
 
 
 
@@ -344,7 +344,7 @@
       
 
       
-        <p>title：Embedded Deformation for Shape Manipulation<br>paper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdf<br>code: <a href="https://github.com/hwdong/deformation_graph" target="_blank" rel="external">https://github.com/hwdong/deformation_graph</a> (非作者提供)<br><a id="more"></a></p>
+        <p>Title：Embedded Deformation for Shape Manipulation<br>Paper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdf<br>Code: <a href="https://github.com/hwdong/deformation_graph" target="_blank" rel="external">https://github.com/hwdong/deformation_graph</a> (非作者提供)<br><a id="more"></a></p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这篇论文主要讲的是用embedded deformation graph 来表示三维模型表面的变形。主要分为三步：</p>
 <ul>
 <li>建立变形图（Deformation Graph）</li>
@@ -359,7 +359,7 @@
 <p>当然，变形点可能不止一个，当受到多个变形点影响时，可以对他们加权：  </p>
 <script type="math/tex; mode=display">v'_i = \sum_{j=1}^{m}w_j(v_i)[R_j(v_i-g_j) + g_j +t_j]</script><p>权重和点之间的距离有关，越远的点施加的影响就越小:    </p>
 <script type="math/tex; mode=display">w_j(v_i) = (1-\frac{\| v_i - g_j \|}{d_{max}})^2</script><p>其中 $d_{max}$表示$v_i$到第$k+1$近的点的距离，这样可以控制只受最近$k$个点影响。<br>例如，$v_i$的邻点与$v_i$的距离分别为2,3,4,7,11,15,…。当我们取$k=4$时，$d_{max}=9$，<br>此时我们只计算前四个点对$v_i$的影响，过远的点我们就不考虑了。  </p>
-<h2 id="优化s"><a href="#优化s" class="headerlink" title="优化s"></a>优化s</h2><p>论文提出了三个约束：$E_{rot},E_{reg},E_{con}$。  </p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>论文提出了三个约束：$E_{rot},E_{reg},E_{con}$。  </p>
 <p>作者认为为了保证细节，仿射变换的$R$，必须尽量是旋转矩阵。要使$R$是旋转矩阵，则必须满足$SO(3)$（旋转群），也就是六个条件：三个列必须两两正交，三个列必须都是单位长度：</p>
 <script type="math/tex; mode=display">Rot(R) = (c_1 \cdot c_2) + (c_1 \cdot c_3) +(c_2 \cdot c_3) + \\
             (c_1 \cdot c_1 - 1)^2 + (c_2 \cdot c_2 - 1)^2 +(c_3 \cdot c_3 - 1)^2</script><p>上式中的$c_1,c_2,c_3$分别是$R$的三个列向量。所以旋转项的约束$E_{rot}$: </p>
@@ -490,7 +490,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -501,7 +501,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -547,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化s"><span class="nav-number">3.</span> <span class="nav-text">优化s</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li></ol></div>
             
 
           </div>

@@ -253,6 +253,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2020/10/22/Keras BN层 探坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bao Xizhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bao Xizhao's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/22/Keras BN层 探坑/" itemprop="url">Keras BN层 探坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-22T00:00:00+08:00">
+                2020-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>问题发生在我使用<code>Keras</code>的<code>Resnet50</code>预训练模型时。我希望用<code>Resnet50</code>作为一个主干网络，通过在后面添加全连接层来实现我的回归任务。训练的时候效果不错，<code>loss</code>经过很多次训练后收敛了，下降到了一个较低的值。但是在测试阶段，预测结果很差，<code>loss</code>很高，即使我使用了训练数据去预测。最后发现问题出现在了<code>BN(Batch Normalization)</code>层。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/10/22/Keras BN层 探坑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2020/08/26/Latex常见问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -323,39 +469,14 @@
 
       
         
-          
-            <p>Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。</p>
-<h2 id="如何使用参考文献"><a href="#如何使用参考文献" class="headerlink" title="如何使用参考文献"></a>如何使用参考文献</h2><p>Latex有两种方法：</p>
-<ul>
-<li>\begin{thebibliography}</li>
-<li>Bibtex<br>第一种方法很简单：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\begin&#123;thebibliography&#125;</div><div class="line">    \bibitem&#123;key&#125; citepaper</div><div class="line">    ...</div><div class="line">\end&#123;thebibliography&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>但是这种方法不够强大，如果你想把参看文献按论文里的引用顺序排序的话，就办不到，当然你也可以用一些<a href="https://github.com/LaTeX-Bibitem-Styler/latex-bibitemstyler" target="_blank" rel="external">工具</a>，但总归不太方便。  </p>
-<p>第二种方法非常强大，首先在你需要在论文的项目目录下新建一个.bib文件，比如建了一个ref.bib。然后去百度学术或者google scholar里搜你要引用的论文，然后点引用下面的BibTex，这时候你会得到一个这样的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@inproceedings&#123;ren2015faster,</div><div class="line">  title=&#123;Faster r-cnn: Towards real-time object detection with region proposal networks&#125;,</div><div class="line">  author=&#123;Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian&#125;,</div><div class="line">  booktitle=&#123;Advances in neural information processing systems&#125;,</div><div class="line">  pages=&#123;91--99&#125;,</div><div class="line">  year=&#123;2015&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>把这些保存到ref.bib，接下来就可以在latex里引用它了。<br>首先添加cite包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\usepackage&#123;cite&#125;</div></pre></td></tr></table></figure></p>
-<p>接下来就可以在论文里用\cite引用了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Here\cite&#123;ren2015faster&#125; is an example.</div></pre></td></tr></table></figure></p>
-<p>然后要在latex里告诉它参考文献的风格和你的bib文件名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">% 参考文献风格</div><div class="line">\bibliographystyle&#123;unsrt&#125;</div><div class="line"></div><div class="line">% bib文件名，我们的例子是ref.bib，所以这里写ref就行</div><div class="line">\bibliography&#123;ref&#125;</div></pre></td></tr></table></figure></p>
-<p>参考文献的风格有以下这些：</p>
-<ul>
-<li>plain，按字母的顺序排列，比较次序为作者、年度和标题.</li>
-<li>unsrt，样式同plain，只是按照引用的先后排序.</li>
-<li>alpha，用作者名首字母+年份后两位作标号，以字母顺序排序.</li>
-<li>abbrv，类似plain，将月份全拼改为缩写，更显紧凑.</li>
-<li>ieeetr，国际电气电子工程师协会期刊样式.</li>
-<li>acm，美国计算机学会期刊样式.</li>
-<li>siam，美国工业和应用数学学会期刊样式.</li>
-<li>apalike，美国心理学学会期刊样式.</li>
-</ul>
-<p>上述完成后，就可以编译了，编译时注意，如果你的论文pdf用别的浏览器打开了，需要先关闭，不然会提示pdf被占用。</p>
-<ul>
-<li>编译 latex </li>
-<li>编译 bibtex </li>
-<li>编译 latex </li>
-<li>编译 latex<br>如果你的latex文件名是demo.tex，那么编译bibtex时，只要在项目路径下bibtex demo即可。</li>
-</ul>
-
-          
+          <p>Latex 是写论文时经常要用到的，本文用来记录Latex遇到的常见问题。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/26/Latex常见问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -494,7 +615,7 @@
 
       
         
-          <p>title：Embedded Deformation for Shape Manipulation<br>paper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdf<br>code: <a href="https://github.com/hwdong/deformation_graph">https://github.com/hwdong/deformation_graph</a> (非作者提供)<br>
+          <p>Title：Embedded Deformation for Shape Manipulation<br>Paper: www.graphics.ethz.ch/~sumnerb/research/embdef/Sumner2007EDF.pdf<br>Code: <a href="https://github.com/hwdong/deformation_graph">https://github.com/hwdong/deformation_graph</a> (非作者提供)<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/08/22/论文阅读：DeformationGraph/#more" rel="contents">
@@ -1380,152 +1501,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2018/08/08/智能合约入门（一）发布第一个智能合约/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bao Xizhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bao Xizhao's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/08/智能合约入门（一）发布第一个智能合约/" itemprop="url">智能合约入门（一）发布第一个智能合约</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-08T00:00:00+08:00">
-                2018-08-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Block-Chain/" itemprop="url" rel="index">
-                    <span itemprop="name">Block Chain</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>暑期实习是在一家区块链安全公司 <a href="https://armors.io">Armors</a>，虽然只有四周，但是还是学习了不少相关知识，在这里记录一下。<br>开发智能合约有多种方法，这里介绍两种，使用geth客户端和truffle+ganache。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/08/智能合约入门（一）发布第一个智能合约/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://baoxizhao.com/2018/08/08/智能合约入门（二）发行自己的货币/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1709,7 +1684,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1720,7 +1695,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
