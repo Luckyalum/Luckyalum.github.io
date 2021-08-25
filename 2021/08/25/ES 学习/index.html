@@ -78,7 +78,7 @@
 <meta property="og:image" content="http://baoxizhao.com/img/ES学习/2.PNG">
 <meta property="og:image" content="http://baoxizhao.com/img/ES学习/3.PNG">
 <meta property="og:image" content="http://baoxizhao.com/img/ES学习/4.PNG">
-<meta property="og:updated_time" content="2021-08-25T07:06:52.473Z">
+<meta property="og:updated_time" content="2021-08-25T09:30:50.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES 学习">
 <meta name="twitter:description" content="You Know, For SearchES 的全称是 ElasticSearch，它是一个实时的分布式存储、搜索、分析的引擎，相比于其他的数据库来说，它更专注于搜索。">
@@ -367,51 +367,14 @@
 <h4 id="连接ES"><a href="#连接ES" class="headerlink" title="连接ES"></a>连接ES</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#　有很多连接方式，这是最简单的一种，默认连接 http://localhost:9200/</span></div><div class="line">es = Elasticsearch()</div></pre></td></tr></table></figure>
 <h4 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">doc = &#123;</div><div class="line">    <span class="string">"first_name"</span> : <span class="string">"John"</span>,</div><div class="line">    <span class="string">"last_name"</span> :  <span class="string">"Smith"</span>,</div><div class="line">    <span class="string">"age"</span> :        <span class="number">25</span>,</div><div class="line">    <span class="string">"about"</span> :      <span class="string">"I love to go rock climbing"</span>,</div><div class="line">    <span class="string">"interests"</span>: [ <span class="string">"sports"</span>, <span class="string">"music"</span> ]</div><div class="line">&#125;</div><div class="line">res = es.index(index=<span class="string">"employee"</span>, id=<span class="number">1</span>, body=doc)</div><div class="line">pprint(res)</div></pre></td></tr></table></figure>
 <p>可能会报警告：ElasticsearchWarning: Elasticsearch built-in security features are not enabled. Without authentication, your cluster could be accessible to anyone….<br>这是由于默认情况下，没开启安全特性，可以忽略。  </p>
-<h4 id="插入更多文档"><a href="#插入更多文档" class="headerlink" title="插入更多文档"></a>插入更多文档</h4><pre><code class="lang-python">doc2 = {
-    &quot;first_name&quot; :  &quot;Jane&quot;,
-    &quot;last_name&quot; :   &quot;Smith&quot;,
-    &quot;age&quot; :         32,
-    &quot;about&quot; :       &quot;I like to collect rock albums&quot;,
-    &quot;interests&quot;:  [ &quot;music&quot; ]
-}
-doc3 = {
-    &quot;first_name&quot; :  &quot;Douglas&quot;,
-    &quot;last_name&quot; :   &quot;Fir&quot;,
-    &quot;age&quot; :         35,
-    &quot;about&quot;:        &quot;I like to build cabinets&quot;,
-    &quot;interests&quot;:  [ &quot;forestry&quot; ]
-}
-es.index(index=&quot;employee&quot;, id=2, body=doc2)
-es.index(index=&quot;employee&quot;, id=3, body=doc3)
-</code></pre>
-<h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><pre><code class="lang-python">query_data = es.get(index=&quot;employee&quot;,id=1)
-pprint(query_data)
-</code></pre>
-<h4 id="查询所有员工"><a href="#查询所有员工" class="headerlink" title="查询所有员工"></a>查询所有员工</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={&quot;query&quot;: {&quot;match_all&quot;: {}}})
-pprint(res)
-</code></pre>
-<h4 id="查询-last-name-为-Smith-的员工"><a href="#查询-last-name-为-Smith-的员工" class="headerlink" title="查询 last_name 为 Smith 的员工"></a>查询 last_name 为 Smith 的员工</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
-    &quot;query&quot;:{
-        &quot;term&quot;:
-            {&quot;last_name&quot;:&quot;Smith&quot;}
-        }
-})
-pprint(res)
-</code></pre>
-<p>可以看到查询结果为空。 原因是分词器会将”Smith”变成小写，如下所示：</p>
-<pre><code class="lang-python">res = es.indices.analyze(index=&quot;employee&quot;,body={&quot;text&quot;:&quot;Smith&quot;})
-pprint(res)
-</code></pre>
-<p>使用小写即可查询：</p>
-<pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
-    &quot;query&quot;:{
-        &quot;term&quot;:
-            {&quot;last_name&quot;:&quot;smith&quot;}
-        }
-})
-pprint(res)
-</code></pre>
-<h4 id="查询-last-name-为-Smith-且年龄在20到30岁以内的"><a href="#查询-last-name-为-Smith-且年龄在20到30岁以内的" class="headerlink" title="查询 last_name 为 Smith 且年龄在20到30岁以内的"></a>查询 last_name 为 Smith 且年龄在20到30岁以内的</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
+<h4 id="插入更多文档"><a href="#插入更多文档" class="headerlink" title="插入更多文档"></a>插入更多文档</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">doc2 = &#123;</div><div class="line">    <span class="string">"first_name"</span> :  <span class="string">"Jane"</span>,</div><div class="line">    <span class="string">"last_name"</span> :   <span class="string">"Smith"</span>,</div><div class="line">    <span class="string">"age"</span> :         <span class="number">32</span>,</div><div class="line">    <span class="string">"about"</span> :       <span class="string">"I like to collect rock albums"</span>,</div><div class="line">    <span class="string">"interests"</span>:  [ <span class="string">"music"</span> ]</div><div class="line">&#125;</div><div class="line">doc3 = &#123;</div><div class="line">    <span class="string">"first_name"</span> :  <span class="string">"Douglas"</span>,</div><div class="line">    <span class="string">"last_name"</span> :   <span class="string">"Fir"</span>,</div><div class="line">    <span class="string">"age"</span> :         <span class="number">35</span>,</div><div class="line">    <span class="string">"about"</span>:        <span class="string">"I like to build cabinets"</span>,</div><div class="line">    <span class="string">"interests"</span>:  [ <span class="string">"forestry"</span> ]</div><div class="line">&#125;</div><div class="line">es.index(index=<span class="string">"employee"</span>, id=<span class="number">2</span>, body=doc2)</div><div class="line">es.index(index=<span class="string">"employee"</span>, id=<span class="number">3</span>, body=doc3)</div><div class="line"><span class="comment"># 不指定id的话，es会自动指定一个id</span></div><div class="line">```  </div><div class="line"><span class="comment">#### 根据id查询</span></div><div class="line">```python</div><div class="line">query_data = es.get(index=<span class="string">"employee"</span>,id=<span class="number">1</span>)</div><div class="line">pprint(query_data)</div><div class="line">```  </div><div class="line"></div><div class="line"><span class="comment">#### 查询所有文档</span></div><div class="line">```python</div><div class="line">res = es.search(index=<span class="string">"employee"</span>, body=&#123;<span class="string">"query"</span>: &#123;<span class="string">"match_all"</span>: &#123;&#125;&#125;&#125;)</div><div class="line">pprint(res)</div><div class="line">```  </div><div class="line"></div><div class="line">对于查询来说，关键在于body参数，这个参数就是http查询是的查询体，所以后面我只写出查询体。</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#### 单字段匹配  </span></div><div class="line">匹配基础语法有 match 和 term, term表示精确匹配，match表示模糊匹配，我们先看term。  </div><div class="line">假设我们现在要查询 last_name 为 Smith 的员工。  </div><div class="line">```python</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span>:&#123;</div><div class="line">        <span class="string">"term"</span>:&#123;<span class="string">"last_name"</span>:<span class="string">"Smith"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">```  </div><div class="line">可以看到查询结果为空。 原因是分析器会将<span class="string">"Smith"</span>变成小写，如下所示：</div><div class="line">```python</div><div class="line"><span class="comment"># 查看"Smith"的分析器结果</span></div><div class="line">res = es.indices.analyze(index=<span class="string">"employee"</span>,body=&#123;<span class="string">"text"</span>:<span class="string">"Smith"</span>&#125;)</div><div class="line">pprint(res)</div><div class="line"></div><div class="line"><span class="comment"># 结果如下：</span></div><div class="line">&#123;<span class="string">'tokens'</span>: [&#123;<span class="string">'end_offset'</span>: <span class="number">5</span>,</div><div class="line">             <span class="string">'position'</span>: <span class="number">0</span>,</div><div class="line">             <span class="string">'start_offset'</span>: <span class="number">0</span>,</div><div class="line">             <span class="string">'token'</span>: <span class="string">'smith'</span>,</div><div class="line">             <span class="string">'type'</span>: <span class="string">'&lt;ALPHANUM&gt;'</span>&#125;]</div><div class="line">&#125;</div><div class="line">```  </div><div class="line">可以看到分析器分析过后，<span class="string">"Smith"</span>变成小写存储<span class="string">"smith"</span>。因此精确匹配<span class="string">"Smith"</span>查不到。  </div><div class="line">通过设置分析器我们可以改变是否大小写，从而避免这样的问题，但是我这里就不深入了。现在我们一个简单的方法就是使用小写来查询：</div><div class="line">```python</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span>:&#123;</div><div class="line">        <span class="string">"term"</span>:&#123;<span class="string">"last_name"</span>:<span class="string">"smith"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果没有问题的话，应该可以查找成功。<br>除了term，我们还可以用模糊查询match：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span>:&#123;</div><div class="line">        <span class="string">"match"</span>:&#123;<span class="string">"last_name"</span>:<span class="string">"smith"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="单字段-多条件匹配"><a href="#单字段-多条件匹配" class="headerlink" title="单字段 多条件匹配"></a>单字段 多条件匹配</h4><p>与term对应的是terms，可以进行单字段的多条件匹配，例如我们要查找last_name为smith或fir的员工（注意大小写）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"query"</span>: &#123;</div><div class="line">    <span class="string">"terms"</span>: &#123;</div><div class="line">      <span class="string">"last_name"</span>: [<span class="string">"Smith"</span>,<span class="string">"fir"</span>] <span class="comment"># 这里大小写都可以，因为默认的分析器进行模糊匹配时会考虑到这点</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么match有没有matches呢，并没有，只有multi_match，但这个是多字段匹配的，如果一定要有match，可以考虑后面介绍的复杂语句。  </p>
+<h4 id="多字段匹配"><a href="#多字段匹配" class="headerlink" title="多字段匹配"></a>多字段匹配</h4><p>多字段匹配我们就可以用刚刚说的multi_match了，例如我们现在要查询 last_name 或者 first_name 为 Smith的员工。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"query"</span>: &#123;</div><div class="line">     <span class="string">"multi_match"</span>: &#123;</div><div class="line">      <span class="string">"query"</span>: <span class="string">"Smith"</span>,</div><div class="line">      <span class="string">"fields"</span>: [<span class="string">"first_name"</span>,<span class="string">"last_name"</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另一个可以考虑的是query_string<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"query"</span>: &#123;</div><div class="line">    <span class="string">"query_string"</span>: &#123;</div><div class="line">      <span class="string">"fields"</span>: [<span class="string">"first_name"</span>,<span class="string">"last_name"</span>], <span class="comment"># 也可以是[]数组来进行全字段匹配</span></div><div class="line">      <span class="string">"query"</span>: <span class="string">"Smith"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接下来介绍一些实际用例：  </p>
+<h4 id="查询-last-name-为-Smith-且年龄在20到30岁以内的"><a href="#查询-last-name-为-Smith-且年龄在20到30岁以内的" class="headerlink" title="查询 last_name 为 Smith 且年龄在20到30岁以内的"></a>查询 last_name 为 Smith 且年龄在20到30岁以内的</h4><pre><code class="lang-python">{
     &quot;query&quot;:{
         &quot;bool&quot;:{
             &quot;must&quot;:{
@@ -424,38 +387,34 @@ pprint(res)
             }      
         }
     }
-})
-pprint(res)
+}
 </code></pre>
-<h4 id="查询爱好攀岩的员工"><a href="#查询爱好攀岩的员工" class="headerlink" title="查询爱好攀岩的员工"></a>查询爱好攀岩的员工</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
+<h4 id="查询爱好攀岩的员工"><a href="#查询爱好攀岩的员工" class="headerlink" title="查询爱好攀岩的员工"></a>查询爱好攀岩的员工</h4><pre><code class="lang-python">{
     &quot;query&quot;:{
         &quot;match&quot;:{&quot;about&quot;:&quot;rock climbing&quot;}
     }
-})
-pprint(res)
+}
 </code></pre>
 <p>可以看到 rock albums 也返回了（还是由于分词的原因）。另一个需要注意的是 _score ，这个值表示了相关性（关系型数据库没有这种特点）。<br>为了只返回 rock climbing，可以使用短语：  </p>
-<pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
+<pre><code class="lang-python">{
     &quot;query&quot;:{
         &quot;match_phrase&quot;:{&quot;about&quot;:&quot;rock climbing&quot;}
     }
-})
-pprint(res)
+}
 </code></pre>
 <p>返回的结果支持高亮，使用HTML的<em>标签标记出需要高亮的词  </em></p>
-<pre><code class="lang-python">res = es.search(index=&quot;employee&quot;, body={
+<pre><code class="lang-python">{
     &quot;query&quot;:{&quot;match_phrase&quot;:{&quot;about&quot;:&quot;rock climbing&quot;}},
     &quot;highlight&quot;: {&quot;fields&quot; : {&quot;about&quot; : {}}}
-})
-pprint(res)
+}
 </code></pre>
-<h4 id="按照兴趣分类"><a href="#按照兴趣分类" class="headerlink" title="按照兴趣分类"></a>按照兴趣分类</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;,body={
+<h4 id="按照兴趣分类"><a href="#按照兴趣分类" class="headerlink" title="按照兴趣分类"></a>按照兴趣分类</h4><pre><code class="lang-python">{
     &quot;aggs&quot;: {
         &quot;all_interests&quot;: {
           &quot;terms&quot;: { &quot;field&quot;: &quot;interests&quot; }
         }
       }
-})
+}
 pprint(res[&#39;aggregations&#39;])
 </code></pre>
 <p>默认情况下并不是上面那个结果，而是下面这个错误：<br>RequestError(400, ‘search_phase_execution_exception’, ‘Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [interests] in order to load field data by uninverting the inverted index. Note that this can use significant memory.’)<br>这是由于5.x后对排序，聚合这些操作用单独的数据结构(fielddata)缓存到内存里了，需要单独开启，也就是提前修改索引的设置:<br>PUT megacorp/_mapping/employee/<br>{ “properties”: { “interests”: {“type”: “text”, “fielddata”: true } } }<br>换成 Python 操作如下：  </p>
@@ -468,7 +427,7 @@ pprint(res[&#39;aggregations&#39;])
   }
 })
 </code></pre>
-<h4 id="查询smith的兴趣"><a href="#查询smith的兴趣" class="headerlink" title="查询smith的兴趣"></a>查询smith的兴趣</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;,body={
+<h4 id="查询smith的兴趣"><a href="#查询smith的兴趣" class="headerlink" title="查询smith的兴趣"></a>查询smith的兴趣</h4><pre><code class="lang-python">{
     &quot;query&quot;: {
     &quot;match&quot;: {
       &quot;last_name&quot;: &quot;smith&quot;
@@ -479,10 +438,9 @@ pprint(res[&#39;aggregations&#39;])
           &quot;terms&quot;: { &quot;field&quot;: &quot;interests&quot; }
         }
       }
-})
-pprint(res[&#39;aggregations&#39;])
+}
 </code></pre>
-<h4 id="查询每种兴趣的员工平均年龄"><a href="#查询每种兴趣的员工平均年龄" class="headerlink" title="查询每种兴趣的员工平均年龄"></a>查询每种兴趣的员工平均年龄</h4><pre><code class="lang-python">res = es.search(index=&quot;employee&quot;,body={
+<h4 id="查询每种兴趣的员工平均年龄"><a href="#查询每种兴趣的员工平均年龄" class="headerlink" title="查询每种兴趣的员工平均年龄"></a>查询每种兴趣的员工平均年龄</h4><pre><code class="lang-python">{
         &quot;aggs&quot; : {
             &quot;all_interests&quot; : {
                 &quot;terms&quot; : { &quot;field&quot; : &quot;interests&quot; },
@@ -493,8 +451,7 @@ pprint(res[&#39;aggregations&#39;])
                 }
             }
     }
-})
-pprint(res[&#39;aggregations&#39;])
+}
 </code></pre>
 
       
@@ -672,7 +629,7 @@ pprint(res[&#39;aggregations&#39;])
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#You-Know-For-Search"><span class="nav-number">1.</span> <span class="nav-text">You Know, For Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐学习资料"><span class="nav-number">2.</span> <span class="nav-text">推荐学习资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">4.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式"><span class="nav-number">5.</span> <span class="nav-text">分布式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Python-操作-ES"><span class="nav-number">6.</span> <span class="nav-text">使用 Python 操作 ES</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导入相关包"><span class="nav-number">6.1.</span> <span class="nav-text">导入相关包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接ES"><span class="nav-number">6.2.</span> <span class="nav-text">连接ES</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入文档"><span class="nav-number">6.3.</span> <span class="nav-text">插入文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入更多文档"><span class="nav-number">6.4.</span> <span class="nav-text">插入更多文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询文档"><span class="nav-number">6.5.</span> <span class="nav-text">查询文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有员工"><span class="nav-number">6.6.</span> <span class="nav-text">查询所有员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询-last-name-为-Smith-的员工"><span class="nav-number">6.7.</span> <span class="nav-text">查询 last_name 为 Smith 的员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询-last-name-为-Smith-且年龄在20到30岁以内的"><span class="nav-number">6.8.</span> <span class="nav-text">查询 last_name 为 Smith 且年龄在20到30岁以内的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询爱好攀岩的员工"><span class="nav-number">6.9.</span> <span class="nav-text">查询爱好攀岩的员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照兴趣分类"><span class="nav-number">6.10.</span> <span class="nav-text">按照兴趣分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询smith的兴趣"><span class="nav-number">6.11.</span> <span class="nav-text">查询smith的兴趣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询每种兴趣的员工平均年龄"><span class="nav-number">6.12.</span> <span class="nav-text">查询每种兴趣的员工平均年龄</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#You-Know-For-Search"><span class="nav-number">1.</span> <span class="nav-text">You Know, For Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐学习资料"><span class="nav-number">2.</span> <span class="nav-text">推荐学习资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">4.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式"><span class="nav-number">5.</span> <span class="nav-text">分布式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Python-操作-ES"><span class="nav-number">6.</span> <span class="nav-text">使用 Python 操作 ES</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导入相关包"><span class="nav-number">6.1.</span> <span class="nav-text">导入相关包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接ES"><span class="nav-number">6.2.</span> <span class="nav-text">连接ES</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入文档"><span class="nav-number">6.3.</span> <span class="nav-text">插入文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入更多文档"><span class="nav-number">6.4.</span> <span class="nav-text">插入更多文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单字段-多条件匹配"><span class="nav-number">6.5.</span> <span class="nav-text">单字段 多条件匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多字段匹配"><span class="nav-number">6.6.</span> <span class="nav-text">多字段匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询-last-name-为-Smith-且年龄在20到30岁以内的"><span class="nav-number">6.7.</span> <span class="nav-text">查询 last_name 为 Smith 且年龄在20到30岁以内的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询爱好攀岩的员工"><span class="nav-number">6.8.</span> <span class="nav-text">查询爱好攀岩的员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照兴趣分类"><span class="nav-number">6.9.</span> <span class="nav-text">按照兴趣分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询smith的兴趣"><span class="nav-number">6.10.</span> <span class="nav-text">查询smith的兴趣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询每种兴趣的员工平均年龄"><span class="nav-number">6.11.</span> <span class="nav-text">查询每种兴趣的员工平均年龄</span></a></li></ol></li></ol></div>
             
 
           </div>
